@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "ExtensionNetCore3": {
+      "commandName": "Executable"
+    }
+  }
+}
