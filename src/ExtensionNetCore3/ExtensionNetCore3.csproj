@@ -6,6 +6,7 @@
     <Copyright>MIT</Copyright>
     <RepositoryUrl>https://github.com/ignatandrei/WebAPI2CLI</RepositoryUrl>
     <RepositoryType>GIT</RepositoryType>
+    <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);IncludeP2PAssets</TargetsForTfmSpecificBuildOutput>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,7 +18,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CLIExecute\CLIExecute.csproj" />
+    <ProjectReference Include="..\CLIExecute\CLIExecute.csproj"  PrivateAssets="All"  />
   </ItemGroup>
+  <Target Name="IncludeP2PAssets">
+    <ItemGroup>
+      <BuildOutputInPackage Include="$(OutputPath)CLIExecute.dll" />
+    </ItemGroup>
+  </Target>
 
 </Project>
