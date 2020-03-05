@@ -15,5 +15,25 @@ app.UseCLI();
 
 
 Step3:
+
 Start the .exe project with --CLI_ENABLED=1
+Copy what is between
+    
+    put this in a cli.txt file in the same path as the exe:
+
+and
+
+    then run the exe with following parameters :
+
+Step 4:
+Create a 
+cli.txt 
+file( in VS: Properties, Build: Content, CopyToOutputDirectory : Copy if newer)
+and paste the Content
+
+Step 5:
+Now run the .exe project with 
+--CLI_ENABLED=1 --CLICommands="Command001"
+
+( you can separate commands by comma )
 </html>
