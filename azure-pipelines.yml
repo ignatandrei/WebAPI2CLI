@@ -25,7 +25,7 @@ steps:
     cd src
     dotnet tool restore
     pwsh ./setVersion.ps1
-    dotnet build --configuration $(buildConfiguration) src/WebAPI2CLI.sln /m:1
+    dotnet build --configuration $(buildConfiguration) WebAPI2CLI.sln /m:1
   displayName: build sln
 
 - script: dotnet pack src/ExtensionNetCore3/ExtensionNetCore3.csproj --include-source  --no-build -o $(Build.ArtifactStagingDirectory) /p:Configuration=$(buildConfiguration) # --verbosity Detailed
