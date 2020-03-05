@@ -30,3 +30,8 @@ steps:
 
 - script: dotnet pack src/ExtensionNetCore3/ExtensionNetCore3.csproj --include-source  --no-build -o $(Build.ArtifactStagingDirectory) /p:Configuration=$(buildConfiguration) # --verbosity Detailed
   displayName: 'dotnet pack '
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    artifactName: drop1
