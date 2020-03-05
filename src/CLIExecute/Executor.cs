@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Text.Json;
@@ -16,6 +17,11 @@ namespace CLIExecute
 {
     public class Executor
     {
+        static Executor()
+        {
+            var assName = Assembly.GetExecutingAssembly().GetName();
+            Console.WriteLine($"{assName.Name} version:{assName.Version.ToString()}");
+        }
         private readonly IServerAddressesFeature serverAddresses;
         private readonly IApiDescriptionGroupCollectionProvider api;
         private readonly IServiceProvider serviceProvider;

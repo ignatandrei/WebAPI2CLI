@@ -2,11 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Copyright>MIT</Copyright>
     <RepositoryUrl>https://github.com/ignatandrei/WebAPI2CLI</RepositoryUrl>
     <RepositoryType>GIT</RepositoryType>
-    <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);IncludeP2PAssets</TargetsForTfmSpecificBuildOutput>
+    <!--<TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);IncludeP2PAssets</TargetsForTfmSpecificBuildOutput>-->
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <Description>WebAPI2CLI</Description>
   </PropertyGroup>
@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CLIExecute\CLIExecute.csproj" PrivateAssets="All" />
+    <ProjectReference Include="..\CLIExecute\CLIExecute.csproj" />
   </ItemGroup>
 
   <ItemGroup>

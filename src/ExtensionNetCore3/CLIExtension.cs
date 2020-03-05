@@ -12,8 +12,8 @@ namespace ExtensionNetCore3
     {
         static CLIExtension()
         {
-            var version = Assembly.GetExecutingAssembly().GetName().Version;
-            Console.WriteLine("WebAPI2CLI version:" + version.ToString());
+            var assName = Assembly.GetExecutingAssembly().GetName();
+            Console.WriteLine($"{assName.Name} version:{assName.Version.ToString()}");
         }
         public static IServiceCollection AddCLI(this IServiceCollection serviceCollection)
         {
