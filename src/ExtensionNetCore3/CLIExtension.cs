@@ -3,11 +3,18 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using System;
+using System.Reflection;
 
 namespace ExtensionNetCore3
 {
     public static class CLIExtension
     {
+        static CLIExtension()
+        {
+            var version = Assembly.GetExecutingAssembly().GetName().Version;
+            Console.WriteLine("WebAPI2CLI version:" + version.ToString());
+        }
         public static IServiceCollection AddCLI(this IServiceCollection serviceCollection)
         {
 
