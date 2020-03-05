@@ -32,7 +32,7 @@ steps:
     echo "pack ExtensionNetCore3.csproj"
     dotnet pack src/ExtensionNetCore3/ExtensionNetCore3.csproj --include-source  --no-build -o $(Build.ArtifactStagingDirectory) /p:Configuration=$(buildConfiguration) 
     echo "pack CLIExecute.csproj"
-    dotnet pack src/CLIExecute/CLIExecute.csproj --include-source  --no-build -o $(Build.ArtifactStagingDirectory) /p:Configuration=$(buildConfiguration) # --verbosity Detailed
+    dotnet pack src/CLIExecute/CLIExecute.csproj --include-source  --no-build -o $(Build.ArtifactStagingDirectory) /p:Configuration=$(buildConfiguration) 
   displayName: 'dotnet pack '
 
 - task: PublishBuildArtifacts@1
