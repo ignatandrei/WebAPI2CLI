@@ -46,6 +46,6 @@ steps:
   inputs:
     command: push
     nuGetFeedType: external
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
     publishFeedCredentials: 'nugetAndrei'
   displayName: 'dotnet nuget push'
