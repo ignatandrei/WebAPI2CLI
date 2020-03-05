@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <RepositoryUrl>https://github.com/ignatandrei/WebAPI2CLI</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <PackageReleaseNotes>WebAPI to CLI
