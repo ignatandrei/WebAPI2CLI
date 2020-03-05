@@ -49,3 +49,7 @@ steps:
     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
     publishFeedCredentials: 'nugetAndrei'
   displayName: 'dotnet nuget push'
+
+- script: |
+    nuget push $(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg %MYGETAPIKEY% -Source https://www.myget.org/F/ignatandrei/api/v2/package
+  displayName: push myget
