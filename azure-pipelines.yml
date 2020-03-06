@@ -33,7 +33,7 @@ steps:
     cd src
     dotnet tool restore --add-source https://myget.org/F/natemcmaster/api/v3/index.json
     cd CLITests
-    dotnet test --logger trx --no-build -r $(Build.ArtifactStagingDirectory)\trx
+    dotnet test --logger trx --no-build -r $(Build.ArtifactStagingDirectory)\trx -o bin\$(buildConfiguration)\netcoreapp3.1
     cd bin\$(buildConfiguration)\netcoreapp3.1
     dotnet xunit CLITests.dll -parallel none -html $(Build.ArtifactStagingDirectory)tests.html
     dotnet coverlet CLITests.dll --target "dotnet" --targetargs "test --no-build" --format opencover  --output $(Build.ArtifactStagingDirectory)\testResults\coverlet.xml
