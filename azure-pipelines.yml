@@ -46,7 +46,10 @@ steps:
       **\*test*.dll
       !**\*TestWebAPI*.dll
       !**\obj\**
-
+    runInParallel: False
+    publishRunAttachments:true
+    codeCoverageEnabled:true
+    
 # - task: PublishTestResults@2
 #   inputs:
 #     testResultsFormat: 'VSTest' 
