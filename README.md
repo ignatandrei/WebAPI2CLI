@@ -10,3 +10,5 @@ Execute ASP.NET Core WebAPI from Command Line
 [![Build Status](https://dev.azure.com/ignatandrei0674/WebAPI2CLI/_apis/build/status/ignatandrei.WebAPI2CLI?branchName=master)](https://dev.azure.com/ignatandrei0674/WebAPI2CLI/_build/latest?definitionId=7&branchName=master)
 
 ![Azure DevOps tests (branch)](https://img.shields.io/azure-devops/tests/ignatandrei0674/WebAPI2CLI/7/master)
+
+![Azure DevOps coverage (branch)](https://img.shields.io/azure-devops/coverage/ignatandrei0674/WebAPI2CLI/7/master)
