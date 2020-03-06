@@ -25,9 +25,13 @@ namespace ExtensionNetCore3
             this.api = api;
             this.configuration = configuration;            
         }        
+        public bool IsEnabled()
+        {
+            return configuration.GetValue<int>("CLI_ENABLED") == 1;
+        }
         public Task StartAsync(CancellationToken cancellationToken)
         {
-            if (configuration.GetValue<int>("CLI_ENABLED") == 1)
+            if (IsEnabled())
             {
                 _timer = new Timer(DoWork, null, TimeSpan.Zero, TimeSpan.FromSeconds(5));
             }
@@ -35,10 +39,14 @@ namespace ExtensionNetCore3
             return Task.CompletedTask;
 
         }
+        public bool ExistsApp()
+        {
+            return (app != null);
+
+        }
         private async void DoWork(object state)
         {
-            bool existsApp = (app != null);            
-            if (existsApp)
+            if (ExistsApp())
             {
                 _timer.Dispose();
                 serverAddresses = app.ServerFeatures.Get<IServerAddressesFeature>();
