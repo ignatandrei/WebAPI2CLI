@@ -61,7 +61,7 @@ namespace CLITests
                 service.Should().BeOfType<CLIAPIHostedService>();
 
             });
-            $"Then service should be enabled".x(() =>
+            $"Then service should be enabled: {WithConfiguration} ".x(() =>
             {
                 var cliService = service as CLIAPIHostedService;
                 cliService.IsEnabled().Should().Be(WithConfiguration);
@@ -72,7 +72,7 @@ namespace CLITests
                 var cliService = service as CLIAPIHostedService;
                 await Task.Delay(10 * 1000);
                 cliService.ExistsApp().Should().BeTrue();
-
+    
             });
 
         }
