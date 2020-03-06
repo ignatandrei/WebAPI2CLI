@@ -25,6 +25,12 @@
       "commands": [
         "coverlet"
       ]
+    },
+    "dotnet-reportgenerator-globaltool": {
+      "version": "4.5.0",
+      "commands": [
+        "reportgenerator"
+      ]
     }
   }
 }

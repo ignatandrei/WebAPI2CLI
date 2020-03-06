@@ -35,8 +35,8 @@ steps:
     cd CLITests\bin\$(buildConfiguration)\netcoreapp3.1
     echo '$(Build.ArtifactStagingDirectory)tests.html'
     dotnet xunit CLITests.dll -parallel none -html $(Build.ArtifactStagingDirectory)tests.html
-    dotnet coverlet CLITests.dll --target "dotnet" --targetargs "test --no-build" --format opencover  --output $(Build.ArtifactStagingDirectory)coverlet.xml
-
+    dotnet coverlet CLITests.dll --target "dotnet" --targetargs "test --no-build" --format opencover  --output $(Build.ArtifactStagingDirectory)\testResults\coverlet.xml
+    dotnet reportgenerator "-reports:$(Build.ArtifactStagingDirectory)\testResults\coverlet.xml" "-targetdir:$(Build.ArtifactStagingDirectory)\testResults" "-reporttypes:HtmlSummary;Badges;HTMLInline"
   displayName: execute tests
 
 - script: |
