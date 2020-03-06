@@ -37,7 +37,7 @@ steps:
     echo 'xunit'
     dotnet xunit bin\$(buildConfiguration)\netcoreapp3.1\CLITests.dll -parallel none -html $(Build.ArtifactStagingDirectory)\tests.html
     echo 'coverlet'
-    dotnet coverlet bin\$(buildConfiguration)\netcoreapp3.1\CLITests.dll --target "dotnet" --targetargs "test --no-build --configuration $(buildConfiguration)" --exclude '[TestWebAPISite]*' --format opencover  --output $(Build.ArtifactStagingDirectory)\testResults\coverlet.xml
+    dotnet coverlet bin\$(buildConfiguration)\netcoreapp3.1\CLITests.dll --target "dotnet" --targetargs "test --no-build --configuration $(buildConfiguration)" --exclude '[*Test*]*' --format opencover  --output $(Build.ArtifactStagingDirectory)\testResults\coverlet.xml
     dotnet reportgenerator "-reports:$(Build.ArtifactStagingDirectory)\testResults\coverlet.xml" "-targetdir:$(Build.ArtifactStagingDirectory)\testResults" "-reporttypes:HtmlSummary;Badges;HTMLInline"
   displayName: execute tests
 
