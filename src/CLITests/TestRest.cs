@@ -18,10 +18,14 @@ namespace CLITests
     {
         private Dictionary<bool, WebApplicationFactory<Startup>> _factory=new Dictionary<bool, WebApplicationFactory<Startup>>() ;
 
-        public TestAllServices(WebApplicationFactory<Startup> factoryConfig,WebApplicationFactory<Startup> factoryConfig1)
+        public TestAllServices(WebApplicationFactory<Startup> factoryConfig)
         {
-            _factory.Add(true, factoryConfig);
-            _factory.Add(false, ConfigureServices(factoryConfig1));
+            
+            
+            _factory.Add(false, factoryConfig);
+            var factoryConfig1 = ConfigureServices(factoryConfig);
+            var b = factoryConfig != factoryConfig1;
+            _factory.Add(true, factoryConfig1);
         }
         private WebApplicationFactory<Startup> ConfigureServices(WebApplicationFactory<Startup> f)
         {
@@ -41,7 +45,7 @@ namespace CLITests
         [Scenario]
         [Example(true)]
         [Example(false)]
-        public void TestService(bool WithConfiguration, WebApplicationFactory<Startup> f, object service)
+        public async Task TestService(bool WithConfiguration, WebApplicationFactory<Startup> f, object service)
         {
             $"Given the factory configured {WithConfiguration}".x(() =>
             {
@@ -51,27 +55,26 @@ namespace CLITests
             {
                 service = f.Services.GetService(typeof(CLIAPIHostedService));
             });
-            $"Then the service should {WithConfiguration} exists".x(() =>
-            {
-                if (WithConfiguration)
-                {
-                    service.Should().BeOfType<CLIAPIHostedService>();
-                }
-                else
-                {
-                    service.Should().BeNull();
-                }
-            });
-            if (WithConfiguration)
-            {
-                $"Then service should be enabled".x(() =>
-                {
-                    var cliService = service as CLIAPIHostedService;
-                    cliService.IsEnabled().Should().BeTrue();
-                    cliService.ExistsApp().Should().BeTrue();
 
-                });
-            }
+            $"Then the service should  exists ".x(() =>
+            {
+                service.Should().BeOfType<CLIAPIHostedService>();
+
+            });
+            $"Then service should be enabled".x(() =>
+            {
+                var cliService = service as CLIAPIHostedService;
+                cliService.IsEnabled().Should().Be(WithConfiguration);
+                cliService.ExistsApp().Should().Be(WithConfiguration);
+
+            });
+            $"Then later the app should be transmitted".x(async () =>
+            {
+                var cliService = service as CLIAPIHostedService;
+                await Task.Delay(10 * 1000);
+                cliService.ExistsApp().Should().Be(WithConfiguration);
+
+            });
 
         }
     }
