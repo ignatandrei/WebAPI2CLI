@@ -45,6 +45,7 @@ steps:
     testResultsFormat: 'VSTest' 
     testResultsFiles: '**/*.trx' 
     searchFolder: '$(Build.ArtifactStagingDirectory)\trx' 
+    publishRunAttachments: true
   displayName: publish tests
 
 - script: |
