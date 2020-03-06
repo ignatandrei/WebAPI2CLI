@@ -12,7 +12,7 @@ pool:
 variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
-  buildConfiguration: 'Debug'
+  buildConfiguration: 'Release'
   deployNuget: '0'
 
 steps:
@@ -32,10 +32,9 @@ steps:
 - script: |
     cd src
     dotnet tool restore --add-source https://myget.org/F/natemcmaster/api/v3/index.json
-    # dotnet test WebAPI2CLI.sln --logger trx --no-build -r $(Build.ArtifactStagingDirectory)\trx -o CLITests\bin\$(buildConfiguration)\netcoreapp3.1
-    cd CLITests\bin\$(buildConfiguration)\netcoreapp3.1
-    dotnet xunit CLITests.dll -parallel none -html $(Build.ArtifactStagingDirectory)tests.html
-    dotnet coverlet CLITests.dll --target "dotnet" --targetargs "test --no-build" --format opencover  --output $(Build.ArtifactStagingDirectory)\testResults\coverlet.xml
+    rem dotnet test WebAPI2CLI.sln --logger trx --no-build -r $(Build.ArtifactStagingDirectory)\trx -o CLITests\bin\$(buildConfiguration)\netcoreapp3.1
+    dotnet xunit CLITests\bin\$(buildConfiguration)\netcoreapp3.1\CLITests.dll -parallel none -html $(Build.ArtifactStagingDirectory)tests.html
+    dotnet coverlet CLITests\bin\$(buildConfiguration)\netcoreapp3.1\CLITests.dll --target "dotnet" --targetargs "test --no-build" --format opencover  --output $(Build.ArtifactStagingDirectory)\testResults\coverlet.xml
     dotnet reportgenerator "-reports:$(Build.ArtifactStagingDirectory)\testResults\coverlet.xml" "-targetdir:$(Build.ArtifactStagingDirectory)\testResults" "-reporttypes:HtmlSummary;Badges;HTMLInline"
   displayName: execute tests
 
