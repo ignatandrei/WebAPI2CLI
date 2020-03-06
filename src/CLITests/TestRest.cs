@@ -45,7 +45,7 @@ namespace CLITests
         [Scenario]
         [Example(true)]
         [Example(false)]
-        public async Task TestService(bool WithConfiguration, WebApplicationFactory<Startup> f, object service)
+        public void TestService(bool WithConfiguration, WebApplicationFactory<Startup> f, object service)
         {
             $"Given the factory configured {WithConfiguration}".x(() =>
             {
@@ -65,14 +65,13 @@ namespace CLITests
             {
                 var cliService = service as CLIAPIHostedService;
                 cliService.IsEnabled().Should().Be(WithConfiguration);
-                cliService.ExistsApp().Should().Be(WithConfiguration);
-
+               
             });
             $"Then later the app should be transmitted".x(async () =>
             {
                 var cliService = service as CLIAPIHostedService;
                 await Task.Delay(10 * 1000);
-                cliService.ExistsApp().Should().Be(WithConfiguration);
+                cliService.ExistsApp().Should().BeTrue();
 
             });
 

@@ -46,10 +46,11 @@ namespace ExtensionNetCore3
         }
         private async void DoWork(object state)
         {
-            if (ExistsApp())
+            if (ExistsApp() && (app.ServerFeatures.Get<IServerAddressesFeature>()!=null))
             {
                 _timer.Dispose();
                 serverAddresses = app.ServerFeatures.Get<IServerAddressesFeature>();
+                
                 var exec = new Executor(configuration, serverAddresses, api, app.ApplicationServices);
                 await exec.Execute();
                 Environment.Exit(0);
