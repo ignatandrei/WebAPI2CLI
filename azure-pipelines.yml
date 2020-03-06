@@ -43,8 +43,7 @@ steps:
   inputs:
     testSelector: 'testAssemblies'
     testAssemblyVer2: | # Required when testSelector == TestAssemblies
-      **\*test*.dll
-      !**\*TestWebAPI*.dll
+      **\*CLITests*.dll
       !**\obj\**
     runInParallel: False
     publishRunAttachments: true
