@@ -32,12 +32,20 @@ steps:
 - script: |
     cd src
     dotnet tool restore --add-source https://myget.org/F/natemcmaster/api/v3/index.json
-    cd CLITests\bin\$(buildConfiguration)\netcoreapp3.1
-    echo '$(Build.ArtifactStagingDirectory)tests.html'
+    cd CLITests
+    dotnet test --logger trx --no-build -r $(Build.ArtifactStagingDirectory)\trx
+    cd bin\$(buildConfiguration)\netcoreapp3.1
     dotnet xunit CLITests.dll -parallel none -html $(Build.ArtifactStagingDirectory)tests.html
     dotnet coverlet CLITests.dll --target "dotnet" --targetargs "test --no-build" --format opencover  --output $(Build.ArtifactStagingDirectory)\testResults\coverlet.xml
     dotnet reportgenerator "-reports:$(Build.ArtifactStagingDirectory)\testResults\coverlet.xml" "-targetdir:$(Build.ArtifactStagingDirectory)\testResults" "-reporttypes:HtmlSummary;Badges;HTMLInline"
   displayName: execute tests
+
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'VSTest' 
+    testResultsFiles: '**/*.trx' 
+    searchFolder: '$(Build.ArtifactStagingDirectory)\trx' 
+  displayName: publish tests
 
 - script: |
     echo "pack ExtensionNetCore3.csproj"
