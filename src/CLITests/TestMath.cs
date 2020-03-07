@@ -68,32 +68,9 @@ namespace CLITests
     public class TestMath : IClassFixture<LocalServerFactory<Startup>>
     {
         private readonly LocalServerFactory<Startup> factoryConfig;
-        static TestMath()
-        {
-            ServicePointManager.ServerCertificateValidationCallback =
-            delegate (
-                object s,
-                X509Certificate certificate,
-                X509Chain chain,
-                SslPolicyErrors sslPolicyErrors
-            )
-            {
-                return true;
-            };
-        }
         public TestMath(LocalServerFactory<Startup> factoryConfig)
         {
-            ServicePointManager.ServerCertificateValidationCallback =
-                delegate (
-                    object s,
-                    X509Certificate certificate,
-                    X509Chain chain,
-                    SslPolicyErrors sslPolicyErrors
-                )
-                {
-                    return true;
-                };
-
+            
             this.factoryConfig = factoryConfig;
         }
         //private WebApplicationFactory<Startup> ConfigureServices(WebApplicationFactory<Startup> f, string command)
@@ -154,7 +131,7 @@ namespace CLITests
             $"and the execution of {commandToExecute} should be 200 and the result {result} ".x(async () =>
             {
 
-
+                ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
                 var find = cmds.FindCommands(commandToExecute);
                 find.Should().NotBeNull();
                 find.Length.Should().Be(1);
