@@ -48,8 +48,19 @@ namespace CLITests
         }
         protected override IWebHostBuilder CreateWebHostBuilder()
         {
-            var builder = WebHost.CreateDefaultBuilder(Array.Empty<string>());
+            var builder = WebHost.CreateDefaultBuilder(Array.Empty<string>())
+               .ConfigureKestrel(opt =>
+               {
+                   opt.ConfigureHttpsDefaults(a =>
+                   {
+                       a.AllowAnyClientCertificate();
+                   });
+               }).UseKestrel(options => {
+                   options.Listen(IPAddress.Loopback, 5080); //HTTP port
+               })
+                ;
             builder.UseStartup<TStartup>();
+                
             builder.UseSetting("CLI_ENABLED", "1");
             builder.UseSetting("CLI_STAY", "1");
             //builder.UseSetting("CLICommands", "Test_Get_Add");
