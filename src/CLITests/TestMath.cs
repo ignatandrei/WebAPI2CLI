@@ -13,6 +13,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using TestWebAPISite;
 using Xbehave;
@@ -49,7 +50,7 @@ namespace CLITests
             builder.UseStartup<TStartup>();
             builder.UseSetting("CLI_ENABLED", "1");
             builder.UseSetting("CLI_STAY", "1");
-            builder.UseSetting("CLICommands", "Test_Get_Add");
+            //builder.UseSetting("CLICommands", "Test_Get_Add");
             return builder;
         }
         protected override void Dispose(bool disposing)
@@ -84,8 +85,9 @@ namespace CLITests
 
         //}
         [Scenario]
-        [Example("Test_Get_Add")]
-        public void TestCommand(string commandToExecute, CLIAPIHostedService service)
+        [Example("Test_Get_Add_Https","[1,2]")]
+        [Example("Test_Get_Add_Http", "[1,2]")]
+        public void TestCommand(string commandToExecute,string result, CLIAPIHostedService service)
         {
             var newFactory = this.factoryConfig;// ConfigureServices(this.factoryConfig, commandToExecute); ;
             string address = newFactory.RootUri;
@@ -124,7 +126,7 @@ namespace CLITests
                 cmds.V1.Should().NotBeNull();
                 cmds.V1.Length.Should().BeGreaterThan(0);
             });
-            $"and the execution should be 200".x(async () =>
+            $"and the execution of {commandToExecute} should be 200 and the result {result} ".x(async () =>
             {
                 
                 
@@ -136,7 +138,7 @@ namespace CLITests
                 v1.SetPossibleFullHosts(newFactory.RootUri);
                 var res = await v1.Execute();
                 res.StatusCode.Should().Be(HttpStatusCode.OK);
-
+                res.Result.Should().Be(result);
             });
 
         }

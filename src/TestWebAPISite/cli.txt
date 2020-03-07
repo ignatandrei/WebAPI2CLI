@@ -1,11 +1,11 @@
 ﻿V1:
-- NameCommand: Test_Get_Add
+- NameCommand: Test_Get_Add_Https
   Host: https://
   RelativeRequestUrl: api/MathAdd
   Verb: GET
   ContentType: application/json
   DataToSend:
-- NameCommand: Command002
+- NameCommand: Test_Get_Add_Http
   Host: http://
   RelativeRequestUrl: api/MathAdd
   Verb: GET
