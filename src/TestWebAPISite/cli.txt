@@ -11,15 +11,15 @@
   Verb: GET
   ContentType: application/json
   DataToSend:
-- NameCommand: Command003
+- NameCommand: GetMathId_Https
   Host: https://
-  RelativeRequestUrl: api/MathAdd/{id}
+  RelativeRequestUrl: api/MathAdd/5
   Verb: GET
   ContentType: application/json
   DataToSend: ''
-- NameCommand: Command004
+- NameCommand: GetMathId_Http
   Host: http://
-  RelativeRequestUrl: api/MathAdd/{id}
+  RelativeRequestUrl: api/MathAdd/5
   Verb: GET
   ContentType: application/json
   DataToSend: ''
@@ -29,33 +29,33 @@
   Verb: POST
   ContentType: application/json
   DataToSend: '""'
-- NameCommand: Command006
+- NameCommand: MathPOST
   Host: http://
   RelativeRequestUrl: api/MathAdd
   Verb: POST
   ContentType: application/json
-  DataToSend: '""'
+  DataToSend: '"test post"'
 - NameCommand: Command007
   Host: https://
-  RelativeRequestUrl: api/MathAdd/{id}
+  RelativeRequestUrl: api/MathAdd/23
   Verb: PUT
   ContentType: application/json
-  DataToSend: '""'
-- NameCommand: Command008
+  DataToSend: '"test put"'
+- NameCommand: MathPut
   Host: http://
-  RelativeRequestUrl: api/MathAdd/{id}
+  RelativeRequestUrl: api/MathAdd/175
   Verb: PUT
   ContentType: application/json
-  DataToSend: '""'
+  DataToSend: '"test put"'
 - NameCommand: Command009
   Host: https://
   RelativeRequestUrl: api/MathAdd/{id}
   Verb: DELETE
   ContentType: application/json
   DataToSend: ''
-- NameCommand: Command010
+- NameCommand: MathDelete
   Host: http://
-  RelativeRequestUrl: api/MathAdd/{id}
+  RelativeRequestUrl: api/MathAdd/78
   Verb: DELETE
   ContentType: application/json
   DataToSend: ''

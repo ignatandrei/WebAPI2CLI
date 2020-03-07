@@ -48,6 +48,11 @@ namespace CLITests
         }
         protected override IWebHostBuilder CreateWebHostBuilder()
         {
+            var args=new[]
+            {
+               "CLI_ENABLED=1",
+               "CLI_STAY=1"
+            };
             var builder = WebHost.CreateDefaultBuilder(Array.Empty<string>())
                .ConfigureKestrel(opt =>
                {
@@ -61,8 +66,8 @@ namespace CLITests
                 ;
             builder.UseStartup<TStartup>();
                 
-            builder.UseSetting("CLI_ENABLED", "1");
-            builder.UseSetting("CLI_STAY", "1");
+            //builder.UseSetting("CLI_ENABLED", "1");
+            //builder.UseSetting("CLI_STAY", "1");
             //builder.UseSetting("CLICommands", "Test_Get_Add");
             return builder;
         }
@@ -100,6 +105,10 @@ namespace CLITests
         [Scenario]
         //[Example("Test_Get_Add_Https","[1,2]")]
         [Example("Test_Get_Add_Http", "[1,2]")]
+        [Example("GetMathId_Http", "value5")]
+        [Example("MathPOST","")]
+        [Example("MathPut","")]
+        [Example("MathDelete", "")]
         public void TestCommand(string commandToExecute, string result, CLIAPIHostedService service)
         {
             var newFactory = this.factoryConfig;// ConfigureServices(this.factoryConfig, commandToExecute); ;
