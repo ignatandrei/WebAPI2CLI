@@ -41,6 +41,10 @@ namespace ExtensionNetCore3
             return Task.CompletedTask;
 
         }
+        public bool ShouldStay()
+        {
+            return configuration.GetValue<int>("CLI_STAY") == 1;
+        }
         public bool ExistsApp()
         {
             return (app != null);
@@ -48,14 +52,19 @@ namespace ExtensionNetCore3
         }
         private async void DoWork(object state)
         {
-            if (ExistsApp() && (app.ServerFeatures.Get<IServerAddressesFeature>()!=null))
+            if (ExistsApp() )
             {
-                _timer.Dispose();
+
                 serverAddresses = app.ServerFeatures.Get<IServerAddressesFeature>();
-                
-                exec = new Executor(configuration, serverAddresses, api, app.ApplicationServices);
-                await exec.Execute();
-                Environment.Exit(0);
+                if (serverAddresses != null)
+                {
+                    _timer.Dispose();
+                    exec = new Executor(configuration, serverAddresses, api, app.ApplicationServices);
+                    await exec.Execute();
+
+                    if (!ShouldStay())
+                        Environment.Exit(0);
+                }
             }
         }
         internal Executor exec;
