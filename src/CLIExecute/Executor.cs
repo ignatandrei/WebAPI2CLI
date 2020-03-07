@@ -34,23 +34,27 @@ namespace CLIExecute
             this.configuration = configuration;
         }
         
-        private string CommandsToExecute()
+        private string NameCommandsToExecute()
         {
             return configuration.GetValue<string>("CLICommands");
         }
         public bool ShouldExecuteCommands()
         {
-            return !string.IsNullOrWhiteSpace(CommandsToExecute());
+            return !string.IsNullOrWhiteSpace(NameCommandsToExecute());
         }
-        public async Task ExecuteCommands()
+        public ICLICommand[] CommandsToExecute()
         {
             string nameFile = "cli.txt";
             if (!File.Exists(nameFile))
-                throw new  FileNotFoundException(nameFile);
+                throw new FileNotFoundException(nameFile);
 
             var fileContents = File.ReadAllText(nameFile).Trim();
             var s = CLICommandSerialize.DeSerialize(fileContents);
-            var cmds = s.FindCommands(CommandsToExecute());
+            return s.FindCommands(NameCommandsToExecute());
+        }
+        public async Task ExecuteCommands()
+        {
+            var cmds = CommandsToExecute();
             foreach (var cmd in cmds)
                 if (cmd is ICLICommand_v1 v1)
                 {

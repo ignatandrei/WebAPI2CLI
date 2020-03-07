@@ -8,11 +8,13 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
-
+[assembly: InternalsVisibleTo("CLITests")]
 namespace ExtensionNetCore3
 {
+
     public class CLIAPIHostedService : IHostedService
     {
         private readonly IApiDescriptionGroupCollectionProvider api;
@@ -51,12 +53,12 @@ namespace ExtensionNetCore3
                 _timer.Dispose();
                 serverAddresses = app.ServerFeatures.Get<IServerAddressesFeature>();
                 
-                var exec = new Executor(configuration, serverAddresses, api, app.ApplicationServices);
+                exec = new Executor(configuration, serverAddresses, api, app.ApplicationServices);
                 await exec.Execute();
                 Environment.Exit(0);
             }
         }
-        
+        internal Executor exec;
         public Task StopAsync(CancellationToken cancellationToken)
         {
             return Task.CompletedTask;

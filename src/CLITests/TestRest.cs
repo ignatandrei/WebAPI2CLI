@@ -30,14 +30,15 @@ namespace CLITests
         private WebApplicationFactory<Startup> ConfigureServices(WebApplicationFactory<Startup> f)
         {
             var projectDir = Directory.GetCurrentDirectory();
-            var configPath = Path.Combine(projectDir, $"appsettings.json");
+            var configPath = Path.Combine(projectDir, $"appsettingsEnableCLI.json");
 
             return  f.WithWebHostBuilder(builder =>
             {
-                builder.ConfigureAppConfiguration((context, conf) =>
-                {
-                    conf.AddJsonFile(configPath);                    
-                });
+                //builder.ConfigureAppConfiguration((context, conf) =>
+                //{
+                //    conf.AddJsonFile(configPath);                    
+                //});
+                builder.UseSetting("CLI_ENABLED", "1");
 
             });
 
