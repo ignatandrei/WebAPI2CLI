@@ -38,7 +38,7 @@ steps:
     rem dotnet xunit bin\$(buildConfiguration)\netcoreapp3.1\CLITests.dll -parallel none -html $(Build.ArtifactStagingDirectory)\tests.html
     echo 'coverlet'
     dotnet coverlet bin\$(buildConfiguration)\netcoreapp3.1\CLITests.dll --target "dotnet" --targetargs "test --no-build --configuration $(buildConfiguration)" --exclude '[*Test*]*' --format opencover  --output $(Build.ArtifactStagingDirectory)\testResults\coverlet.xml
-    dotnet reportgenerator "-reports:$(Build.ArtifactStagingDirectory)\testResults\coverlet.xml" "-targetdir:$(Build.ArtifactStagingDirectory)\testResults" "-reporttypes:HtmlSummary;Badges;HtmlInline_AzurePipelines"
+    dotnet reportgenerator "-reports:$(Build.ArtifactStagingDirectory)\testResults\coverlet.xml" "-targetdir:$(Build.ArtifactStagingDirectory)\testResults" "-reporttypes:Cobertura;HtmlSummary;Badges;HtmlInline_AzurePipelines"
   displayName: execute tests
 
 - task: PublishTestResults@2
