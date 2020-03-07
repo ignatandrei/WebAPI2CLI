@@ -12,6 +12,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -66,7 +68,18 @@ namespace CLITests
     public class TestMath : IClassFixture<LocalServerFactory<Startup>>
     {
         private readonly LocalServerFactory<Startup> factoryConfig;
-
+        static TestMath()
+        {
+            ServicePointManager.ServerCertificateValidationCallback =
+            delegate (
+                object s,
+                X509Certificate certificate,
+                X509Chain chain,
+                SslPolicyErrors sslPolicyErrors
+            ) {
+                return true;
+            };
+        }
         public TestMath(LocalServerFactory<Startup> factoryConfig)
         {
             this.factoryConfig = factoryConfig;
