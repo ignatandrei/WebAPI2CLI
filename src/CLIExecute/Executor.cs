@@ -46,7 +46,8 @@ namespace CLIExecute
         {
             string nameFile = "cli.txt";
             if (!File.Exists(nameFile))
-                throw new FileNotFoundException(nameFile);
+                throw new FileNotFoundException(
+                    $"cannot find {nameFile} in {Environment.CurrentDirectory}",nameFile);
 
             var fileContents = File.ReadAllText(nameFile).Trim();
             var s = CLICommandSerialize.DeSerialize(fileContents);

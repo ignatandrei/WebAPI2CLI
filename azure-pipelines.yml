@@ -32,31 +32,39 @@ steps:
 - script: |
     cd src
     dotnet tool restore --add-source https://myget.org/F/natemcmaster/api/v3/index.json
-    rem dotnet test WebAPI2CLI.sln --logger trx --no-build -r $(Build.ArtifactStagingDirectory)\trx -o CLITests\bin\$(buildConfiguration)\netcoreapp3.1
+    dotnet test WebAPI2CLI.sln --logger trx --no-build -r $(Build.ArtifactStagingDirectory)\trx -o CLITests\bin\$(buildConfiguration)\netcoreapp3.1
     cd CLITests
-    echo 'xunit'
-    dotnet xunit bin\$(buildConfiguration)\netcoreapp3.1\CLITests.dll -parallel none -html $(Build.ArtifactStagingDirectory)\tests.html
+    rem echo 'xunit'
+    rem dotnet xunit bin\$(buildConfiguration)\netcoreapp3.1\CLITests.dll -parallel none -html $(Build.ArtifactStagingDirectory)\tests.html
     echo 'coverlet'
     dotnet coverlet bin\$(buildConfiguration)\netcoreapp3.1\CLITests.dll --target "dotnet" --targetargs "test --no-build --configuration $(buildConfiguration)" --exclude '[*Test*]*' --format opencover  --output $(Build.ArtifactStagingDirectory)\testResults\coverlet.xml
-    dotnet reportgenerator "-reports:$(Build.ArtifactStagingDirectory)\testResults\coverlet.xml" "-targetdir:$(Build.ArtifactStagingDirectory)\testResults" "-reporttypes:HtmlSummary;Badges;HTMLInline"
+    dotnet reportgenerator "-reports:$(Build.ArtifactStagingDirectory)\testResults\coverlet.xml" "-targetdir:$(Build.ArtifactStagingDirectory)\testResults" "-reporttypes:HtmlSummary;Badges;HtmlInline_AzurePipelines"
   displayName: execute tests
 
-- task: VSTest@2
+- task: PublishTestResults@2
   inputs:
-    testSelector: 'testAssemblies'
-    testAssemblyVer2: | # Required when testSelector == TestAssemblies
-      **\*CLITests*.dll
-      !**\obj\**
-    runInParallel: False
-    publishRunAttachments: true
-    codeCoverageEnabled: true
+    testResultsFormat: 'VSTest' 
+    testResultsFiles: '**/*.trx' 
+    searchFolder: '$(Build.ArtifactStagingDirectory)\trx'     
+  displayName: publish tests
 
-# - task: PublishTestResults@2
+- task: PublishCodeCoverageResults@1
+  displayName: 'Publish code coverage'
+  inputs:
+    codeCoverageTool: Cobertura
+    summaryFileLocation: '$(Build.ArtifactStagingDirectory)\testResults\Cobertura.xml'
+    reportDirectory: '$(Build.ArtifactStagingDirectory)\testResults'
+
+# - task: VSTest@2
 #   inputs:
-#     testResultsFormat: 'VSTest' 
-#     testResultsFiles: '**/*.trx' 
-#     searchFolder: '$(Build.ArtifactStagingDirectory)\trx'     
-#   displayName: publish tests
+#     testSelector: 'testAssemblies'
+#     testAssemblyVer2: | # Required when testSelector == TestAssemblies
+#       **\*CLITests*.dll
+#       !**\obj\**
+#     runInParallel: False
+#     publishRunAttachments: true
+#     codeCoverageEnabled: true
+
 
 - script: |
     echo "pack ExtensionNetCore3.csproj"
