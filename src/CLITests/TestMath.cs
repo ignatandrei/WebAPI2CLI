@@ -85,7 +85,7 @@ namespace CLITests
 
         //}
         [Scenario]
-        [Example("Test_Get_Add_Https","[1,2]")]
+        //[Example("Test_Get_Add_Https","[1,2]")]
         [Example("Test_Get_Add_Http", "[1,2]")]
         public void TestCommand(string commandToExecute,string result, CLIAPIHostedService service)
         {
