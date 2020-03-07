@@ -103,12 +103,12 @@ namespace CLITests
 
         //}
         [Scenario]
-        //[Example("Test_Get_Add_Https","[1,2]")]
         [Example("Test_Get_Add_Http", "[1,2]")]
         [Example("GetMathId_Http", "value5")]
         [Example("MathPOST","")]
         [Example("MathPut","")]
         [Example("MathDelete", "")]
+        [Example("WeatherGet", "[{\"date\":\"1970-04-17T00:00:00\",\"temperatureC\":-10,\"temperatureF\":15,\"summary\":\"Bracing\"},{\"date\":\"1970-04-18T00:00:00\",\"temperatureC\":0,\"temperatureF\":32,\"summary\":\"Chilly\"},{\"date\":\"1970-04-19T00:00:00\",\"temperatureC\":10,\"temperatureF\":49,\"summary\":\"Cool\"},{\"date\":\"1970-04-20T00:00:00\",\"temperatureC\":20,\"temperatureF\":67,\"summary\":\"Mild\"},{\"date\":\"1970-04-21T00:00:00\",\"temperatureC\":30,\"temperatureF\":85,\"summary\":\"Warm\"}]")]
         public void TestCommand(string commandToExecute, string result, CLIAPIHostedService service)
         {
             var newFactory = this.factoryConfig;// ConfigureServices(this.factoryConfig, commandToExecute); ;

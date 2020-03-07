@@ -26,12 +26,12 @@ namespace TestWebAPISite.Controllers
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
-            var rng = new Random();
+            var myDate = new DateTime(1970, 04, 16);
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
+                Date = myDate.AddDays(index),
+                TemperatureC = index*10-20,
+                Summary = Summaries[index]
             })
             .ToArray();
         }

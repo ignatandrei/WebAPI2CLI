@@ -65,7 +65,7 @@
   Verb: GET
   ContentType: application/json
   DataToSend:
-- NameCommand: Command012
+- NameCommand: WeatherGet
   Host: http://
   RelativeRequestUrl: WeatherForecast
   Verb: GET
