@@ -42,7 +42,7 @@ namespace CLIExecute
         {
             return !string.IsNullOrWhiteSpace(NameCommandsToExecute());
         }
-        public ICLICommand[] CommandsToExecute()
+        public static CLICommands FindAllCommands()
         {
             string nameFile = "cli.txt";
             if (!File.Exists(nameFile))
@@ -50,7 +50,12 @@ namespace CLIExecute
 
             var fileContents = File.ReadAllText(nameFile).Trim();
             var s = CLICommandSerialize.DeSerialize(fileContents);
-            return s.FindCommands(NameCommandsToExecute());
+            return s;
+        }
+        public ICLICommand[] CommandsToExecute()
+        {
+
+            return FindAllCommands().FindCommands(NameCommandsToExecute());
         }
         public async Task ExecuteCommands()
         {

@@ -34,10 +34,7 @@ namespace CLITests
         public string RootUri { get; private set; }
         protected override TestServer CreateServer(IWebHostBuilder builder)
         {
-            builder.UseSetting("CLI_ENABLED", "1");
-            builder.UseSetting("CLI_STAY", "1");
-            builder.UseSetting("CLICommands", "Test_Get_Add");
-            ;
+           
 
             _host = builder.Build();
             _host.Start();
@@ -50,6 +47,9 @@ namespace CLITests
         {
             var builder = WebHost.CreateDefaultBuilder(Array.Empty<string>());
             builder.UseStartup<TStartup>();
+            builder.UseSetting("CLI_ENABLED", "1");
+            builder.UseSetting("CLI_STAY", "1");
+            builder.UseSetting("CLICommands", "Test_Get_Add");
             return builder;
         }
         protected override void Dispose(bool disposing)
@@ -70,57 +70,70 @@ namespace CLITests
         {
             this.factoryConfig = factoryConfig;
         }
-        private WebApplicationFactory<Startup> ConfigureServices(WebApplicationFactory<Startup> f, string command)
-        {
-            var projectDir = Directory.GetCurrentDirectory();
-            var configPath = Path.Combine(projectDir, $"appsettingsEnableCLI.json");
-            f.ClientOptions.BaseAddress= new Uri("https://localhost:5000");
-            return f.WithWebHostBuilder(builder =>
-            {
-                builder.UseSetting("CLI_STAY", "1");
-                builder.UseSetting("CLICommands", command);
-                //builder.Start();
-            });
+        //private WebApplicationFactory<Startup> ConfigureServices(WebApplicationFactory<Startup> f, string command)
+        //{
+        //    var projectDir = Directory.GetCurrentDirectory();
+        //    var configPath = Path.Combine(projectDir, $"appsettingsEnableCLI.json");
+        //    f.ClientOptions.BaseAddress= new Uri("https://localhost:5000");
+        //    return f.WithWebHostBuilder(builder =>
+        //    {
+        //        builder.UseSetting("CLI_STAY", "1");
+        //        builder.UseSetting("CLICommands", command);
+        //        //builder.Start();
+        //    });
 
-        }
+        //}
         [Scenario]
         [Example("Test_Get_Add")]
         public void TestCommand(string commandToExecute, CLIAPIHostedService service)
         {
-            var newFactory = this.factoryConfig; ConfigureServices(this.factoryConfig, commandToExecute); ;
-            $"Given the factory configured".x(() =>
+            var newFactory = this.factoryConfig;// ConfigureServices(this.factoryConfig, commandToExecute); ;
+            string address = newFactory.RootUri;
+            $"Given the starting addresses configured {address} ".x(() =>
             {
                 
             });
-            $"When asking for the service {typeof(CLIAPIHostedService)}".x(() =>
-            {
-                service = newFactory.Services.GetService(typeof(CLIAPIHostedService)) as CLIAPIHostedService;
-            });
+            //$"When asking for the service {typeof(CLIAPIHostedService)}".x(() =>
+            //{
+            //    service = newFactory.Services.GetService(typeof(CLIAPIHostedService)) as CLIAPIHostedService;
+            //});
 
-            $"Then the service should  exists ".x(() =>
-            {
-                
-                service.Should().NotBeNull();
+            //$"Then the service should  exists ".x(() =>
+            //{
 
-            });
-            $"And the executor should execute the command".x(async () =>
-            {
-                return;
-                var c = newFactory.CreateClient();
-                //var r = await c.GetAsync("api/Mathadd");
-                //r.StatusCode.Should().Be(HttpStatusCode.OK);
-                await Task.Delay(10000);
-                var cmds = service.exec?.CommandsToExecute();
-                cmds.Should().NotBeNull();
-                cmds?.Length.Should().Be(1);
-                cmds[0].NameCommand.Should().Be(commandToExecute);
+            //    service.Should().NotBeNull();
 
+            //});
+            //$"And the executor should execute the command".x(async () =>
+            //{
+            //    return;
+            //    var c = newFactory.CreateClient();
+            //    //var r = await c.GetAsync("api/Mathadd");
+            //    //r.StatusCode.Should().Be(HttpStatusCode.OK);
+            //    await Task.Delay(10000);
+            //    var cmds = service.exec?.CommandsToExecute();
+            //    cmds.Should().NotBeNull();
+            //    cmds?.Length.Should().Be(1);
+            //    cmds[0].NameCommand.Should().Be(commandToExecute);
+
+            //});
+            CLICommands cmds = null;
+            $"When finding  all commands".x(() =>
+            {
+                cmds = Executor.FindAllCommands();
+                cmds.V1.Should().NotBeNull();
+                cmds.V1.Length.Should().BeGreaterThan(0);
             });
             $"and the execution should be 200".x(async () =>
             {
-                return;
-                var cmds = service.exec?.CommandsToExecute();
-                var v1 = cmds[0] as ICLICommand_v1;
+                
+                
+                var find = cmds.FindCommands(commandToExecute);
+                find.Should().NotBeNull();
+                find.Length.Should().Be(1);
+                var v1 = find[0] as ICLICommand_v1;
+                v1.Should().NotBeNull();
+                v1.SetPossibleFullHosts(newFactory.RootUri);
                 var res = await v1.Execute();
                 res.StatusCode.Should().Be(HttpStatusCode.OK);
 
