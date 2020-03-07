@@ -37,13 +37,13 @@ namespace CLITests
         public string RootUri { get; private set; }
         protected override TestServer CreateServer(IWebHostBuilder builder)
         {
-           
+
 
             _host = builder.Build();
             _host.Start();
             RootUri = _host.ServerFeatures.Get<IServerAddressesFeature>().Addresses.LastOrDefault();
             // not used but needed in the CreateServer method logic
-            
+
             return new TestServer(new WebHostBuilder().UseStartup<TStartup>());
         }
         protected override IWebHostBuilder CreateWebHostBuilder()
@@ -76,12 +76,24 @@ namespace CLITests
                 X509Certificate certificate,
                 X509Chain chain,
                 SslPolicyErrors sslPolicyErrors
-            ) {
+            )
+            {
                 return true;
             };
         }
         public TestMath(LocalServerFactory<Startup> factoryConfig)
         {
+            ServicePointManager.ServerCertificateValidationCallback =
+                delegate (
+                    object s,
+                    X509Certificate certificate,
+                    X509Chain chain,
+                    SslPolicyErrors sslPolicyErrors
+                )
+                {
+                    return true;
+                };
+
             this.factoryConfig = factoryConfig;
         }
         //private WebApplicationFactory<Startup> ConfigureServices(WebApplicationFactory<Startup> f, string command)
@@ -100,13 +112,13 @@ namespace CLITests
         [Scenario]
         //[Example("Test_Get_Add_Https","[1,2]")]
         [Example("Test_Get_Add_Http", "[1,2]")]
-        public void TestCommand(string commandToExecute,string result, CLIAPIHostedService service)
+        public void TestCommand(string commandToExecute, string result, CLIAPIHostedService service)
         {
             var newFactory = this.factoryConfig;// ConfigureServices(this.factoryConfig, commandToExecute); ;
             string address = newFactory.RootUri;
             $"Given the starting addresses configured {address} ".x(() =>
             {
-                
+
             });
             //$"When asking for the service {typeof(CLIAPIHostedService)}".x(() =>
             //{
@@ -141,8 +153,8 @@ namespace CLITests
             });
             $"and the execution of {commandToExecute} should be 200 and the result {result} ".x(async () =>
             {
-                
-                
+
+
                 var find = cmds.FindCommands(commandToExecute);
                 find.Should().NotBeNull();
                 find.Length.Should().Be(1);
