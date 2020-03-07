@@ -36,7 +36,8 @@ namespace CLIExecute
         
         private string NameCommandsToExecute()
         {
-            return configuration.GetValue<string>("CLICommands");
+            //return configuration.GetValue<string>("CLICommands");
+            return configuration["CLICommands"];
         }
         public bool ShouldExecuteCommands()
         {

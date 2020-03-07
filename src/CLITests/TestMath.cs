@@ -81,10 +81,10 @@ namespace CLITests
         }
     }
 
-    public class TestMath : IClassFixture<LocalServerFactory<Startup>>
+    public class TestActions : IClassFixture<LocalServerFactory<Startup>>
     {
         private readonly LocalServerFactory<Startup> factoryConfig;
-        public TestMath(LocalServerFactory<Startup> factoryConfig)
+        public TestActions(LocalServerFactory<Startup> factoryConfig)
         {
             
             this.factoryConfig = factoryConfig;
