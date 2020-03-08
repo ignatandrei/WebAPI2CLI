@@ -8,11 +8,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-
+[assembly: InternalsVisibleTo("CLITests")]
 namespace CLIExecute
 {
     public class Executor
@@ -43,7 +44,7 @@ namespace CLIExecute
         {
             return !string.IsNullOrWhiteSpace(NameCommandsToExecute());
         }
-        public static CLI_Commands FindAllCommands()
+        internal static CLI_Commands FindAllCommands()
         {
             string nameFile = "cli.txt";
             if (!File.Exists(nameFile))
@@ -196,7 +197,7 @@ namespace CLIExecute
          
             return code;
         }
-        object GetDefaultValue(Type t)
+        internal static object GetDefaultValue(Type t)
         {
             if (t.IsValueType)
                 return Activator.CreateInstance(t);
