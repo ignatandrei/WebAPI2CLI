@@ -1,0 +1,45 @@
+# This is a basic workflow to help you get started with Actions
+
+name: generateDocs
+
+# Controls when the action will run. Triggers the workflow on push or pull request 
+# events but only for the master branch
+on:
+  push:
+    branches: [ master ]
+    paths:
+    - '**.md'
+    - '**.yml'  
+    
+
+jobs:
+
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v2
+
+    # Runs a single command using the runners shell
+    - name: generate html
+      uses: docker://pandoc/latex:2.9
+      with: # needs a README in your repo root!
+          #args: "--standalone --output=output/README.html README.md"
+        args: "README.md docs/FAQ.md --standalone -f gfm -t html  --toc -o output/output.html --metadata title=WebAPI2CLI"
+
+    - run: |
+        cp ./output/output.html ./docs/index.html
+        rm -rf ./output- name: Commit files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -m "generate html" -a --allow-empty
+          
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+
+        
+    
