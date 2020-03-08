@@ -1,39 +1,56 @@
-<html>
-<title>
-WebAPI2CLI
-</title>
-
-Step1:
-Install-Package ExtensionNetCore3 
-
-Step2:
-Startup.cs
-
-services.AddCLI();
-
-app.UseCLI();
-
-
-Step3:
-
-Start the .exe project with --CLI_ENABLED=1
-Copy what is between
-    
-    put this in a cli.txt file in the same path as the exe:
-
-and
-
-    then run the exe with following parameters :
-
-Step 4:
-Create a 
-cli.txt 
-file( in VS: Properties, Build: Content, CopyToOutputDirectory : Copy if newer)
-and paste the Content
-
-Step 5:
-Now run the .exe project with 
---CLI_ENABLED=1 --CLICommands="Command001"
-
-( you can separate commands by comma )
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>WebAPI2CLI</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">WebAPI2CLI</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#webapi2cli">WebAPI2CLI</a></li>
+<li><a href="#how-to-use--for-net-core-31-">How to use ( for .NET Core 3.1 )</a>
+<ul>
+<li><a href="#step-1---find-the-definition-of-the-commands">Step 1 - find the definition of the commands</a></li>
+<li><a href="#step-2---run-the-commands">Step 2 - run the commands</a></li>
+</ul></li>
+<li><a href="#faq">F.A.Q.</a></li>
+<li><a href="#will-my-webapi-work-as-before">Will my WEBApi work as before?</a></li>
+</ul>
+</nav>
+<h1 id="webapi2cli">WebAPI2CLI</h1>
+<p>Execute ASP.NET Core WebAPI from Command Line</p>
+<p><a href="https://github.com/ignatandrei/WebAPI2CLI/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="GitHub license" /></a> <a href="https://www.nuget.org/packages/ExtensionNetCore3"><img src="https://img.shields.io/nuget/v/ExtensionNetCore3.svg" alt="NuGet" /></a> <img src="https://img.shields.io/myget/ignatandrei/v/ExtensionNetCore3?label=CD2MyGet" alt="MyGet" /> <a href="https://dev.azure.com/ignatandrei0674/WebAPI2CLI/_build/latest?definitionId=7&amp;branchName=master"><img src="https://dev.azure.com/ignatandrei0674/WebAPI2CLI/_apis/build/status/ignatandrei.WebAPI2CLI?branchName=master" alt="Build Status" /></a> <img src="https://img.shields.io/azure-devops/tests/ignatandrei0674/WebAPI2CLI/7/master" alt="Azure DevOps tests (branch)" /> <img src="https://img.shields.io/azure-devops/coverage/ignatandrei0674/WebAPI2CLI/7/master" alt="Azure DevOps coverage (branch)" /></p>
+<h1 id="how-to-use--for-net-core-31-">How to use ( for .NET Core 3.1 )</h1>
+<h2 id="step-1---find-the-definition-of-the-commands">Step 1 - find the definition of the commands</h2>
+<p>First, you must generate the definition of the commands. For this, we take the OPEN API (swagger ) approach.</p>
+<p>For this, after you compile the project, you will run your .exe program with arguments:</p>
+<p>&lt; myexe &gt;.exe --CLI_ENABLED=1 --CLI_HELP=1</p>
+<p>( or make this from <em>Visual Studio, Project, Properties, Debug</em> )</p>
+<p>This will generate a <em>cli.txt</em> file with all definitions of the WebAPI. ( if your API does not appear, check if you have <em>ApiController</em> defined)</p>
+<p>Open your <em>cli.txt</em> file and modify the names of the commands as you wish (also , the arguments )</p>
+<p>Copy this <em>cli.txt</em> in your solution and be sure that is copied with the exe ( in Visual Studio right click the file, properties, Build Action = Content, CopyToOutputDirectory = Copy if newer)</p>
+<h2 id="step-2---run-the-commands">Step 2 - run the commands</h2>
+<p>Ensure that the file is near your exe WebAPI.</p>
+<p>Run the exe with the following:</p>
+<p>&lt; myexe &gt;.exe --CLI_ENABLED=1 ----CLI_Commands="your first command,your second command, and enumerate all commands"</p>
+<p>The program will run the commands and output the result.</p>
+<h1 id="faq">F.A.Q.</h1>
+<h1 id="will-my-webapi-work-as-before">Will my WEBApi work as before?</h1>
+</body>
 </html>
