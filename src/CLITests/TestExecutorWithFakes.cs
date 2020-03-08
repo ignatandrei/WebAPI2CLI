@@ -51,5 +51,28 @@ namespace CLITests
                         ;
                 });
         }
+        [Scenario]
+        [Example("1", true)]
+        [Example("0", false)]
+        [Example("", false)]
+        [Example(null, false)]
+        public void TestShowHelp(string commandValue, bool showHelp)
+        {
+            Executor e = null;
+            IConfiguration c = null;
+            $"creating executor with fake ".x(() =>
+            {
+                var m = new Mock<IConfiguration>();
+                m.Setup(it => it["CLI_HELP"])
+                 .Returns(commandValue);
+
+                e = new Executor(m.Object, null, null, null);
+            });
+           $"then asking for ShowHelp should return {showHelp}".x(() =>
+                {
+                    var execs = e.ShouldShowHelp();
+                    execs.Should().Be(showHelp);
+                });
+        }
     }
 }

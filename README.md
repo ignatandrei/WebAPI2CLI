@@ -33,6 +33,6 @@ Ensure that the file is near your exe WebAPI.
 
 Run the exe with the following:
 
- &lt; myexe &gt.exe --CLI_ENABLED=1 ----CLI_Commands="your first command,your second command, and enumerate all commands"
+ &lt; myexe &gt;.exe --CLI_ENABLED=1 ----CLI_Commands="your first command,your second command, and enumerate all commands"
 
 The program will run the commands and output the result.

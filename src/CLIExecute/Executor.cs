@@ -109,8 +109,11 @@ namespace CLIExecute
         }
         public bool ShouldShowHelp()
         {
-            var showHelp = configuration.GetValue<int?>("CLI_HELP", null);
-            return (showHelp == null || showHelp.Value == 1);
+            //deleted for easy of automating testing
+            //var showHelp = configuration.GetValue<int?>("CLI_HELP", null);
+            var cliHelp = configuration["CLI_HELP"];
+            var showHelp = int.TryParse(cliHelp, out var val) && val == 1;
+            return showHelp;
         }
         private string EnumerateWebAPI()
         {
