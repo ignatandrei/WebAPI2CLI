@@ -10,7 +10,27 @@ Execute ASP.NET Core WebAPI from Command Line
 
 # How to use ( for .NET Core 3.1 )
 
-## Step 1 - find the definition of the commands
+## Step 0 : install into your ASP.NET Core Web 
+
+Install the package https://www.nuget.org/packages/ExtensionNetCore3
+
+Modify your ASP.NET Core as below:
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddCLI();
+//your code omitted
+}    
+public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+{
+    app.UseCLI();
+//your code omitted
+}       
+```
+And that is all
+
+## Step 1 - find and save the definition of the commands, i.e. WebAPI endpoints
 
 First, you must generate the definition of the commands. For this, we take the OPEN API (swagger ) approach.
 
