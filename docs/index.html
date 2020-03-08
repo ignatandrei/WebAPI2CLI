@@ -95,6 +95,7 @@
 <li><a href="#faq">F.A.Q.</a>
 <ul>
 <li><a href="#will-my-webapi-work-as-before">Will my WebAPI work as before?</a></li>
+<li><a href="#i-want-to-run-as-a-cli-and-then-use-the-webapi-as-before-could-i-do-that">I want to run as a CLI and then use the WebAPI as before. Could I do that?</a></li>
 <li><a href="#i-found-a-bug--i-need-a-feature--where-can-i-report-">I found a bug / I need a feature . Where can I report ?</a></li>
 <li><a href="#where-can-i-download-this-document-">Where can I download this document ?</a></li>
 </ul></li>
@@ -129,13 +130,18 @@
 <h2 id="step-2---run-the-commands">Step 2 - run the commands</h2>
 <p>Ensure that the file is near your exe WebAPI.</p>
 <p>Run the exe with the following:</p>
-<p>&lt; myexe &gt;.exe --CLI_ENABLED=1 ----CLI_Commands="your first command,your second command, and enumerate all commands"</p>
+<p>&lt; myexe &gt;.exe --CLI_ENABLED=1 --CLI_Commands="your first command,your second command, and enumerate all commands"</p>
 <p>The program will run the commands and output the result.</p>
+<p>More details here:</p>
+<p><a href="https://ignatandrei.github.io/WebAPI2CLI/">https://ignatandrei.github.io/WebAPI2CLI/</a></p>
 <h1 id="faq">F.A.Q.</h1>
 <h2 id="will-my-webapi-work-as-before">Will my WebAPI work as before?</h2>
 <p>The software takes care about</p>
 <p>--CLI_ENABLED=1</p>
 <p>If you do not have this command, your website runs as before</p>
+<h2 id="i-want-to-run-as-a-cli-and-then-use-the-webapi-as-before-could-i-do-that">I want to run as a CLI and then use the WebAPI as before. Could I do that?</h2>
+<p>Yes. Use</p>
+<p>&lt; myexe &gt;.exe --CLI_ENABLED=1 --CLI_Commands="your first command,your second command" --CLI_STAY=1</p>
 <h2 id="i-found-a-bug--i-need-a-feature--where-can-i-report-">I found a bug / I need a feature . Where can I report ?</h2>
 <p>All code source is at <a href="https://github.com/ignatandrei/WebAPI2CLI/">https://github.com/ignatandrei/WebAPI2CLI/</a></p>
 <p>You can report problems at <a href="https://github.com/ignatandrei/WebAPI2CLI/issues">https://github.com/ignatandrei/WebAPI2CLI/issues</a></p>
