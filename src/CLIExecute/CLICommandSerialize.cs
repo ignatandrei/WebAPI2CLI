@@ -6,7 +6,7 @@ using YamlDotNet.Serialization.NamingConventions;
 
 namespace CLIExecute
 {
-    public class CLICommandSerialize
+    public class CLI_Commandserialize
     {
         //public static string Serialize(CLICommand_v1 v1)
         //{
@@ -25,12 +25,12 @@ namespace CLIExecute
             var serializer = new SerializerBuilder().Build();
             return serializer.Serialize(o);
         }
-        public static CLICommands DeSerialize(string  text)
+        public static CLI_Commands DeSerialize(string  text)
         {
             var serializer = new DeserializerBuilder()
               //.WithNamingConvention(CamelCaseNamingConvention.Instance)
                 .Build();
-            return serializer.Deserialize<CLICommands>(text);
+            return serializer.Deserialize<CLI_Commands>(text);
 
         }
     }

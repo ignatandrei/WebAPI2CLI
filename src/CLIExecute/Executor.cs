@@ -36,14 +36,14 @@ namespace CLIExecute
         
         private string NameCommandsToExecute()
         {
-            //return configuration.GetValue<string>("CLICommands");
-            return configuration["CLICommands"];
+            //return configuration.GetValue<string>("CLI_Commands");
+            return configuration["CLI_Commands"];
         }
         public bool ShouldExecuteCommands()
         {
             return !string.IsNullOrWhiteSpace(NameCommandsToExecute());
         }
-        public static CLICommands FindAllCommands()
+        public static CLI_Commands FindAllCommands()
         {
             string nameFile = "cli.txt";
             if (!File.Exists(nameFile))
@@ -51,7 +51,7 @@ namespace CLIExecute
                     $"cannot find {nameFile} in {Environment.CurrentDirectory}",nameFile);
 
             var fileContents = File.ReadAllText(nameFile).Trim();
-            var s = CLICommandSerialize.DeSerialize(fileContents);
+            var s = CLI_Commandserialize.DeSerialize(fileContents);
             return s;
         }
         public ICLICommand[] CommandsToExecute()
@@ -91,7 +91,7 @@ namespace CLIExecute
                 EnumerateWebAPI();
                 Console.WriteLine("");
                 Console.WriteLine("then run the exe with following parameters :");
-                Console.WriteLine("--CLI_ENABLED=1 --CLICommands=\"Command001,Command002,...\"");
+                Console.WriteLine("--CLI_ENABLED=1 --CLI_Commands=\"Command001,Command002,...\"");
                 Console.WriteLine("");
 
             }
@@ -110,7 +110,7 @@ namespace CLIExecute
             var nr = 0;
             
             var groups = api.ApiDescriptionGroups;
-            var allCommands = new CLICommands();
+            var allCommands = new CLI_Commands();
             foreach (var g in groups.Items)
             {
                 
@@ -132,7 +132,7 @@ namespace CLIExecute
                     }
                 }
             }
-            var serialize = CLICommandSerialize.Serialize(allCommands);
+            var serialize = CLI_Commandserialize.Serialize(allCommands);
             Console.WriteLine(serialize);
         }
         private string GetJsonFromParameters(ApiParameterDescription[] parameterDescriptions)

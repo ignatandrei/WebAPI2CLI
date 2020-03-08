@@ -68,7 +68,7 @@ namespace CLITests
                 
             //builder.UseSetting("CLI_ENABLED", "1");
             //builder.UseSetting("CLI_STAY", "1");
-            //builder.UseSetting("CLICommands", "Test_Get_Add");
+            //builder.UseSetting("CLI_Commands", "Test_Get_Add");
             return builder;
         }
         protected override void Dispose(bool disposing)
@@ -97,7 +97,7 @@ namespace CLITests
         //    return f.WithWebHostBuilder(builder =>
         //    {
         //        builder.UseSetting("CLI_STAY", "1");
-        //        builder.UseSetting("CLICommands", command);
+        //        builder.UseSetting("CLI_Commands", command);
         //        //builder.Start();
         //    });
 
@@ -141,7 +141,7 @@ namespace CLITests
             //    cmds[0].NameCommand.Should().Be(commandToExecute);
 
             //});
-            CLICommands cmds = null;
+            CLI_Commands cmds = null;
             $"When finding  all commands".x(() =>
             {
                 cmds = Executor.FindAllCommands();

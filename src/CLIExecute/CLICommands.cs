@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CLIExecute
 {
-    public class CLICommands
+    public class CLI_Commands
     {
 
         private List<CLICommand_v1> Commands_v1 { get; set; } = new List<CLICommand_v1>();
@@ -44,7 +44,7 @@ namespace CLIExecute
             }
             return cmd;
         }
-        public CLICommands AddCommand(ICLICommand cmd)
+        public CLI_Commands AddCommand(ICLICommand cmd)
         {
             if (cmd is CLICommand_v1 v)
             {

@@ -29,7 +29,7 @@ namespace CLITests
             $"creating executor with fake ".x(() =>
             {
                 var m = new Mock<IConfiguration>();
-                m.Setup(it => it["CLICommands"])
+                m.Setup(it => it["CLI_Commands"])
                  .Returns(command);
 
                 e = new Executor(m.Object, null, null, null);

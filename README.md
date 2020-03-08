@@ -11,4 +11,15 @@ Execute ASP.NET Core WebAPI from Command Line
 
 ![Azure DevOps tests (branch)](https://img.shields.io/azure-devops/tests/ignatandrei0674/WebAPI2CLI/7/master)
 
-![Azure DevOps coverage (branch)](https://img.shields.io/azure-devops/coverage/ignatandrei0674/WebAPI2CLI/7/master)
+![Azure DevOps coverage (branch)](https://img.shields.io/azure-devops/coverage/ignatandrei0674/WebAPI2CLI/7/master) 
+
+# How to use
+
+## Step 1
+
+First, you must generate the definition of the commands. For this, we take the OPEN API (swagger ) approach.
+
+For this, after you compile the project, you will run your .exe program with arguments:
+
+
+
