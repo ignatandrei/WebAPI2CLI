@@ -20,6 +20,9 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
+    - run: |
+          echo generate help file
+          mkdir output
 
     # Runs a single command using the runners shell
     - name: generate html
@@ -30,11 +33,13 @@ jobs:
 
     - run: |
         cp ./output/output.html ./docs/index.html
-        rm -rf ./output- name: Commit files
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git commit -m "generate html" -a --allow-empty
+        rm -rf ./output
+    
+    - name: Commit files
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git commit -m "generate html" -a --allow-empty
           
     - name: Push changes
       uses: ad-m/github-push-action@master
