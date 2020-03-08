@@ -44,12 +44,19 @@ namespace CLITests
                     execs[0].NameCommand.Should().BeEquivalentTo(command);
             });
             if (numberCommandsFound == 0)
+            {
                 $"then asking for a command that not exists with name: {command}".x(() =>
                 {
-                    e.Invoking(e=>e.CommandsToExecute())
-                        .Should().Throw< ArgumentException>()
+                    e.Invoking(e => e.CommandsToExecute())
+                        .Should().Throw<ArgumentException>()
                         ;
                 });
+            }
+            $"then asking for ShouldExecuteCommands should return {command?.Length > 0}".x(() =>
+            {
+                var shouldExecute = e.ShouldExecuteCommands();
+                shouldExecute.Should().Be((command?.Length > 0));
+            });
         }
         [Scenario]
         [Example("1", true)]
