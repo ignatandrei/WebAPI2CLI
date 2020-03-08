@@ -24,15 +24,21 @@ jobs:
           echo generate help file
           mkdir output
 
-    # Runs a single command using the runners shell
     - name: generate html
       uses: docker://pandoc/latex:2.9
       with: # needs a README in your repo root!
           #args: "--standalone --output=output/README.html README.md"
         args: "README.md docs/FAQ.md --standalone -f gfm -t html  --toc -o output/output.html --metadata title=WebAPI2CLI"
 
+    - name: generate pdf
+      uses: docker://pandoc/latex:2.9
+      with: # needs a README in your repo root!
+          #args: "--standalone --output=output/README.html README.md"
+        args: "README.md docs/FAQ.md --standalone -f gfm -t pdf  --toc -o output/output.pdf --metadata title=WebAPI2CLI"
+        
     - run: |
         cp ./output/output.html ./docs/index.html
+        cp ./output/output.pdf ./docs/Web2CLI.pdf
         rm -rf ./output
     
     - name: Commit files
