@@ -88,12 +88,20 @@ namespace CLIExecute
             {
                 Console.WriteLine("put this in a cli.txt file in the same path as the exe:");
                 Console.WriteLine("");
-                EnumerateWebAPI();
+                var api= EnumerateWebAPI();
+                Console.WriteLine(api);
                 Console.WriteLine("");
                 Console.WriteLine("then run the exe with following parameters :");
                 Console.WriteLine("--CLI_ENABLED=1 --CLI_Commands=\"Command001,Command002,...\"");
                 Console.WriteLine("");
-
+                try
+                {
+                    File.WriteAllText("cli.txt", api);
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine("cannot write cli.txt because " + ex.Message);
+                }
             }
 
             if (ShouldExecuteCommands())
@@ -104,7 +112,7 @@ namespace CLIExecute
             var showHelp = configuration.GetValue<int?>("CLI_HELP", null);
             return (showHelp == null || showHelp.Value == 1);
         }
-        private void EnumerateWebAPI()
+        private string EnumerateWebAPI()
         {
             var allAdresses = serverAddresses.Addresses.ToArray();
             var nr = 0;
@@ -133,7 +141,7 @@ namespace CLIExecute
                 }
             }
             var serialize = CLI_Commandserialize.Serialize(allCommands);
-            Console.WriteLine(serialize);
+            return serialize;
         }
         private string GetJsonFromParameters(ApiParameterDescription[] parameterDescriptions)
         {

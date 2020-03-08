@@ -15,11 +15,33 @@ Execute ASP.NET Core WebAPI from Command Line
 
 # How to use
 
-## Step 1
+## Step 1 - find the definition of the commands
 
 First, you must generate the definition of the commands. For this, we take the OPEN API (swagger ) approach.
 
 For this, after you compile the project, you will run your .exe program with arguments:
+ 
+ <myexe>.exe --CLI_ENABLED=1 --CLI_HELP=1
+
+( or make this from *Visual Studio, Project, Properties, Debug* )
+
+This will generate a *cli.txt* file with all definitions of the WebAPI.
+( if your API does not appear, check if you have *ApiController* defined)
+
+Open your *cli.txt*  file and modify the names of the commands as you wish (also , the arguments )
+
+Copy this *cli.txt* in your solution and be sure that is copied with the exe ( in Visual Studio right click the file, properties, Build Action = Content, CopyToOutputDirectory = Copy if newer)
+
+## Step 2 - run the commands
+
+Ensure that the file is near your exe WebAPI.
+
+Run the exe with the following:
+
+ <myexe>.exe --CLI_ENABLED=1 ----CLI_Commands="your first command,your second command, and enumerate all commands"
+
+The program will run the commands and output the result.
+
 
 
 
