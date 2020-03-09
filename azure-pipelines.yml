@@ -28,7 +28,7 @@ steps:
     pwsh ./setVersion.ps1
     dotnet build --configuration $(buildConfiguration) WebAPI2CLI.sln /m:1
     dotnet publish TestWebAPISite/TestWebAPISite.csproj -c $(buildConfiguration) --self-contained true --no-build -r win10-x64 -p:PublishSingleFile=true -o:$(Build.ArtifactStagingDirectory)
-
+    copy TestWebAPISite\cli.txt $(Build.ArtifactStagingDirectory)\cli.txt
   displayName: build sln
 
 - script: |
