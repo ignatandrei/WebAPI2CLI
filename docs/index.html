@@ -92,6 +92,11 @@
 <li><a href="#step-1---find-and-save-the-definition-of-the-commands-ie-webapi-endpoints">Step 1 - find and save the definition of the commands, i.e. WebAPI endpoints</a></li>
 <li><a href="#step-2---run-the-commands">Step 2 - run the commands</a></li>
 </ul></li>
+<li><a href="#if-you-want-a-demo">If you want a demo</a>
+<ul>
+<li><a href="#if-you-have-win10-x64">If you have Win10 x64</a></li>
+<li><a href="#if-you-have-another-operating-system-than-win10-x64-and-i-want-a-demo">If you have another operating system than Win10-x64 and I want a demo</a></li>
+</ul></li>
 <li><a href="#faq">F.A.Q.</a>
 <ul>
 <li><a href="#will-my-webapi-work-as-before">Will my WebAPI work as before?</a></li>
@@ -134,6 +139,21 @@
 <p>The program will run the commands and output the result.</p>
 <p>More details here:</p>
 <p><a href="https://ignatandrei.github.io/WebAPI2CLI/">https://ignatandrei.github.io/WebAPI2CLI/</a></p>
+<h1 id="if-you-want-a-demo">If you want a demo</h1>
+<h2 id="if-you-have-win10-x64">If you have Win10 x64</h2>
+<p>Go to <a href="https://dev.azure.com/ignatandrei0674/WebAPI2CLI/_build?definitionId=7&amp;_a=summary">https://dev.azure.com/ignatandrei0674/WebAPI2CLI/_build?definitionId=7&amp;_a=summary</a></p>
+<p>Click on the latest job.</p>
+<p>Click on artifacts.</p>
+<p>See drop1 . In the right of drop1 , you can download the drop1 folder.</p>
+<p>Unzip the drop1 ( you will need the cli.txt that contains the WebAPI definitions)</p>
+<p>Inside drop1 , you will find TestWebAPISite.exe</p>
+<p>Run TestWebAPISite.exe and browse to <a href="http://localhost:5000/swagger">http://localhost:5000/swagger</a></p>
+<p>Close TestWebAPISite.exe command prompt.</p>
+<p>Now run</p>
+<p>TestWebAPISite.exe --CLI_Enabled=1 --CLI_COMMANDS="GetMathId_Http,WeatherGet"</p>
+<p>( ensure the cli.txt is near to TestWebAPISite.exe)</p>
+<h2 id="if-you-have-another-operating-system-than-win10-x64-and-i-want-a-demo">If you have another operating system than Win10-x64 and I want a demo</h2>
+<p>It is easy to make a demo for you. Modify the .csproj and the yml file in azure. Or make an issue at <a href="https://github.com/ignatandrei/webAPI2CLI/issues">https://github.com/ignatandrei/webAPI2CLI/issues</a> and I will do it for you.</p>
 <h1 id="faq">F.A.Q.</h1>
 <h2 id="will-my-webapi-work-as-before">Will my WebAPI work as before?</h2>
 <p>The software takes care about</p>
