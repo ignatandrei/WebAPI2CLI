@@ -28,7 +28,7 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 //your code omitted
 }       
 ```
-And that is all
+And that is all modifications that you need to do for the source code.
 
 ## Step 1 - find and save the definition of the commands, i.e. WebAPI endpoints
 
