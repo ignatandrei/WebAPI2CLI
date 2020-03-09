@@ -6,9 +6,15 @@
     <Copyright>MIT</Copyright>
     <RepositoryUrl>https://github.com/ignatandrei/WebAPI2CLI</RepositoryUrl>
     <RepositoryType>GIT</RepositoryType>
+    <Authors>Andrei Ignat</Authors>
     <!--<TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);IncludeP2PAssets</TargetsForTfmSpecificBuildOutput>-->
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <Description>WebAPI2CLI</Description>
+    <Description>
+    This file will execute  ASP.NET Core WebAPI from Command Line.
+    Can be usefull for a CI integration or just making a demo.
+    Please see https://github.com/ignatandrei/WebAPI2CLI for details
+    
+    </Description>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
