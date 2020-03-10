@@ -28,8 +28,5 @@ You can report problems at https://github.com/ignatandrei/WebAPI2CLI/issues
 
 There is a PDF at https://ignatandrei.github.io/WebAPI2CLI/Web2CLI.pdf
 
-## Could I see an example of the output ? 
 
-Of course. Every build in AzureDevOps has a last step , runningADemo.
-See https://dev.azure.com/ignatandrei0674/WebAPI2CLI/_build?definitionId=7&_a=summary
 
