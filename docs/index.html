@@ -97,6 +97,8 @@
 <ul>
 <li><a href="#if-you-have-win10-x64">If you have Win10 x64</a></li>
 <li><a href="#if-you-have-another-operating-system-than-win10-x64-and-want-a-demo">If you have another operating system than Win10-x64 and want a demo</a></li>
+<li><a href="#could-i-see-an-example-of-the-output-">Could I see an example of the output ?</a></li>
+<li><a href="#could-you-put-here-the-output-">Could you put here the output ?</a></li>
 </ul></li>
 <li><a href="#faq">F.A.Q.</a>
 <ul>
@@ -105,7 +107,6 @@
 <li><a href="#i-want-to-run-as-a-cli-and-then-use-the-webapi-as-before-could-i-do-that">I want to run as a CLI and then use the WebAPI as before. Could I do that?</a></li>
 <li><a href="#i-found-a-bug--i-need-a-feature--where-can-i-report-">I found a bug / I need a feature . Where can I report ?</a></li>
 <li><a href="#where-can-i-download-this-document-">Where can I download this document ?</a></li>
-<li><a href="#could-i-see-an-example-of-the-output-">Could I see an example of the output ?</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -163,6 +164,15 @@
 <p>( ensure the cli.txt is near to TestWebAPISite.exe)</p>
 <h2 id="if-you-have-another-operating-system-than-win10-x64-and-want-a-demo">If you have another operating system than Win10-x64 and want a demo</h2>
 <p>It is easy to make a demo for you. Modify the .csproj and the yml file in azure. Or make an issue at <a href="https://github.com/ignatandrei/webAPI2CLI/issues">https://github.com/ignatandrei/webAPI2CLI/issues</a> and I will do it for you.</p>
+<h2 id="could-i-see-an-example-of-the-output-">Could I see an example of the output ?</h2>
+<p>Of course. Every build in AzureDevOps has a last step , runningADemo. See <a href="https://dev.azure.com/ignatandrei0674/WebAPI2CLI/_build?definitionId=7&amp;_a=summary">https://dev.azure.com/ignatandrei0674/WebAPI2CLI/_build?definitionId=7&amp;_a=summary</a></p>
+<h2 id="could-you-put-here-the-output-">Could you put here the output ?</h2>
+<p>Yes. This is the output of</p>
+<p>TestWebAPISite.exe --CLI_ENABLED=1 --CLI_Commands="GetMathId_Http,MathPOST"</p>
+<p>See Result variable</p>
+<blockquote>
+<p>2020-03-10T19:03:39.2929915Z ExtensionNetCore3 version:1.2020.10310.11900 2020-03-10T19:03:40.0045036Z info: Microsoft.Hosting.Lifetime[0] 2020-03-10T19:03:40.0046360Z Now listening on: <a href="http://localhost:5000">http://localhost:5000</a> 2020-03-10T19:03:40.0047178Z info: Microsoft.Hosting.Lifetime[0] 2020-03-10T19:03:40.0047815Z Now listening on: <a href="https://localhost:5001">https://localhost:5001</a> 2020-03-10T19:03:40.0048438Z info: Microsoft.Hosting.Lifetime[0] 2020-03-10T19:03:40.0049078Z Application started. Press Ctrl+C to shut down. 2020-03-10T19:03:40.0049702Z info: Microsoft.Hosting.Lifetime[0] 2020-03-10T19:03:40.0050292Z Hosting environment: Production 2020-03-10T19:03:40.0050877Z info: Microsoft.Hosting.Lifetime[0] 2020-03-10T19:03:40.0051895Z Content root path: D:\a\1\a 2020-03-10T19:03:44.6267548Z CLIExecute version:1.2020.10310.11900 2020-03-10T19:03:45.4122334Z executing GetMathId_Http 2020-03-10T19:03:46.0585725Z { 2020-03-10T19:03:46.0586788Z "Command": { 2020-03-10T19:03:46.0587511Z "NameCommand": "GetMathId_Http", 2020-03-10T19:03:46.0588202Z "Host": "<a href="http://localhost:5000">http://localhost:5000</a>", 2020-03-10T19:03:46.0588851Z "RelativeRequestUrl": "api/MathAdd/5", 2020-03-10T19:03:46.0589427Z "Verb": "GET" 2020-03-10T19:03:46.0589936Z }, 2020-03-10T19:03:46.0590434Z "StatusCode": 200, 2020-03-10T19:03:46.0590955Z "Result": "value5" 2020-03-10T19:03:46.0591452Z } 2020-03-10T19:03:46.0591977Z executing MathPOST 2020-03-10T19:03:46.1304847Z { 2020-03-10T19:03:46.1306343Z "Command": { 2020-03-10T19:03:46.1307062Z "NameCommand": "MathPOST", 2020-03-10T19:03:46.1307766Z "Host": "<a href="http://localhost:5000">http://localhost:5000</a>", 2020-03-10T19:03:46.1308471Z "RelativeRequestUrl": "api/MathAdd", 2020-03-10T19:03:46.1309710Z "Verb": "POST" 2020-03-10T19:03:46.1310813Z }, 2020-03-10T19:03:46.1311457Z "StatusCode": 200, 2020-03-10T19:03:46.1312079Z "Result": "" 2020-03-10T19:03:46.1312652Z }</p>
+</blockquote>
 <h1 id="faq">F.A.Q.</h1>
 <h2 id="i-want-to-contribute--where-is-the-code-">I want to contribute . Where is the code ?</h2>
 <p>All code source is at <a href="https://github.com/ignatandrei/WebAPI2CLI/">https://github.com/ignatandrei/WebAPI2CLI/</a></p>
@@ -178,7 +188,5 @@
 <p>You can report problems at <a href="https://github.com/ignatandrei/WebAPI2CLI/issues">https://github.com/ignatandrei/WebAPI2CLI/issues</a></p>
 <h2 id="where-can-i-download-this-document-">Where can I download this document ?</h2>
 <p>There is a PDF at <a href="https://ignatandrei.github.io/WebAPI2CLI/Web2CLI.pdf">https://ignatandrei.github.io/WebAPI2CLI/Web2CLI.pdf</a></p>
-<h2 id="could-i-see-an-example-of-the-output-">Could I see an example of the output ?</h2>
-<p>Of course. Every build in AzureDevOps has a last step , runningADemo. See <a href="https://dev.azure.com/ignatandrei0674/WebAPI2CLI/_build?definitionId=7&amp;_a=summary">https://dev.azure.com/ignatandrei0674/WebAPI2CLI/_build?definitionId=7&amp;_a=summary</a></p>
 </body>
 </html>
