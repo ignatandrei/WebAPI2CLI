@@ -9,6 +9,7 @@
     <Authors>Andrei Ignat</Authors>
     <!--<TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);IncludeP2PAssets</TargetsForTfmSpecificBuildOutput>-->
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageTags>WebAPI;ASP.NET Core;.NET Core;CLI;Command Line</PackageTags>
     <Description>
       This file will execute  ASP.NET Core WebAPI from Command Line.
       Can be usefull for a CI integration or just making a demo.
