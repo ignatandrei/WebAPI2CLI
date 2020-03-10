@@ -1,5 +1,11 @@
 # F.A.Q.
 
+## I want to contribute  . Where is the code  ? 
+
+All code source is at https://github.com/ignatandrei/WebAPI2CLI/ 
+
+Please see issues tab if you want to know what needs development .
+
 ## Will my WebAPI work as before?
 
 The software takes care about 
@@ -16,10 +22,14 @@ Yes. Use
 
 ## I found a bug / I need a feature . Where can I report ?
 
-All code source is at https://github.com/ignatandrei/WebAPI2CLI/ 
-
 You can report problems at https://github.com/ignatandrei/WebAPI2CLI/issues
 
 ## Where can I download this document ? 
 
 There is a PDF at https://ignatandrei.github.io/WebAPI2CLI/Web2CLI.pdf
+
+## Could I see an example of the output ? 
+
+Of course. Every build in AzureDevOps has a last step , runningADemo.
+See https://dev.azure.com/ignatandrei0674/WebAPI2CLI/_build?definitionId=7&_a=summary
+

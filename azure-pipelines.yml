@@ -92,3 +92,10 @@ steps:
 - script: |
     nuget push $(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg %MYGETAPIKEY% -Source https://www.myget.org/F/ignatandrei/api/v2/package
   displayName: push myget
+
+- script: |
+    cd $(Build.ArtifactStagingDirectory)
+    echo "testing"
+    TestWebAPISite.exe  --CLI_ENABLED=1 --CLI_Commands="GetMathId_Http,MathPOST"
+  
+  displayName: runningADemo
