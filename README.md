@@ -8,6 +8,19 @@ Execute ASP.NET Core WebAPI from Command Line
 ![Azure DevOps tests (branch)](https://img.shields.io/azure-devops/tests/ignatandrei0674/WebAPI2CLI/7/master)
 ![Azure DevOps coverage (branch)](https://img.shields.io/azure-devops/coverage/ignatandrei0674/WebAPI2CLI/7/master) 
 
+# Why
+
+What if, instead of running the WebAPI ( or just the site ) and waiting for commands from the user, you want also to execute from the command line some controllers actions ?
+
+This project let's you do that by enabling the command line with 
+
+ &lt; myexe &gt;.exe --CLI_ENABLED=1 --CLI_Commands=" ... " 
+
+The command names are in a *cli.txt* file that can be generated with
+
+ &lt; myexe &gt;.exe --CLI_ENABLED=1 --CLI_HELP=1
+
+
 # How to use ( for .NET Core 3.1 )
 
 ## Step 0 : install into your ASP.NET Core Web 
@@ -57,6 +70,6 @@ Run the exe with the following:
 
 The program will run the commands and output the result.
 
-More details here: 
+More details here( including a demo)
 
 https://ignatandrei.github.io/WebAPI2CLI/

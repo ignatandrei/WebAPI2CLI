@@ -24,7 +24,7 @@ TestWebAPISite.exe --CLI_Enabled=1 --CLI_COMMANDS="GetMathId_Http,WeatherGet"
 
 ( ensure the cli.txt is near to TestWebAPISite.exe)
 
-## If you have another operating system than Win10-x64 and I want a demo
+## If you have another operating system than Win10-x64 and want a demo
 
 It is easy to make a demo for you.
 Modify the .csproj and the yml file in azure. Or make an issue at https://github.com/ignatandrei/webAPI2CLI/issues and I will do it for you.
