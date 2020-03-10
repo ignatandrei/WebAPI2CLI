@@ -86,6 +86,7 @@
 <nav id="TOC" role="doc-toc">
 <ul>
 <li><a href="#webapi2cli">WebAPI2CLI</a></li>
+<li><a href="#why">Why</a></li>
 <li><a href="#how-to-use--for-net-core-31-">How to use ( for .NET Core 3.1 )</a>
 <ul>
 <li><a href="#step-0--install-into-your-aspnet-core-web">Step 0 : install into your ASP.NET Core Web</a></li>
@@ -95,7 +96,7 @@
 <li><a href="#if-you-want-a-demo">If you want a demo</a>
 <ul>
 <li><a href="#if-you-have-win10-x64">If you have Win10 x64</a></li>
-<li><a href="#if-you-have-another-operating-system-than-win10-x64-and-i-want-a-demo">If you have another operating system than Win10-x64 and I want a demo</a></li>
+<li><a href="#if-you-have-another-operating-system-than-win10-x64-and-want-a-demo">If you have another operating system than Win10-x64 and want a demo</a></li>
 </ul></li>
 <li><a href="#faq">F.A.Q.</a>
 <ul>
@@ -109,6 +110,12 @@
 <h1 id="webapi2cli">WebAPI2CLI</h1>
 <p>Execute ASP.NET Core WebAPI from Command Line</p>
 <p><a href="https://github.com/ignatandrei/WebAPI2CLI/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="GitHub license" /></a> <a href="https://www.nuget.org/packages/ExtensionNetCore3"><img src="https://img.shields.io/nuget/v/ExtensionNetCore3.svg" alt="NuGet" /></a> <img src="https://img.shields.io/myget/ignatandrei/v/ExtensionNetCore3?label=CD2MyGet" alt="MyGet" /> <a href="https://dev.azure.com/ignatandrei0674/WebAPI2CLI/_build/latest?definitionId=7&amp;branchName=master"><img src="https://dev.azure.com/ignatandrei0674/WebAPI2CLI/_apis/build/status/ignatandrei.WebAPI2CLI?branchName=master" alt="Build Status" /></a> <img src="https://img.shields.io/azure-devops/tests/ignatandrei0674/WebAPI2CLI/7/master" alt="Azure DevOps tests (branch)" /> <img src="https://img.shields.io/azure-devops/coverage/ignatandrei0674/WebAPI2CLI/7/master" alt="Azure DevOps coverage (branch)" /></p>
+<h1 id="why">Why</h1>
+<p>What if, instead of running the WebAPI ( or just the site ) and waiting for commands from the user, you want also to execute from the command line some controllers actions ?</p>
+<p>This project let's you do that by enabling the command line with</p>
+<p>&lt; myexe &gt;.exe --CLI_ENABLED=1 --CLI_Commands=" ... "</p>
+<p>The command names are in a <em>cli.txt</em> file that can be generated with</p>
+<p>&lt; myexe &gt;.exe --CLI_ENABLED=1 --CLI_HELP=1</p>
 <h1 id="how-to-use--for-net-core-31-">How to use ( for .NET Core 3.1 )</h1>
 <h2 id="step-0--install-into-your-aspnet-core-web">Step 0 : install into your ASP.NET Core Web</h2>
 <p>Install the package <a href="https://www.nuget.org/packages/ExtensionNetCore3">https://www.nuget.org/packages/ExtensionNetCore3</a></p>
@@ -137,7 +144,7 @@
 <p>Run the exe with the following:</p>
 <p>&lt; myexe &gt;.exe --CLI_ENABLED=1 --CLI_Commands="your first command,your second command, and enumerate all commands"</p>
 <p>The program will run the commands and output the result.</p>
-<p>More details here:</p>
+<p>More details here( including a demo)</p>
 <p><a href="https://ignatandrei.github.io/WebAPI2CLI/">https://ignatandrei.github.io/WebAPI2CLI/</a></p>
 <h1 id="if-you-want-a-demo">If you want a demo</h1>
 <h2 id="if-you-have-win10-x64">If you have Win10 x64</h2>
@@ -152,7 +159,7 @@
 <p>Now run</p>
 <p>TestWebAPISite.exe --CLI_Enabled=1 --CLI_COMMANDS="GetMathId_Http,WeatherGet"</p>
 <p>( ensure the cli.txt is near to TestWebAPISite.exe)</p>
-<h2 id="if-you-have-another-operating-system-than-win10-x64-and-i-want-a-demo">If you have another operating system than Win10-x64 and I want a demo</h2>
+<h2 id="if-you-have-another-operating-system-than-win10-x64-and-want-a-demo">If you have another operating system than Win10-x64 and want a demo</h2>
 <p>It is easy to make a demo for you. Modify the .csproj and the yml file in azure. Or make an issue at <a href="https://github.com/ignatandrei/webAPI2CLI/issues">https://github.com/ignatandrei/webAPI2CLI/issues</a> and I will do it for you.</p>
 <h1 id="faq">F.A.Q.</h1>
 <h2 id="will-my-webapi-work-as-before">Will my WebAPI work as before?</h2>
