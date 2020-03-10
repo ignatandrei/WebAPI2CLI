@@ -40,40 +40,40 @@ This is the output of
 
 TestWebAPISite.exe  --CLI_ENABLED=1 --CLI_Commands="GetMathId_Http,MathPOST"
 
-See Result variable
+See *Result* variable
 
->2020-03-10T19:03:39.2929915Z ExtensionNetCore3 version:1.2020.10310.11900
->2020-03-10T19:03:40.0045036Z info: Microsoft.Hosting.Lifetime[0]
->2020-03-10T19:03:40.0046360Z       Now listening on: http://localhost:5000
->2020-03-10T19:03:40.0047178Z info: Microsoft.Hosting.Lifetime[0]
->2020-03-10T19:03:40.0047815Z       Now listening on: https://localhost:5001
->2020-03-10T19:03:40.0048438Z info: Microsoft.Hosting.Lifetime[0]
->2020-03-10T19:03:40.0049078Z       Application started. Press Ctrl+C to shut down.
->2020-03-10T19:03:40.0049702Z info: Microsoft.Hosting.Lifetime[0]
->2020-03-10T19:03:40.0050292Z       Hosting environment: Production
->2020-03-10T19:03:40.0050877Z info: Microsoft.Hosting.Lifetime[0]
->2020-03-10T19:03:40.0051895Z       Content root path: D:\a\1\a
->2020-03-10T19:03:44.6267548Z CLIExecute version:1.2020.10310.11900
->2020-03-10T19:03:45.4122334Z executing GetMathId_Http
->2020-03-10T19:03:46.0585725Z {
->2020-03-10T19:03:46.0586788Z   "Command": {
->2020-03-10T19:03:46.0587511Z     "NameCommand": "GetMathId_Http",
->2020-03-10T19:03:46.0588202Z     "Host": "http://localhost:5000",
->2020-03-10T19:03:46.0588851Z     "RelativeRequestUrl": "api/MathAdd/5",
->2020-03-10T19:03:46.0589427Z     "Verb": "GET"
->2020-03-10T19:03:46.0589936Z   },
->2020-03-10T19:03:46.0590434Z   "StatusCode": 200,
->2020-03-10T19:03:46.0590955Z   "Result": "value5"
->2020-03-10T19:03:46.0591452Z }
->2020-03-10T19:03:46.0591977Z executing MathPOST
->2020-03-10T19:03:46.1304847Z {
->2020-03-10T19:03:46.1306343Z   "Command": {
->2020-03-10T19:03:46.1307062Z     "NameCommand": "MathPOST",
->2020-03-10T19:03:46.1307766Z     "Host": "http://localhost:5000",
->2020-03-10T19:03:46.1308471Z     "RelativeRequestUrl": "api/MathAdd",
->2020-03-10T19:03:46.1309710Z     "Verb": "POST"
->2020-03-10T19:03:46.1310813Z   },
->2020-03-10T19:03:46.1311457Z   "StatusCode": 200,
->2020-03-10T19:03:46.1312079Z   "Result": ""
->2020-03-10T19:03:46.1312652Z }
+1. 2020-03-10T19:03:39.2929915Z ExtensionNetCore3 version:1.2020.10310.11900
+1. 2020-03-10T19:03:40.0045036Z info: Microsoft.Hosting.Lifetime[0]
+1. 2020-03-10T19:03:40.0046360Z       Now listening on: http://localhost:5000
+1. 2020-03-10T19:03:40.0047178Z info: Microsoft.Hosting.Lifetime[0]
+1. 2020-03-10T19:03:40.0047815Z       Now listening on: https://localhost:5001
+1. 2020-03-10T19:03:40.0048438Z info: Microsoft.Hosting.Lifetime[0]
+1. 2020-03-10T19:03:40.0049078Z       Application started. Press Ctrl+C to shut down.
+1. 2020-03-10T19:03:40.0049702Z info: Microsoft.Hosting.Lifetime[0]
+1. 2020-03-10T19:03:40.0050292Z       Hosting environment: Production
+1. 2020-03-10T19:03:40.0050877Z info: Microsoft.Hosting.Lifetime[0]
+1. 2020-03-10T19:03:40.0051895Z       Content root path: D:\a\1\a
+1. 2020-03-10T19:03:44.6267548Z CLIExecute version:1.2020.10310.11900
+1. 2020-03-10T19:03:45.4122334Z *executing GetMathId_Http*
+1. 2020-03-10T19:03:46.0585725Z {
+1. 2020-03-10T19:03:46.0586788Z   "Command": {
+1. 2020-03-10T19:03:46.0587511Z     "NameCommand": "GetMathId_Http",
+1. 2020-03-10T19:03:46.0588202Z     "Host": "http://localhost:5000",
+1. 2020-03-10T19:03:46.0588851Z     "RelativeRequestUrl": "api/MathAdd/5",
+1. 2020-03-10T19:03:46.0589427Z     "Verb": "GET"
+1. 2020-03-10T19:03:46.0589936Z   },
+1. 2020-03-10T19:03:46.0590434Z   "StatusCode": 200,
+1. 2020-03-10T19:03:46.0590955Z   "*Result*": "value5"
+1. 2020-03-10T19:03:46.0591452Z }
+1. 2020-03-10T19:03:46.0591977Z executing *MathPOST*
+1. 2020-03-10T19:03:46.1304847Z {
+1. 2020-03-10T19:03:46.1306343Z   "Command": {
+1. 2020-03-10T19:03:46.1307062Z     "NameCommand": "MathPOST",
+1. 2020-03-10T19:03:46.1307766Z     "Host": "http://localhost:5000",
+1. 2020-03-10T19:03:46.1308471Z     "RelativeRequestUrl": "api/MathAdd",
+1. 2020-03-10T19:03:46.1309710Z     "Verb": "POST"
+1. 2020-03-10T19:03:46.1310813Z   },
+1. 2020-03-10T19:03:46.1311457Z   "StatusCode": 200,
+1. 2020-03-10T19:03:46.1312079Z   "Result": ""
+1. 2020-03-10T19:03:46.1312652Z }
 
