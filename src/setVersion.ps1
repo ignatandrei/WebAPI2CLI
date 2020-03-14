@@ -13,3 +13,8 @@ dotnet dotnet-property "**/*.csproj" AssemblyVersion:"$assemblyVersion"
 $version=$d.ToString("1.0.yyyy.") + ($diff.TotalSeconds -as  [int]).ToString()
 dotnet-property "**/*.csproj" Version:"$version"
 dotnet dotnet-property "**/*.csproj" Version:"$version"
+
+$releaseNotes ="Build number: $env:BUILD_BUILDNUMBER author : $env:BUILD_SOURCEVERSIONAUTHOR message: $env:BUILD_SOURCEVERSIONMESSAGE commit : $env:BUILD_SOURCEVERSION"
+Write-Host "release notes : $releaseNotes "
+dotnet-property "**/*.csproj" PackageReleaseNotes:"$releaseNotes "
+dotnet dotnet-property "**/*.csproj" PackageReleaseNotes:"$releaseNotes"

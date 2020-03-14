@@ -13,6 +13,7 @@
       Please see https://github.com/ignatandrei/WebAPI2CLI for details
       Please see http://msprogrammer.serviciipeweb.ro/category/WEBAPI2CLI/ about how I made it.
     </Description>
+    <Authors>Andrei Ignat</Authors>
     <Copyright>MIT</Copyright>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
