@@ -52,20 +52,28 @@ namespace ExtensionNetCore3
         }
         private async void DoWork(object state)
         {
-            if (ExistsApp() )
+            if (!ExistsApp())
             {
-
-                serverAddresses = app.ServerFeatures.Get<IServerAddressesFeature>();
-                if (serverAddresses != null)
-                {
-                    _timer.Dispose();
-                    exec = new Executor(configuration, serverAddresses, api, app.ApplicationServices);
-                    await exec.Execute();
-
-                    if (!ShouldStay())
-                        Environment.Exit(0);
-                }
+                Console.WriteLine("WebAPI2CLI: waiting to have app");
+                return;
             }
+
+
+            serverAddresses = app.ServerFeatures.Get<IServerAddressesFeature>();
+            if (serverAddresses == null)
+            {
+                Console.WriteLine("WebAPI2CLI: waiting to have server adresses");
+                return;
+            }
+
+            _timer.Dispose();
+            exec = new Executor(configuration, serverAddresses, api, app.ApplicationServices);
+            await exec.Execute();
+
+            if (!ShouldStay())
+                Environment.Exit(0);
+
+
         }
         internal Executor exec;
         public Task StopAsync(CancellationToken cancellationToken)
