@@ -18,7 +18,7 @@ $releaseNotes = "BuildNumber $env:BUILD_BUILDNUMBER"
 $releaseNotes += ";author $env:BUILD_SOURCEVERSIONAUTHOR"
 $releaseNotes += ";message $env:BUILD_SOURCEVERSIONMESSAGE"
 $releaseNotes +=";commit $env:BUILD_SOURCEVERSION"
-$releaseNotes +=";source http://github.com/ignatandrei/webAPI2CLI/"
+$releaseNotes +=";source for this release http://github.com/ignatandrei/webAPI2CLI/commit/$env:BUILD_SOURCEVERSION"
 
 $releaseNotes
 
