@@ -11,7 +11,7 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageTags>WebAPI;ASP.NET Core;.NET Core;CLI;Command Line</PackageTags>
     <Description>
-      This file will execute  ASP.NET Core WebAPI from Command Line.
+      This program will execute  ASP.NET Core WebAPI from Command Line.
       Can be usefull for a CI integration or just making a demo.
       Please see https://github.com/ignatandrei/WebAPI2CLI for details
       Please see http://msprogrammer.serviciipeweb.ro/category/WEBAPI2CLI/ about how I made it.

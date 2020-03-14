@@ -6,9 +6,13 @@
     <RepositoryUrl>https://github.com/ignatandrei/WebAPI2CLI</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <PackageReleaseNotes>WebAPI to CLI
-</PackageReleaseNotes>
-    <Description>WebAPI to CLI
-</Description>
+    </PackageReleaseNotes>
+    <Description>
+      This program will execute  ASP.NET Core WebAPI from Command Line.
+      Can be usefull for a CI integration or just making a demo.
+      Please see https://github.com/ignatandrei/WebAPI2CLI for details
+      Please see http://msprogrammer.serviciipeweb.ro/category/WEBAPI2CLI/ about how I made it.
+    </Description>
     <Copyright>MIT</Copyright>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>

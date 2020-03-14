@@ -31,6 +31,12 @@
       "commands": [
         "reportgenerator"
       ]
+    },
+    "dotnet-aop": {
+      "version": "2020.2.17.1904",
+      "commands": [
+        "dotnet-aop"
+      ]
     }
   }
 }
