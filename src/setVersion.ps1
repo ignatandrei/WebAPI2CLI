@@ -14,11 +14,11 @@ $version=$d.ToString("1.0.yyyy.") + ($diff.TotalSeconds -as  [int]).ToString()
 dotnet-property "**/*.csproj" Version:"$version"
 dotnet dotnet-property "**/*.csproj" Version:"$version"
 
-$releaseNotes = "Build number:$env:BUILD_BUILDNUMBER"
-$releaseNotes += ";author:$env:BUILD_SOURCEVERSIONAUTHOR"
-$releaseNotes += ";message:$env:BUILD_SOURCEVERSIONMESSAGE"
-$releaseNotes +=";commit : $env:BUILD_SOURCEVERSION"
-$releaseNotes +=";source:http://github.com/ignatandrei/webAPI2CLI/"
+$releaseNotes = "BuildNumber $env:BUILD_BUILDNUMBER"
+$releaseNotes += ";author $env:BUILD_SOURCEVERSIONAUTHOR"
+$releaseNotes += ";message $env:BUILD_SOURCEVERSIONMESSAGE"
+$releaseNotes +=";commit $env:BUILD_SOURCEVERSION"
+$releaseNotes +=";source http://github.com/ignatandrei/webAPI2CLI/"
 
 $releaseNotes
 
