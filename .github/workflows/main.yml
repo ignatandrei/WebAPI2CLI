@@ -17,13 +17,15 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    needs: docs_csharp
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
     - run: |
           echo generate help file
           mkdir output
-
+          git pull
+          
     - name: generate html
       uses: docker://pandoc/latex:2.9
       with: # needs a README in your repo root!
@@ -56,20 +58,19 @@ jobs:
   docs_csharp:
     # The type of runner that the job will run on
     runs-on: windows-latest
-    needs: build
+    
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
     - run: |        
-        git pull
-        rem call DocumentationSources.bat
-        rem git config --local user.email "action@github.com"
-        rem git config --local user.name "GitHub Action"
-        rem git commit -m "generate html" -a --allow-empty
+        call DocumentationSources.bat
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git commit -m "generate html" -a --allow-empty
            
-    # - name: Push changes
-    #   uses: ad-m/github-push-action@master
-    #   with:
-    #     github_token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
 
