@@ -37,6 +37,18 @@
       "commands": [
         "dotnet-aop"
       ]
+    },
+    "dotnetthx": {
+      "version": "0.2.0",
+      "commands": [
+        "dotnet-thx"
+      ]
+    },
+    "loxsmoke.mddox": {
+      "version": "0.5.1",
+      "commands": [
+        "mddox"
+      ]
     }
   }
 }
