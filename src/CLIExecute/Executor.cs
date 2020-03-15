@@ -16,6 +16,9 @@ using System.Threading.Tasks;
 [assembly: InternalsVisibleTo("CLITests")]
 namespace CLIExecute
 {
+    /// <summary>
+    /// Executes multiple commands
+    /// </summary>
     public class Executor
     {
         static Executor()
@@ -27,6 +30,13 @@ namespace CLIExecute
         private readonly IApiDescriptionGroupCollectionProvider api;
         private readonly IServiceProvider serviceProvider;
         private readonly IConfiguration configuration;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Executor"/> class.
+        /// </summary>
+        /// <param name="configuration">The configuration.</param>
+        /// <param name="serverAddresses">The server addresses.</param>
+        /// <param name="api">The API.</param>
+        /// <param name="serviceProvider">The service provider.</param>
         public Executor(IConfiguration configuration, IServerAddressesFeature serverAddresses,IApiDescriptionGroupCollectionProvider api, IServiceProvider serviceProvider)
         {
             this.serverAddresses = serverAddresses;
@@ -40,6 +50,10 @@ namespace CLIExecute
             //return configuration.GetValue<string>("CLI_Commands");
             return configuration["CLI_Commands"];
         }
+        /// <summary>
+        /// has some commands to executed in CLI_Commands
+        /// </summary>
+        /// <returns></returns>
         public bool ShouldExecuteCommands()
         {
             return !string.IsNullOrWhiteSpace(NameCommandsToExecute());
@@ -55,11 +69,18 @@ namespace CLIExecute
             var s = CLI_Commandserialize.DeSerialize(fileContents);
             return s;
         }
+        /// <summary>
+        /// find commands to execute.
+        /// </summary>
+        /// <returns></returns>
         public ICLICommand[] CommandsToExecute()
         {
 
             return FindAllCommands().FindCommands(NameCommandsToExecute());
         }
+        /// <summary>
+        /// Executes the commands.
+        /// </summary>
         public async Task ExecuteCommands()
         {
             var cmds = CommandsToExecute();
@@ -83,6 +104,9 @@ namespace CLIExecute
                     }
                 }
         }
+        /// <summary>
+        /// Executes this instance.
+        /// </summary>
         public async Task Execute()
         {
             if (ShouldShowHelp())
@@ -108,6 +132,10 @@ namespace CLIExecute
             if (ShouldExecuteCommands())
                 await ExecuteCommands();
         }
+        /// <summary>
+        /// CLI_HELP ==1  
+        /// </summary>
+        /// <returns>true/false</returns>
         public bool ShouldShowHelp()
         {
             //deleted for easy of automating testing

@@ -1,0 +1,280 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CLIExecute</name>
+    </assembly>
+    <members>
+        <member name="T:CLIExecute.CLI_Commands">
+            <summary>
+            Contains commands to be executed.
+            Now just V1
+            </summary>
+        </member>
+        <member name="P:CLIExecute.CLI_Commands.V1">
+            <summary>
+            Gets or sets the v1 version of commands.
+            </summary>
+            <value>
+            The v1 version of commands
+            </value>
+        </member>
+        <member name="M:CLIExecute.CLI_Commands.FindCommands(System.String)">
+            <summary>
+            Finds the commands with name
+            </summary>
+            <param name="name">The name.</param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentException">command {name} not found</exception>
+        </member>
+        <member name="M:CLIExecute.CLI_Commands.AddCommand(CLIExecute.ICLICommand)">
+            <summary>
+            Adds the command to the list of the commands
+            </summary>
+            <param name="cmd">The command.</param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentException">unsupported type {cmd?.GetType()}</exception>
+        </member>
+        <member name="T:CLIExecute.CLI_Commandserialize">
+            <summary>
+            serialize commands
+            </summary>
+        </member>
+        <member name="M:CLIExecute.CLI_Commandserialize.Serialize(System.Object)">
+            <summary>
+            Serializes the specified object in YAML
+            </summary>
+            <param name="o">The o.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CLIExecute.CLI_Commandserialize.DeSerialize(System.String)">
+            <summary>
+            from YAML to CLI_Commands
+            </summary>
+            <param name="text">The text.</param>
+            <returns>CLI_Commands</returns>
+        </member>
+        <member name="T:CLIExecute.CLICommand_v1">
+            <summary>
+            First type of commands
+            </summary>
+            <seealso cref="T:CLIExecute.ICLICommand_v1" />
+        </member>
+        <member name="M:CLIExecute.CLICommand_v1.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:CLIExecute.CLICommand_v1"/> class.
+            </summary>
+        </member>
+        <member name="P:CLIExecute.CLICommand_v1.NameCommand">
+            <summary>
+            Gets or sets the name of the command.
+            </summary>
+            <value>
+            The name of the command.
+            </value>
+        </member>
+        <member name="P:CLIExecute.CLICommand_v1.Host">
+            <summary>
+            Gets or sets the host.
+            </summary>
+            <value>
+            The host.
+            </value>
+        </member>
+        <member name="P:CLIExecute.CLICommand_v1.RelativeRequestUrl">
+            <summary>
+            Gets or sets the relative request URL.
+            </summary>
+            <value>
+            The relative request URL.
+            </value>
+        </member>
+        <member name="P:CLIExecute.CLICommand_v1.Verb">
+            <summary>
+            Gets or sets the verb.
+            </summary>
+            <value>
+            The verb.
+            </value>
+        </member>
+        <member name="P:CLIExecute.CLICommand_v1.ContentType">
+            <summary>
+            Gets or sets the type of the content.
+            </summary>
+            <value>
+            The type of the content.
+            </value>
+        </member>
+        <member name="P:CLIExecute.CLICommand_v1.DataToSend">
+            <summary>
+            Gets or sets the data to send.
+            </summary>
+            <value>
+            The data to send.
+            </value>
+        </member>
+        <member name="M:CLIExecute.CLICommand_v1.Execute">
+            <summary>
+            Executes this instance.
+            </summary>
+            <returns></returns>
+            <exception cref="T:System.ArgumentException">for the moment, cannot work with {Verb.ToUpper()}</exception>
+        </member>
+        <member name="M:CLIExecute.CLICommand_v1.SetPossibleFullHosts(System.String[])">
+            <summary>
+            Sets the possible full hosts .
+            Usefull if you want just pass the start of the host
+            e.g. http
+            </summary>
+            <param name="adresses">The adresses.</param>
+        </member>
+        <member name="T:CLIExecute.Executor">
+            <summary>
+            Executes multiple commands
+            </summary>
+        </member>
+        <member name="M:CLIExecute.Executor.#ctor(Microsoft.Extensions.Configuration.IConfiguration,Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature,Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionGroupCollectionProvider,System.IServiceProvider)">
+            <summary>
+            Initializes a new instance of the <see cref="T:CLIExecute.Executor"/> class.
+            </summary>
+            <param name="configuration">The configuration.</param>
+            <param name="serverAddresses">The server addresses.</param>
+            <param name="api">The API.</param>
+            <param name="serviceProvider">The service provider.</param>
+        </member>
+        <member name="M:CLIExecute.Executor.ShouldExecuteCommands">
+            <summary>
+            has some commands to executed in CLI_Commands
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CLIExecute.Executor.CommandsToExecute">
+            <summary>
+            find commands to execute.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CLIExecute.Executor.ExecuteCommands">
+            <summary>
+            Executes the commands.
+            </summary>
+        </member>
+        <member name="M:CLIExecute.Executor.Execute">
+            <summary>
+            Executes this instance.
+            </summary>
+        </member>
+        <member name="M:CLIExecute.Executor.ShouldShowHelp">
+            <summary>
+            CLI_HELP ==1  
+            </summary>
+            <returns>true/false</returns>
+        </member>
+        <member name="T:CLIExecute.ICLICommand">
+            <summary>
+            Describes the command to be executed
+            </summary>
+        </member>
+        <member name="P:CLIExecute.ICLICommand.NameCommand">
+            <summary>
+            Gets or sets the name of the command.
+            </summary>
+            <value>
+            The name of the command.
+            </value>
+        </member>
+        <member name="P:CLIExecute.ICLICommand.Host">
+            <summary>
+            Gets or sets the host.
+            </summary>
+            <value>
+            The host.
+            </value>
+        </member>
+        <member name="P:CLIExecute.ICLICommand.RelativeRequestUrl">
+            <summary>
+            Gets or sets the relative request URL.
+            </summary>
+            <value>
+            The relative request URL.
+            </value>
+        </member>
+        <member name="P:CLIExecute.ICLICommand.Verb">
+            <summary>
+            Gets or sets the verb.
+            </summary>
+            <value>
+            The verb.
+            </value>
+        </member>
+        <member name="M:CLIExecute.ICLICommand.SetPossibleFullHosts(System.String[])">
+            <summary>
+            Sets the possible full hosts . 
+            Usefull if you want just pass the start of the host
+            e.g. http
+            </summary>
+            <param name="adresses">The adresses.</param>
+        </member>
+        <member name="T:CLIExecute.ICLICommand_v1">
+            <summary>
+            first type of commands
+            </summary>
+            <seealso cref="T:CLIExecute.ICLICommand" />
+        </member>
+        <member name="P:CLIExecute.ICLICommand_v1.DataToSend">
+            <summary>
+            Gets or sets the data to send.
+            </summary>
+            <value>
+            The data to send.
+            </value>
+        </member>
+        <member name="M:CLIExecute.ICLICommand_v1.Execute">
+            <summary>
+            Executes this instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:CLIExecute.ReturnValue_v1">
+            <summary>
+            return value for WebAPI
+            </summary>
+        </member>
+        <member name="M:CLIExecute.ReturnValue_v1.#ctor(System.Net.HttpStatusCode)">
+            <summary>
+            Initializes a new instance of the <see cref="T:CLIExecute.ReturnValue_v1"/> class.
+            </summary>
+            <param name="statusCode">The status code.</param>
+        </member>
+        <member name="M:CLIExecute.ReturnValue_v1.#ctor(System.Net.HttpStatusCode,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:CLIExecute.ReturnValue_v1"/> class.
+            </summary>
+            <param name="statusCode">The status code.</param>
+            <param name="result">The result.</param>
+        </member>
+        <member name="P:CLIExecute.ReturnValue_v1.Command">
+            <summary>
+            Gets the command that was executed
+            </summary>
+            <value>
+            The command.
+            </value>
+        </member>
+        <member name="P:CLIExecute.ReturnValue_v1.StatusCode">
+            <summary>
+            Gets the status code received
+            </summary>
+            <value>
+            The status code.
+            </value>
+        </member>
+        <member name="P:CLIExecute.ReturnValue_v1.Result">
+            <summary>
+            Gets the result.
+            </summary>
+            <value>
+            The result.
+            </value>
+        </member>
+    </members>
+</doc>

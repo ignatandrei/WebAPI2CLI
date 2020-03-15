@@ -6,6 +6,9 @@ using YamlDotNet.Serialization.NamingConventions;
 
 namespace CLIExecute
 {
+    /// <summary>
+    /// serialize commands
+    /// </summary>
     public class CLI_Commandserialize
     {
         //public static string Serialize(CLICommand_v1 v1)
@@ -20,11 +23,21 @@ namespace CLIExecute
         //        .Build();
         //    return deserializer.Deserialize<CLICommand_v1>(v1);
         //}
+        /// <summary>
+        /// Serializes the specified object in YAML
+        /// </summary>
+        /// <param name="o">The o.</param>
+        /// <returns></returns>
         public static string Serialize(object o)
         {
             var serializer = new SerializerBuilder().Build();
             return serializer.Serialize(o);
         }
+        /// <summary>
+        /// from YAML to CLI_Commands
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <returns>CLI_Commands</returns>
         public static CLI_Commands DeSerialize(string  text)
         {
             var serializer = new DeserializerBuilder()

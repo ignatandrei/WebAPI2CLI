@@ -8,6 +8,9 @@ using System.Reflection;
 
 namespace ExtensionNetCore3
 {
+    /// <summary>
+    /// helper extension class
+    /// </summary>
     public static class CLIExtension
     {
         static CLIExtension()
@@ -16,6 +19,12 @@ namespace ExtensionNetCore3
             Console.WriteLine($"Web2APICLI:{assName.Name} version:{assName.Version.ToString()}");
 
         }
+        /// <summary>
+        /// Helper method to be used at 
+        ///  public void ConfigureServices
+        /// </summary>
+        /// <param name="serviceCollection"></param>
+        /// <returns></returns>
         public static IServiceCollection AddCLI(this IServiceCollection serviceCollection)
         {
             Console.WriteLine($"Web2APICLI:For more details please refer to about Web2APICLI refer to https://github.com/ignatandrei/WebAPI2CLI");
@@ -31,6 +40,13 @@ namespace ExtensionNetCore3
             serviceCollection.AddTransient<ICLICommand_v1>(sc => new CLICommand_v1());
             return serviceCollection;
         }
+
+        /// <summary>
+        /// Helper method to be used at
+        /// public void Configure
+        /// </summary>
+        /// <param name="app"></param>
+        /// <returns></returns>
         public static IApplicationBuilder UseCLI(this IApplicationBuilder app)
         {
 
