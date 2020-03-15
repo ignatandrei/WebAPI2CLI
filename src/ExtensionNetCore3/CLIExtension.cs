@@ -13,12 +13,12 @@ namespace ExtensionNetCore3
         static CLIExtension()
         {
             var assName = Assembly.GetExecutingAssembly().GetName();
-            Console.WriteLine($"{assName.Name} version:{assName.Version.ToString()}");
+            Console.WriteLine($"Web2APICLI:{assName.Name} version:{assName.Version.ToString()}");
 
         }
         public static IServiceCollection AddCLI(this IServiceCollection serviceCollection)
         {
-            Console.WriteLine($"For more details please refer to about Web2APICLI refer to https://github.com/ignatandrei/WebAPI2CLI");
+            Console.WriteLine($"Web2APICLI:For more details please refer to about Web2APICLI refer to https://github.com/ignatandrei/WebAPI2CLI");
 
             serviceCollection.TryAddSingleton<IApiDescriptionGroupCollectionProvider, ApiDescriptionGroupCollectionProvider>();
             serviceCollection.TryAddEnumerable(

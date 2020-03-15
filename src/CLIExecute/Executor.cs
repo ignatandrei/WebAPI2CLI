@@ -21,7 +21,7 @@ namespace CLIExecute
         static Executor()
         {
             var assName = Assembly.GetExecutingAssembly().GetName();
-            Console.WriteLine($"{assName.Name} version:{assName.Version.ToString()}");
+            Console.WriteLine($"Web2APICLI:{assName.Name} version:{assName.Version.ToString()}");
         }
         private readonly IServerAddressesFeature serverAddresses;
         private readonly IApiDescriptionGroupCollectionProvider api;
@@ -69,7 +69,7 @@ namespace CLIExecute
                     v1.SetPossibleFullHosts(serverAddresses.Addresses.ToArray());
                     try
                     {
-                        Console.WriteLine($"executing {v1.NameCommand}");
+                        Console.WriteLine($"Web2APICLI:executing {v1.NameCommand}");
                         var x = await v1.Execute();
                         Console.WriteLine(JsonSerializer.Serialize(x, new JsonSerializerOptions()
                         {
@@ -87,12 +87,12 @@ namespace CLIExecute
         {
             if (ShouldShowHelp())
             {
-                Console.WriteLine("put this in a cli.txt file in the same path as the exe:");
+                Console.WriteLine("Web2APICLI:put this in a cli.txt file in the same path as the exe:");
                 Console.WriteLine("");
                 var api= EnumerateWebAPI();
                 Console.WriteLine(api);
                 Console.WriteLine("");
-                Console.WriteLine("then run the exe with following parameters :");
+                Console.WriteLine("Web2APICLI:then run the exe with following parameters :");
                 Console.WriteLine("--CLI_ENABLED=1 --CLI_Commands=\"Command001,Command002,...\"");
                 Console.WriteLine("");
                 try
@@ -101,7 +101,7 @@ namespace CLIExecute
                 }
                 catch(Exception ex)
                 {
-                    Console.WriteLine("cannot write cli.txt because " + ex.Message);
+                    Console.WriteLine("Web2APICLI:cannot write cli.txt because " + ex.Message);
                 }
             }
 
