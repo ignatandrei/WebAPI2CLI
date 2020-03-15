@@ -102,6 +102,7 @@
 </ul></li>
 <li><a href="#faq">F.A.Q.</a>
 <ul>
+<li><a href="#my-port-changes-from-development-to-integration-how-to-wrote-the-address-one-time-">My port changes from development to integration. How to wrote the address one time ?</a></li>
 <li><a href="#i-want-to-contribute--where-is-the-code-">I want to contribute . Where is the code ?</a></li>
 <li><a href="#will-my-webapi-work-as-before">Will my WebAPI work as before?</a></li>
 <li><a href="#i-want-to-run-as-a-cli-and-then-use-the-webapi-as-before-could-i-do-that">I want to run as a CLI and then use the WebAPI as before. Could I do that?</a></li>
@@ -212,6 +213,12 @@
 <li>2020-03-10T19:03:46.1312652Z }</li>
 </ol>
 <h1 id="faq">F.A.Q.</h1>
+<h2 id="my-port-changes-from-development-to-integration-how-to-wrote-the-address-one-time-">My port changes from development to integration. How to wrote the address one time ?</h2>
+<p>WebAPI2CLI has a cli.txt file ( see <a href="https://github.com/ignatandrei/WebAPI2CLI/blob/master/src/TestWebAPISite/cli.txt">https://github.com/ignatandrei/WebAPI2CLI/blob/master/src/TestWebAPISite/cli.txt</a> ) In this file put just -<br />
+Host: http:// or Host: https://</p>
+<p>( Assumption : just one http and/or just 1 https when asp.net core will start )</p>
+<p>WebAPI2CLI will find the adress and the port comparing</p>
+<p>Alternatively, you can put the full URI ( without RelativeRequestUrl ! ) Host: <a href="http://localhost:5000/">http://localhost:5000/</a></p>
 <h2 id="i-want-to-contribute--where-is-the-code-">I want to contribute . Where is the code ?</h2>
 <p>All code source is at <a href="https://github.com/ignatandrei/WebAPI2CLI/">https://github.com/ignatandrei/WebAPI2CLI/</a></p>
 <p>Please see issues tab if you want to know what needs development .</p>
