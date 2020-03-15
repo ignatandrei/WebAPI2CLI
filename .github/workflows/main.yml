@@ -59,10 +59,9 @@ jobs:
     needs: build
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
+    # - uses: actions/checkout@v2
 
-    - run: |
-        git fetch origin
+    - run: |        
         git pull
         call DocumentationSources.bat
         git config --local user.email "action@github.com"
