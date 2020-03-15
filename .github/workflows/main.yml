@@ -64,6 +64,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - run: |        
+        shell: cmd
         DocumentationSources.bat
         rem git config --local user.email "action@github.com"
         rem git config --local user.name "GitHub Action"
