@@ -44,6 +44,10 @@ Yes. Use
 
 You can report problems at https://github.com/ignatandrei/WebAPI2CLI/issues
 
+## I want to see the classes documentation before downloading the project.
+
+Glad you asked . See https://ignatandrei.github.io/WebAPI2CLI/sitedocs/api/index.html and choose from the left menu the classes.
+
 ## Where can I download this document ? 
 
 There is a PDF at https://ignatandrei.github.io/WebAPI2CLI/Web2CLI.pdf
