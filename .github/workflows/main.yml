@@ -62,6 +62,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - run: |
+        git fetch origin
         git pull
         call DocumentationSources.bat
         git config --local user.email "action@github.com"
