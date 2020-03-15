@@ -1,5 +1,19 @@
 # F.A.Q.
 
+## My port changes from development to integration. How to wrote the address one time ?
+
+WebAPI2CLI has a cli.txt file ( see https://github.com/ignatandrei/WebAPI2CLI/blob/master/src/TestWebAPISite/cli.txt ) In this file put just -  
+Host: http:// 
+or 
+ Host: https://
+ 
+ ( Assumption : just one http and/or just 1 https when asp.net core will start )
+
+WebAPI2CLI will find the adress and the port comparing 
+
+Alternatively, you can put the full URI ( without RelativeRequestUrl ! )
+Host: http://localhost:5000/
+
 ## I want to contribute  . Where is the code  ? 
 
 All code source is at https://github.com/ignatandrei/WebAPI2CLI/ 
