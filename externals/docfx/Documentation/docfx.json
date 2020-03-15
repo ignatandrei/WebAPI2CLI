@@ -4,8 +4,10 @@
       "src": [
         {
           "files": [
-            "../../../src/CLIExecute/CLIExecute.csproj"
-          ]
+            "src/CLIExecute/CLIExecute.csproj",
+			"src/ExtensionNetCore3/ExtensionNetCore3.csproj"
+          ],
+		  "src": "../../../"
         }
       ],
       "dest": "api",
