@@ -63,12 +63,13 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
-    - run: |        
-        shell: cmd
+    - name: run documentation
+      run: |                
         DocumentationSources.bat
         rem git config --local user.email "action@github.com"
         rem git config --local user.name "GitHub Action"
         rem git commit -m "generate html" -a --allow-empty
+      shell: cmd
            
     # - name: Push changes
     #   uses: ad-m/github-push-action@master
