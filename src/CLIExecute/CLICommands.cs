@@ -35,7 +35,7 @@ namespace CLIExecute
             if(cmd.Length != names.Length)
             {
                 //TODO: find names of command that are spelled wrong ;-)
-                Console.WriteLine($"there are {names.Length-cmd.Length} commands names not found");
+                Console.WriteLine($"Web2APICLI:there are {names.Length-cmd.Length} commands names not found");
             }
 
             if (cmd.Length==0)
