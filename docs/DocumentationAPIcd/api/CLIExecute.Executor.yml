@@ -1,0 +1,368 @@
+### YamlMime:ManagedReference
+items:
+- uid: CLIExecute.Executor
+  commentId: T:CLIExecute.Executor
+  id: Executor
+  parent: CLIExecute
+  children:
+  - CLIExecute.Executor.#ctor(IConfiguration,IServerAddressesFeature,IApiDescriptionGroupCollectionProvider,IServiceProvider)
+  - CLIExecute.Executor.CommandsToExecute
+  - CLIExecute.Executor.Execute
+  - CLIExecute.Executor.ExecuteCommands
+  - CLIExecute.Executor.ShouldExecuteCommands
+  - CLIExecute.Executor.ShouldShowHelp
+  langs:
+  - csharp
+  - vb
+  name: Executor
+  nameWithType: Executor
+  fullName: CLIExecute.Executor
+  type: Class
+  source:
+    remote:
+      path: src/CLIExecute/Executor.cs
+      branch: master
+      repo: https://github.com/ignatandrei/WebAPI2CLI.git
+    id: Executor
+    path: ../../../src/CLIExecute/Executor.cs
+    startLine: 21
+  assemblies:
+  - CLIExecute
+  namespace: CLIExecute
+  summary: "\nExecutes multiple commands\n"
+  example: []
+  syntax:
+    content: 'public class Executor : object'
+    content.vb: >-
+      Public Class Executor
+
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: CLIExecute.Executor.#ctor(IConfiguration,IServerAddressesFeature,IApiDescriptionGroupCollectionProvider,IServiceProvider)
+  commentId: M:CLIExecute.Executor.#ctor(IConfiguration,IServerAddressesFeature,IApiDescriptionGroupCollectionProvider,IServiceProvider)
+  id: '#ctor(IConfiguration,IServerAddressesFeature,IApiDescriptionGroupCollectionProvider,IServiceProvider)'
+  parent: CLIExecute.Executor
+  langs:
+  - csharp
+  - vb
+  name: Executor(IConfiguration, IServerAddressesFeature, IApiDescriptionGroupCollectionProvider, IServiceProvider)
+  nameWithType: Executor.Executor(IConfiguration, IServerAddressesFeature, IApiDescriptionGroupCollectionProvider, IServiceProvider)
+  fullName: CLIExecute.Executor.Executor(IConfiguration, IServerAddressesFeature, IApiDescriptionGroupCollectionProvider, IServiceProvider)
+  type: Constructor
+  source:
+    remote:
+      path: src/CLIExecute/Executor.cs
+      branch: master
+      repo: https://github.com/ignatandrei/WebAPI2CLI.git
+    id: .ctor
+    path: ../../../src/CLIExecute/Executor.cs
+    startLine: 39
+  assemblies:
+  - CLIExecute
+  namespace: CLIExecute
+  summary: "\nInitializes a new instance of the <xref href=\"CLIExecute.Executor\" data-throw-if-not-resolved=\"false\"></xref> class.\n"
+  example: []
+  syntax:
+    content: public Executor(IConfiguration configuration, IServerAddressesFeature serverAddresses, IApiDescriptionGroupCollectionProvider api, IServiceProvider serviceProvider)
+    parameters:
+    - id: configuration
+      type: IConfiguration
+      description: The configuration.
+    - id: serverAddresses
+      type: IServerAddressesFeature
+      description: The server addresses.
+    - id: api
+      type: IApiDescriptionGroupCollectionProvider
+      description: The API.
+    - id: serviceProvider
+      type: IServiceProvider
+      description: The service provider.
+    content.vb: Public Sub New(configuration As IConfiguration, serverAddresses As IServerAddressesFeature, api As IApiDescriptionGroupCollectionProvider, serviceProvider As IServiceProvider)
+  overload: CLIExecute.Executor.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CLIExecute.Executor.ShouldExecuteCommands
+  commentId: M:CLIExecute.Executor.ShouldExecuteCommands
+  id: ShouldExecuteCommands
+  parent: CLIExecute.Executor
+  langs:
+  - csharp
+  - vb
+  name: ShouldExecuteCommands()
+  nameWithType: Executor.ShouldExecuteCommands()
+  fullName: CLIExecute.Executor.ShouldExecuteCommands()
+  type: Method
+  source:
+    remote:
+      path: src/CLIExecute/Executor.cs
+      branch: master
+      repo: https://github.com/ignatandrei/WebAPI2CLI.git
+    id: ShouldExecuteCommands
+    path: ../../../src/CLIExecute/Executor.cs
+    startLine: 56
+  assemblies:
+  - CLIExecute
+  namespace: CLIExecute
+  summary: "\nhas some commands to executed in CLI_Commands\n"
+  example: []
+  syntax:
+    content: public bool ShouldExecuteCommands()
+    return:
+      type: System.Boolean
+      description: ''
+    content.vb: Public Function ShouldExecuteCommands As Boolean
+  overload: CLIExecute.Executor.ShouldExecuteCommands*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CLIExecute.Executor.CommandsToExecute
+  commentId: M:CLIExecute.Executor.CommandsToExecute
+  id: CommandsToExecute
+  parent: CLIExecute.Executor
+  langs:
+  - csharp
+  - vb
+  name: CommandsToExecute()
+  nameWithType: Executor.CommandsToExecute()
+  fullName: CLIExecute.Executor.CommandsToExecute()
+  type: Method
+  source:
+    remote:
+      path: src/CLIExecute/Executor.cs
+      branch: master
+      repo: https://github.com/ignatandrei/WebAPI2CLI.git
+    id: CommandsToExecute
+    path: ../../../src/CLIExecute/Executor.cs
+    startLine: 75
+  assemblies:
+  - CLIExecute
+  namespace: CLIExecute
+  summary: "\nfind commands to execute.\n"
+  example: []
+  syntax:
+    content: public ICLICommand[] CommandsToExecute()
+    return:
+      type: CLIExecute.ICLICommand[]
+      description: ''
+    content.vb: Public Function CommandsToExecute As ICLICommand()
+  overload: CLIExecute.Executor.CommandsToExecute*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CLIExecute.Executor.ExecuteCommands
+  commentId: M:CLIExecute.Executor.ExecuteCommands
+  id: ExecuteCommands
+  parent: CLIExecute.Executor
+  langs:
+  - csharp
+  - vb
+  name: ExecuteCommands()
+  nameWithType: Executor.ExecuteCommands()
+  fullName: CLIExecute.Executor.ExecuteCommands()
+  type: Method
+  source:
+    remote:
+      path: src/CLIExecute/Executor.cs
+      branch: master
+      repo: https://github.com/ignatandrei/WebAPI2CLI.git
+    id: ExecuteCommands
+    path: ../../../src/CLIExecute/Executor.cs
+    startLine: 83
+  assemblies:
+  - CLIExecute
+  namespace: CLIExecute
+  summary: "\nExecutes the commands.\n"
+  example: []
+  syntax:
+    content: public Task ExecuteCommands()
+    return:
+      type: Task
+    content.vb: Public Function ExecuteCommands As Task
+  overload: CLIExecute.Executor.ExecuteCommands*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CLIExecute.Executor.Execute
+  commentId: M:CLIExecute.Executor.Execute
+  id: Execute
+  parent: CLIExecute.Executor
+  langs:
+  - csharp
+  - vb
+  name: Execute()
+  nameWithType: Executor.Execute()
+  fullName: CLIExecute.Executor.Execute()
+  type: Method
+  source:
+    remote:
+      path: src/CLIExecute/Executor.cs
+      branch: master
+      repo: https://github.com/ignatandrei/WebAPI2CLI.git
+    id: Execute
+    path: ../../../src/CLIExecute/Executor.cs
+    startLine: 109
+  assemblies:
+  - CLIExecute
+  namespace: CLIExecute
+  summary: "\nExecutes this instance.\n"
+  example: []
+  syntax:
+    content: public Task Execute()
+    return:
+      type: Task
+    content.vb: Public Function Execute As Task
+  overload: CLIExecute.Executor.Execute*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CLIExecute.Executor.ShouldShowHelp
+  commentId: M:CLIExecute.Executor.ShouldShowHelp
+  id: ShouldShowHelp
+  parent: CLIExecute.Executor
+  langs:
+  - csharp
+  - vb
+  name: ShouldShowHelp()
+  nameWithType: Executor.ShouldShowHelp()
+  fullName: CLIExecute.Executor.ShouldShowHelp()
+  type: Method
+  source:
+    remote:
+      path: src/CLIExecute/Executor.cs
+      branch: master
+      repo: https://github.com/ignatandrei/WebAPI2CLI.git
+    id: ShouldShowHelp
+    path: ../../../src/CLIExecute/Executor.cs
+    startLine: 138
+  assemblies:
+  - CLIExecute
+  namespace: CLIExecute
+  summary: "\nCLI_HELP ==1  \n"
+  example: []
+  syntax:
+    content: public bool ShouldShowHelp()
+    return:
+      type: System.Boolean
+      description: true/false
+    content.vb: Public Function ShouldShowHelp As Boolean
+  overload: CLIExecute.Executor.ShouldShowHelp*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: CLIExecute
+  commentId: N:CLIExecute
+  name: CLIExecute
+  nameWithType: CLIExecute
+  fullName: CLIExecute
+- uid: System.Object
+  commentId: '!:System.Object'
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: CLIExecute.Executor
+  commentId: T:CLIExecute.Executor
+  name: Executor
+  nameWithType: Executor
+  fullName: CLIExecute.Executor
+- uid: CLIExecute.Executor.#ctor*
+  commentId: Overload:CLIExecute.Executor.#ctor
+  name: Executor
+  nameWithType: Executor.Executor
+  fullName: CLIExecute.Executor.Executor
+- uid: IConfiguration
+  isExternal: true
+  name: IConfiguration
+  nameWithType: IConfiguration
+  fullName: IConfiguration
+- uid: IServerAddressesFeature
+  commentId: '!:IServerAddressesFeature'
+  isExternal: true
+  name: IServerAddressesFeature
+  nameWithType: IServerAddressesFeature
+  fullName: IServerAddressesFeature
+- uid: IApiDescriptionGroupCollectionProvider
+  isExternal: true
+  name: IApiDescriptionGroupCollectionProvider
+  nameWithType: IApiDescriptionGroupCollectionProvider
+  fullName: IApiDescriptionGroupCollectionProvider
+- uid: IServiceProvider
+  commentId: '!:IServiceProvider'
+  isExternal: true
+  name: IServiceProvider
+  nameWithType: IServiceProvider
+  fullName: IServiceProvider
+- uid: CLIExecute.Executor.ShouldExecuteCommands*
+  commentId: Overload:CLIExecute.Executor.ShouldExecuteCommands
+  name: ShouldExecuteCommands
+  nameWithType: Executor.ShouldExecuteCommands
+  fullName: CLIExecute.Executor.ShouldExecuteCommands
+- uid: System.Boolean
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: CLIExecute.Executor.CommandsToExecute*
+  commentId: Overload:CLIExecute.Executor.CommandsToExecute
+  name: CommandsToExecute
+  nameWithType: Executor.CommandsToExecute
+  fullName: CLIExecute.Executor.CommandsToExecute
+- uid: CLIExecute.ICLICommand[]
+  isExternal: true
+  name: ICLICommand[]
+  nameWithType: ICLICommand[]
+  fullName: CLIExecute.ICLICommand[]
+  nameWithType.vb: ICLICommand()
+  fullName.vb: CLIExecute.ICLICommand()
+  name.vb: ICLICommand()
+  spec.csharp:
+  - uid: CLIExecute.ICLICommand
+    name: ICLICommand
+    nameWithType: ICLICommand
+    fullName: CLIExecute.ICLICommand
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: CLIExecute.ICLICommand
+    name: ICLICommand
+    nameWithType: ICLICommand
+    fullName: CLIExecute.ICLICommand
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: CLIExecute.Executor.ExecuteCommands*
+  commentId: Overload:CLIExecute.Executor.ExecuteCommands
+  name: ExecuteCommands
+  nameWithType: Executor.ExecuteCommands
+  fullName: CLIExecute.Executor.ExecuteCommands
+- uid: Task
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: Task
+- uid: CLIExecute.Executor.Execute*
+  commentId: Overload:CLIExecute.Executor.Execute
+  name: Execute
+  nameWithType: Executor.Execute
+  fullName: CLIExecute.Executor.Execute
+- uid: CLIExecute.Executor.ShouldShowHelp*
+  commentId: Overload:CLIExecute.Executor.ShouldShowHelp
+  name: ShouldShowHelp
+  nameWithType: Executor.ShouldShowHelp
+  fullName: CLIExecute.Executor.ShouldShowHelp

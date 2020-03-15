@@ -1,0 +1,278 @@
+### YamlMime:ManagedReference
+items:
+- uid: CLIExecute.ICLICommand
+  commentId: T:CLIExecute.ICLICommand
+  id: ICLICommand
+  parent: CLIExecute
+  children:
+  - CLIExecute.ICLICommand.Host
+  - CLIExecute.ICLICommand.NameCommand
+  - CLIExecute.ICLICommand.RelativeRequestUrl
+  - CLIExecute.ICLICommand.SetPossibleFullHosts(System.String[])
+  - CLIExecute.ICLICommand.Verb
+  langs:
+  - csharp
+  - vb
+  name: ICLICommand
+  nameWithType: ICLICommand
+  fullName: CLIExecute.ICLICommand
+  type: Interface
+  source:
+    remote:
+      path: src/CLIExecute/ICLICommand_v1.cs
+      branch: master
+      repo: https://github.com/ignatandrei/WebAPI2CLI.git
+    id: ICLICommand
+    path: ../../../src/CLIExecute/ICLICommand_v1.cs
+    startLine: 7
+  assemblies:
+  - CLIExecute
+  namespace: CLIExecute
+  summary: "\nDescribes the command to be executed\n"
+  example: []
+  syntax:
+    content: public interface ICLICommand
+    content.vb: Public Interface ICLICommand
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: CLIExecute.ICLICommand.NameCommand
+  commentId: P:CLIExecute.ICLICommand.NameCommand
+  id: NameCommand
+  parent: CLIExecute.ICLICommand
+  langs:
+  - csharp
+  - vb
+  name: NameCommand
+  nameWithType: ICLICommand.NameCommand
+  fullName: CLIExecute.ICLICommand.NameCommand
+  type: Property
+  source:
+    remote:
+      path: src/CLIExecute/ICLICommand_v1.cs
+      branch: master
+      repo: https://github.com/ignatandrei/WebAPI2CLI.git
+    id: NameCommand
+    path: ../../../src/CLIExecute/ICLICommand_v1.cs
+    startLine: 15
+  assemblies:
+  - CLIExecute
+  namespace: CLIExecute
+  summary: "\nGets or sets the name of the command.\n"
+  example: []
+  syntax:
+    content: string NameCommand { get; set; }
+    parameters: []
+    return:
+      type: System.String
+      description: "\nThe name of the command.\n"
+    content.vb: Property NameCommand As String
+  overload: CLIExecute.ICLICommand.NameCommand*
+  modifiers.csharp:
+  - get
+  - set
+- uid: CLIExecute.ICLICommand.Host
+  commentId: P:CLIExecute.ICLICommand.Host
+  id: Host
+  parent: CLIExecute.ICLICommand
+  langs:
+  - csharp
+  - vb
+  name: Host
+  nameWithType: ICLICommand.Host
+  fullName: CLIExecute.ICLICommand.Host
+  type: Property
+  source:
+    remote:
+      path: src/CLIExecute/ICLICommand_v1.cs
+      branch: master
+      repo: https://github.com/ignatandrei/WebAPI2CLI.git
+    id: Host
+    path: ../../../src/CLIExecute/ICLICommand_v1.cs
+    startLine: 22
+  assemblies:
+  - CLIExecute
+  namespace: CLIExecute
+  summary: "\nGets or sets the host.\n"
+  example: []
+  syntax:
+    content: string Host { get; set; }
+    parameters: []
+    return:
+      type: System.String
+      description: "\nThe host.\n"
+    content.vb: Property Host As String
+  overload: CLIExecute.ICLICommand.Host*
+  modifiers.csharp:
+  - get
+  - set
+- uid: CLIExecute.ICLICommand.RelativeRequestUrl
+  commentId: P:CLIExecute.ICLICommand.RelativeRequestUrl
+  id: RelativeRequestUrl
+  parent: CLIExecute.ICLICommand
+  langs:
+  - csharp
+  - vb
+  name: RelativeRequestUrl
+  nameWithType: ICLICommand.RelativeRequestUrl
+  fullName: CLIExecute.ICLICommand.RelativeRequestUrl
+  type: Property
+  source:
+    remote:
+      path: src/CLIExecute/ICLICommand_v1.cs
+      branch: master
+      repo: https://github.com/ignatandrei/WebAPI2CLI.git
+    id: RelativeRequestUrl
+    path: ../../../src/CLIExecute/ICLICommand_v1.cs
+    startLine: 29
+  assemblies:
+  - CLIExecute
+  namespace: CLIExecute
+  summary: "\nGets or sets the relative request URL.\n"
+  example: []
+  syntax:
+    content: string RelativeRequestUrl { get; set; }
+    parameters: []
+    return:
+      type: System.String
+      description: "\nThe relative request URL.\n"
+    content.vb: Property RelativeRequestUrl As String
+  overload: CLIExecute.ICLICommand.RelativeRequestUrl*
+  modifiers.csharp:
+  - get
+  - set
+- uid: CLIExecute.ICLICommand.Verb
+  commentId: P:CLIExecute.ICLICommand.Verb
+  id: Verb
+  parent: CLIExecute.ICLICommand
+  langs:
+  - csharp
+  - vb
+  name: Verb
+  nameWithType: ICLICommand.Verb
+  fullName: CLIExecute.ICLICommand.Verb
+  type: Property
+  source:
+    remote:
+      path: src/CLIExecute/ICLICommand_v1.cs
+      branch: master
+      repo: https://github.com/ignatandrei/WebAPI2CLI.git
+    id: Verb
+    path: ../../../src/CLIExecute/ICLICommand_v1.cs
+    startLine: 36
+  assemblies:
+  - CLIExecute
+  namespace: CLIExecute
+  summary: "\nGets or sets the verb.\n"
+  example: []
+  syntax:
+    content: string Verb { get; set; }
+    parameters: []
+    return:
+      type: System.String
+      description: "\nThe verb.\n"
+    content.vb: Property Verb As String
+  overload: CLIExecute.ICLICommand.Verb*
+  modifiers.csharp:
+  - get
+  - set
+- uid: CLIExecute.ICLICommand.SetPossibleFullHosts(System.String[])
+  commentId: M:CLIExecute.ICLICommand.SetPossibleFullHosts(System.String[])
+  id: SetPossibleFullHosts(System.String[])
+  parent: CLIExecute.ICLICommand
+  langs:
+  - csharp
+  - vb
+  name: SetPossibleFullHosts(String[])
+  nameWithType: ICLICommand.SetPossibleFullHosts(String[])
+  fullName: CLIExecute.ICLICommand.SetPossibleFullHosts(System.String[])
+  type: Method
+  source:
+    remote:
+      path: src/CLIExecute/ICLICommand_v1.cs
+      branch: master
+      repo: https://github.com/ignatandrei/WebAPI2CLI.git
+    id: SetPossibleFullHosts
+    path: ../../../src/CLIExecute/ICLICommand_v1.cs
+    startLine: 44
+  assemblies:
+  - CLIExecute
+  namespace: CLIExecute
+  summary: "\nSets the possible full hosts . \nUsefull if you want just pass the start of the host\ne.g. http\n"
+  example: []
+  syntax:
+    content: void SetPossibleFullHosts(params string[] adresses)
+    parameters:
+    - id: adresses
+      type: System.String[]
+      description: The adresses.
+    content.vb: Sub SetPossibleFullHosts(ParamArray adresses As String())
+  overload: CLIExecute.ICLICommand.SetPossibleFullHosts*
+  nameWithType.vb: ICLICommand.SetPossibleFullHosts(String())
+  fullName.vb: CLIExecute.ICLICommand.SetPossibleFullHosts(System.String())
+  name.vb: SetPossibleFullHosts(String())
+references:
+- uid: CLIExecute
+  commentId: N:CLIExecute
+  name: CLIExecute
+  nameWithType: CLIExecute
+  fullName: CLIExecute
+- uid: CLIExecute.ICLICommand.NameCommand*
+  commentId: Overload:CLIExecute.ICLICommand.NameCommand
+  name: NameCommand
+  nameWithType: ICLICommand.NameCommand
+  fullName: CLIExecute.ICLICommand.NameCommand
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: CLIExecute.ICLICommand.Host*
+  commentId: Overload:CLIExecute.ICLICommand.Host
+  name: Host
+  nameWithType: ICLICommand.Host
+  fullName: CLIExecute.ICLICommand.Host
+- uid: CLIExecute.ICLICommand.RelativeRequestUrl*
+  commentId: Overload:CLIExecute.ICLICommand.RelativeRequestUrl
+  name: RelativeRequestUrl
+  nameWithType: ICLICommand.RelativeRequestUrl
+  fullName: CLIExecute.ICLICommand.RelativeRequestUrl
+- uid: CLIExecute.ICLICommand.Verb*
+  commentId: Overload:CLIExecute.ICLICommand.Verb
+  name: Verb
+  nameWithType: ICLICommand.Verb
+  fullName: CLIExecute.ICLICommand.Verb
+- uid: CLIExecute.ICLICommand.SetPossibleFullHosts*
+  commentId: Overload:CLIExecute.ICLICommand.SetPossibleFullHosts
+  name: SetPossibleFullHosts
+  nameWithType: ICLICommand.SetPossibleFullHosts
+  fullName: CLIExecute.ICLICommand.SetPossibleFullHosts
+- uid: System.String[]
+  isExternal: true
+  name: String[]
+  nameWithType: String[]
+  fullName: System.String[]
+  nameWithType.vb: String()
+  fullName.vb: System.String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()

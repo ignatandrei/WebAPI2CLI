@@ -1,0 +1,383 @@
+### YamlMime:ManagedReference
+items:
+- uid: ExtensionNetCore3.CLIAPIHostedService
+  commentId: T:ExtensionNetCore3.CLIAPIHostedService
+  id: CLIAPIHostedService
+  parent: ExtensionNetCore3
+  children:
+  - ExtensionNetCore3.CLIAPIHostedService.#ctor(IApiDescriptionGroupCollectionProvider,IConfiguration)
+  - ExtensionNetCore3.CLIAPIHostedService.app
+  - ExtensionNetCore3.CLIAPIHostedService.ExistsApp
+  - ExtensionNetCore3.CLIAPIHostedService.IsEnabled
+  - ExtensionNetCore3.CLIAPIHostedService.ShouldStay
+  - ExtensionNetCore3.CLIAPIHostedService.StartAsync(CancellationToken)
+  - ExtensionNetCore3.CLIAPIHostedService.StopAsync(CancellationToken)
+  langs:
+  - csharp
+  - vb
+  name: CLIAPIHostedService
+  nameWithType: CLIAPIHostedService
+  fullName: ExtensionNetCore3.CLIAPIHostedService
+  type: Class
+  source:
+    remote:
+      path: src/ExtensionNetCore3/CLIAPIHostedService.cs
+      branch: master
+      repo: https://github.com/ignatandrei/WebAPI2CLI.git
+    id: CLIAPIHostedService
+    path: ../../../src/ExtensionNetCore3/CLIAPIHostedService.cs
+    startLine: 21
+  assemblies:
+  - ExtensionNetCore3
+  namespace: ExtensionNetCore3
+  summary: "\nThe service that starts execution of the CLI\n"
+  example: []
+  syntax:
+    content: 'public class CLIAPIHostedService : IHostedService'
+    content.vb: >-
+      Public Class CLIAPIHostedService
+
+          Inherits IHostedService
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: ExtensionNetCore3.CLIAPIHostedService.app
+  commentId: F:ExtensionNetCore3.CLIAPIHostedService.app
+  id: app
+  parent: ExtensionNetCore3.CLIAPIHostedService
+  langs:
+  - csharp
+  - vb
+  name: app
+  nameWithType: CLIAPIHostedService.app
+  fullName: ExtensionNetCore3.CLIAPIHostedService.app
+  type: Field
+  source:
+    remote:
+      path: src/ExtensionNetCore3/CLIAPIHostedService.cs
+      branch: master
+      repo: https://github.com/ignatandrei/WebAPI2CLI.git
+    id: app
+    path: ../../../src/ExtensionNetCore3/CLIAPIHostedService.cs
+    startLine: 29
+  assemblies:
+  - ExtensionNetCore3
+  namespace: ExtensionNetCore3
+  summary: >
+    The application builder.
+
+    It is passed when UseCLI
+  example: []
+  syntax:
+    content: public IApplicationBuilder app
+    return:
+      type: IApplicationBuilder
+    content.vb: Public app As IApplicationBuilder
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: ExtensionNetCore3.CLIAPIHostedService.#ctor(IApiDescriptionGroupCollectionProvider,IConfiguration)
+  commentId: M:ExtensionNetCore3.CLIAPIHostedService.#ctor(IApiDescriptionGroupCollectionProvider,IConfiguration)
+  id: '#ctor(IApiDescriptionGroupCollectionProvider,IConfiguration)'
+  parent: ExtensionNetCore3.CLIAPIHostedService
+  langs:
+  - csharp
+  - vb
+  name: CLIAPIHostedService(IApiDescriptionGroupCollectionProvider, IConfiguration)
+  nameWithType: CLIAPIHostedService.CLIAPIHostedService(IApiDescriptionGroupCollectionProvider, IConfiguration)
+  fullName: ExtensionNetCore3.CLIAPIHostedService.CLIAPIHostedService(IApiDescriptionGroupCollectionProvider, IConfiguration)
+  type: Constructor
+  source:
+    remote:
+      path: src/ExtensionNetCore3/CLIAPIHostedService.cs
+      branch: master
+      repo: https://github.com/ignatandrei/WebAPI2CLI.git
+    id: .ctor
+    path: ../../../src/ExtensionNetCore3/CLIAPIHostedService.cs
+    startLine: 36
+  assemblies:
+  - ExtensionNetCore3
+  namespace: ExtensionNetCore3
+  summary: "\nInitializes a new instance of the <xref href=\"ExtensionNetCore3.CLIAPIHostedService\" data-throw-if-not-resolved=\"false\"></xref> class.\n"
+  example: []
+  syntax:
+    content: public CLIAPIHostedService(IApiDescriptionGroupCollectionProvider api, IConfiguration configuration)
+    parameters:
+    - id: api
+      type: IApiDescriptionGroupCollectionProvider
+      description: The API for find the WebAPI
+    - id: configuration
+      type: IConfiguration
+      description: The configuration to find CLI commands
+    content.vb: Public Sub New(api As IApiDescriptionGroupCollectionProvider, configuration As IConfiguration)
+  overload: ExtensionNetCore3.CLIAPIHostedService.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: ExtensionNetCore3.CLIAPIHostedService.IsEnabled
+  commentId: M:ExtensionNetCore3.CLIAPIHostedService.IsEnabled
+  id: IsEnabled
+  parent: ExtensionNetCore3.CLIAPIHostedService
+  langs:
+  - csharp
+  - vb
+  name: IsEnabled()
+  nameWithType: CLIAPIHostedService.IsEnabled()
+  fullName: ExtensionNetCore3.CLIAPIHostedService.IsEnabled()
+  type: Method
+  source:
+    remote:
+      path: src/ExtensionNetCore3/CLIAPIHostedService.cs
+      branch: master
+      repo: https://github.com/ignatandrei/WebAPI2CLI.git
+    id: IsEnabled
+    path: ../../../src/ExtensionNetCore3/CLIAPIHostedService.cs
+    startLine: 47
+  assemblies:
+  - ExtensionNetCore3
+  namespace: ExtensionNetCore3
+  summary: "\nDetermines whether this instance is enabled.\n"
+  example: []
+  syntax:
+    content: public bool IsEnabled()
+    return:
+      type: System.Boolean
+      description: "\n<code>true</code> if this instance is enabled; otherwise, <code>false</code>.\n"
+    content.vb: Public Function IsEnabled As Boolean
+  overload: ExtensionNetCore3.CLIAPIHostedService.IsEnabled*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: ExtensionNetCore3.CLIAPIHostedService.StartAsync(CancellationToken)
+  commentId: M:ExtensionNetCore3.CLIAPIHostedService.StartAsync(CancellationToken)
+  id: StartAsync(CancellationToken)
+  parent: ExtensionNetCore3.CLIAPIHostedService
+  langs:
+  - csharp
+  - vb
+  name: StartAsync(CancellationToken)
+  nameWithType: CLIAPIHostedService.StartAsync(CancellationToken)
+  fullName: ExtensionNetCore3.CLIAPIHostedService.StartAsync(CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: src/ExtensionNetCore3/CLIAPIHostedService.cs
+      branch: master
+      repo: https://github.com/ignatandrei/WebAPI2CLI.git
+    id: StartAsync
+    path: ../../../src/ExtensionNetCore3/CLIAPIHostedService.cs
+    startLine: 57
+  assemblies:
+  - ExtensionNetCore3
+  namespace: ExtensionNetCore3
+  summary: "\nTriggered when the application host is ready to start the service.\nIt works after server addresses is available\n"
+  example: []
+  syntax:
+    content: public Task StartAsync(CancellationToken cancellationToken)
+    parameters:
+    - id: cancellationToken
+      type: CancellationToken
+      description: Indicates that the start process has been aborted.
+    return:
+      type: Task
+      description: ''
+    content.vb: Public Function StartAsync(cancellationToken As CancellationToken) As Task
+  overload: ExtensionNetCore3.CLIAPIHostedService.StartAsync*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: ExtensionNetCore3.CLIAPIHostedService.ShouldStay
+  commentId: M:ExtensionNetCore3.CLIAPIHostedService.ShouldStay
+  id: ShouldStay
+  parent: ExtensionNetCore3.CLIAPIHostedService
+  langs:
+  - csharp
+  - vb
+  name: ShouldStay()
+  nameWithType: CLIAPIHostedService.ShouldStay()
+  fullName: ExtensionNetCore3.CLIAPIHostedService.ShouldStay()
+  type: Method
+  source:
+    remote:
+      path: src/ExtensionNetCore3/CLIAPIHostedService.cs
+      branch: master
+      repo: https://github.com/ignatandrei/WebAPI2CLI.git
+    id: ShouldStay
+    path: ../../../src/ExtensionNetCore3/CLIAPIHostedService.cs
+    startLine: 73
+  assemblies:
+  - ExtensionNetCore3
+  namespace: ExtensionNetCore3
+  summary: "\nDefault: false\nIf true , executes and then not exits.\nIf false , executes and then exits.\n"
+  example: []
+  syntax:
+    content: public bool ShouldStay()
+    return:
+      type: System.Boolean
+      description: CLI_STAY ==1
+    content.vb: Public Function ShouldStay As Boolean
+  overload: ExtensionNetCore3.CLIAPIHostedService.ShouldStay*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: ExtensionNetCore3.CLIAPIHostedService.ExistsApp
+  commentId: M:ExtensionNetCore3.CLIAPIHostedService.ExistsApp
+  id: ExistsApp
+  parent: ExtensionNetCore3.CLIAPIHostedService
+  langs:
+  - csharp
+  - vb
+  name: ExistsApp()
+  nameWithType: CLIAPIHostedService.ExistsApp()
+  fullName: ExtensionNetCore3.CLIAPIHostedService.ExistsApp()
+  type: Method
+  source:
+    remote:
+      path: src/ExtensionNetCore3/CLIAPIHostedService.cs
+      branch: master
+      repo: https://github.com/ignatandrei/WebAPI2CLI.git
+    id: ExistsApp
+    path: ../../../src/ExtensionNetCore3/CLIAPIHostedService.cs
+    startLine: 82
+  assemblies:
+  - ExtensionNetCore3
+  namespace: ExtensionNetCore3
+  summary: "\nWaits to see if the app exists. \nIt is passed later in the lifecycle\n"
+  example: []
+  syntax:
+    content: public bool ExistsApp()
+    return:
+      type: System.Boolean
+      description: ''
+    content.vb: Public Function ExistsApp As Boolean
+  overload: ExtensionNetCore3.CLIAPIHostedService.ExistsApp*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: ExtensionNetCore3.CLIAPIHostedService.StopAsync(CancellationToken)
+  commentId: M:ExtensionNetCore3.CLIAPIHostedService.StopAsync(CancellationToken)
+  id: StopAsync(CancellationToken)
+  parent: ExtensionNetCore3.CLIAPIHostedService
+  langs:
+  - csharp
+  - vb
+  name: StopAsync(CancellationToken)
+  nameWithType: CLIAPIHostedService.StopAsync(CancellationToken)
+  fullName: ExtensionNetCore3.CLIAPIHostedService.StopAsync(CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: src/ExtensionNetCore3/CLIAPIHostedService.cs
+      branch: master
+      repo: https://github.com/ignatandrei/WebAPI2CLI.git
+    id: StopAsync
+    path: ../../../src/ExtensionNetCore3/CLIAPIHostedService.cs
+    startLine: 118
+  assemblies:
+  - ExtensionNetCore3
+  namespace: ExtensionNetCore3
+  summary: "\nTriggered when the application host is performing a graceful shutdown.\n"
+  example: []
+  syntax:
+    content: public Task StopAsync(CancellationToken cancellationToken)
+    parameters:
+    - id: cancellationToken
+      type: CancellationToken
+      description: Indicates that the shutdown process should no longer be graceful.
+    return:
+      type: Task
+      description: ''
+    content.vb: Public Function StopAsync(cancellationToken As CancellationToken) As Task
+  overload: ExtensionNetCore3.CLIAPIHostedService.StopAsync*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: ExtensionNetCore3
+  commentId: N:ExtensionNetCore3
+  name: ExtensionNetCore3
+  nameWithType: ExtensionNetCore3
+  fullName: ExtensionNetCore3
+- uid: System.Object
+  commentId: '!:System.Object'
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: IApplicationBuilder
+  isExternal: true
+  name: IApplicationBuilder
+  nameWithType: IApplicationBuilder
+  fullName: IApplicationBuilder
+- uid: ExtensionNetCore3.CLIAPIHostedService
+  commentId: T:ExtensionNetCore3.CLIAPIHostedService
+  name: CLIAPIHostedService
+  nameWithType: CLIAPIHostedService
+  fullName: ExtensionNetCore3.CLIAPIHostedService
+- uid: ExtensionNetCore3.CLIAPIHostedService.#ctor*
+  commentId: Overload:ExtensionNetCore3.CLIAPIHostedService.#ctor
+  name: CLIAPIHostedService
+  nameWithType: CLIAPIHostedService.CLIAPIHostedService
+  fullName: ExtensionNetCore3.CLIAPIHostedService.CLIAPIHostedService
+- uid: IApiDescriptionGroupCollectionProvider
+  isExternal: true
+  name: IApiDescriptionGroupCollectionProvider
+  nameWithType: IApiDescriptionGroupCollectionProvider
+  fullName: IApiDescriptionGroupCollectionProvider
+- uid: IConfiguration
+  isExternal: true
+  name: IConfiguration
+  nameWithType: IConfiguration
+  fullName: IConfiguration
+- uid: ExtensionNetCore3.CLIAPIHostedService.IsEnabled*
+  commentId: Overload:ExtensionNetCore3.CLIAPIHostedService.IsEnabled
+  name: IsEnabled
+  nameWithType: CLIAPIHostedService.IsEnabled
+  fullName: ExtensionNetCore3.CLIAPIHostedService.IsEnabled
+- uid: System.Boolean
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: ExtensionNetCore3.CLIAPIHostedService.StartAsync*
+  commentId: Overload:ExtensionNetCore3.CLIAPIHostedService.StartAsync
+  name: StartAsync
+  nameWithType: CLIAPIHostedService.StartAsync
+  fullName: ExtensionNetCore3.CLIAPIHostedService.StartAsync
+- uid: CancellationToken
+  isExternal: true
+  name: CancellationToken
+  nameWithType: CancellationToken
+  fullName: CancellationToken
+- uid: Task
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: Task
+- uid: ExtensionNetCore3.CLIAPIHostedService.ShouldStay*
+  commentId: Overload:ExtensionNetCore3.CLIAPIHostedService.ShouldStay
+  name: ShouldStay
+  nameWithType: CLIAPIHostedService.ShouldStay
+  fullName: ExtensionNetCore3.CLIAPIHostedService.ShouldStay
+- uid: ExtensionNetCore3.CLIAPIHostedService.ExistsApp*
+  commentId: Overload:ExtensionNetCore3.CLIAPIHostedService.ExistsApp
+  name: ExistsApp
+  nameWithType: CLIAPIHostedService.ExistsApp
+  fullName: ExtensionNetCore3.CLIAPIHostedService.ExistsApp
+- uid: ExtensionNetCore3.CLIAPIHostedService.StopAsync*
+  commentId: Overload:ExtensionNetCore3.CLIAPIHostedService.StopAsync
+  name: StopAsync
+  nameWithType: CLIAPIHostedService.StopAsync
+  fullName: ExtensionNetCore3.CLIAPIHostedService.StopAsync

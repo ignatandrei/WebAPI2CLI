@@ -16,7 +16,7 @@ jobs:
 
   build:
     # The type of runner that the job will run on
-    runs-on: windows-2019 #ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
@@ -35,12 +35,6 @@ jobs:
       with: # needs a README in your repo root!
           #args: "--standalone --output=output/README.html README.md"
         args: "README.md docs/Demo.md docs/FAQ.md docs/Author.md --standalone -f gfm -t pdf  --toc -o output/output.pdf --metadata title=WebAPI2CLI"
-
-    - run: |
-          echo generate documentations
-          cd externals
-          cd docfx
-          docfx Documentation\docfx.json -o ..\..\docs\DocumentationAPI
 
     - run: |
         cp ./output/output.html ./docs/index.html

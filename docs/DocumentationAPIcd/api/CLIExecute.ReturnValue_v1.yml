@@ -1,0 +1,288 @@
+### YamlMime:ManagedReference
+items:
+- uid: CLIExecute.ReturnValue_v1
+  commentId: T:CLIExecute.ReturnValue_v1
+  id: ReturnValue_v1
+  parent: CLIExecute
+  children:
+  - CLIExecute.ReturnValue_v1.#ctor(HttpStatusCode)
+  - CLIExecute.ReturnValue_v1.#ctor(HttpStatusCode,System.String)
+  - CLIExecute.ReturnValue_v1.Command
+  - CLIExecute.ReturnValue_v1.Result
+  - CLIExecute.ReturnValue_v1.StatusCode
+  langs:
+  - csharp
+  - vb
+  name: ReturnValue_v1
+  nameWithType: ReturnValue_v1
+  fullName: CLIExecute.ReturnValue_v1
+  type: Class
+  source:
+    remote:
+      path: src/CLIExecute/ReturnValue.cs
+      branch: master
+      repo: https://github.com/ignatandrei/WebAPI2CLI.git
+    id: ReturnValue_v1
+    path: ../../../src/CLIExecute/ReturnValue.cs
+    startLine: 7
+  assemblies:
+  - CLIExecute
+  namespace: CLIExecute
+  summary: "\nreturn value for WebAPI\n"
+  example: []
+  syntax:
+    content: 'public class ReturnValue_v1 : object'
+    content.vb: >-
+      Public Class ReturnValue_v1
+
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: CLIExecute.ReturnValue_v1.#ctor(HttpStatusCode)
+  commentId: M:CLIExecute.ReturnValue_v1.#ctor(HttpStatusCode)
+  id: '#ctor(HttpStatusCode)'
+  parent: CLIExecute.ReturnValue_v1
+  langs:
+  - csharp
+  - vb
+  name: ReturnValue_v1(HttpStatusCode)
+  nameWithType: ReturnValue_v1.ReturnValue_v1(HttpStatusCode)
+  fullName: CLIExecute.ReturnValue_v1.ReturnValue_v1(HttpStatusCode)
+  type: Constructor
+  source:
+    remote:
+      path: src/CLIExecute/ReturnValue.cs
+      branch: master
+      repo: https://github.com/ignatandrei/WebAPI2CLI.git
+    id: .ctor
+    path: ../../../src/CLIExecute/ReturnValue.cs
+    startLine: 13
+  assemblies:
+  - CLIExecute
+  namespace: CLIExecute
+  summary: "\nInitializes a new instance of the <xref href=\"CLIExecute.ReturnValue_v1\" data-throw-if-not-resolved=\"false\"></xref> class.\n"
+  example: []
+  syntax:
+    content: public ReturnValue_v1(HttpStatusCode statusCode)
+    parameters:
+    - id: statusCode
+      type: HttpStatusCode
+      description: The status code.
+    content.vb: Public Sub New(statusCode As HttpStatusCode)
+  overload: CLIExecute.ReturnValue_v1.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CLIExecute.ReturnValue_v1.#ctor(HttpStatusCode,System.String)
+  commentId: M:CLIExecute.ReturnValue_v1.#ctor(HttpStatusCode,System.String)
+  id: '#ctor(HttpStatusCode,System.String)'
+  parent: CLIExecute.ReturnValue_v1
+  langs:
+  - csharp
+  - vb
+  name: ReturnValue_v1(HttpStatusCode, String)
+  nameWithType: ReturnValue_v1.ReturnValue_v1(HttpStatusCode, String)
+  fullName: CLIExecute.ReturnValue_v1.ReturnValue_v1(HttpStatusCode, System.String)
+  type: Constructor
+  source:
+    remote:
+      path: src/CLIExecute/ReturnValue.cs
+      branch: master
+      repo: https://github.com/ignatandrei/WebAPI2CLI.git
+    id: .ctor
+    path: ../../../src/CLIExecute/ReturnValue.cs
+    startLine: 22
+  assemblies:
+  - CLIExecute
+  namespace: CLIExecute
+  summary: "\nInitializes a new instance of the <xref href=\"CLIExecute.ReturnValue_v1\" data-throw-if-not-resolved=\"false\"></xref> class.\n"
+  example: []
+  syntax:
+    content: public ReturnValue_v1(HttpStatusCode statusCode, string result)
+    parameters:
+    - id: statusCode
+      type: HttpStatusCode
+      description: The status code.
+    - id: result
+      type: System.String
+      description: The result.
+    content.vb: Public Sub New(statusCode As HttpStatusCode, result As String)
+  overload: CLIExecute.ReturnValue_v1.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: CLIExecute.ReturnValue_v1.Command
+  commentId: P:CLIExecute.ReturnValue_v1.Command
+  id: Command
+  parent: CLIExecute.ReturnValue_v1
+  langs:
+  - csharp
+  - vb
+  name: Command
+  nameWithType: ReturnValue_v1.Command
+  fullName: CLIExecute.ReturnValue_v1.Command
+  type: Property
+  source:
+    remote:
+      path: src/CLIExecute/ReturnValue.cs
+      branch: master
+      repo: https://github.com/ignatandrei/WebAPI2CLI.git
+    id: Command
+    path: ../../../src/CLIExecute/ReturnValue.cs
+    startLine: 33
+  assemblies:
+  - CLIExecute
+  namespace: CLIExecute
+  summary: "\nGets the command that was executed\n"
+  example: []
+  syntax:
+    content: public ICLICommand Command { get; }
+    parameters: []
+    return:
+      type: CLIExecute.ICLICommand
+      description: "\nThe command.\n"
+    content.vb: Public ReadOnly Property Command As ICLICommand
+  overload: CLIExecute.ReturnValue_v1.Command*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: CLIExecute.ReturnValue_v1.StatusCode
+  commentId: P:CLIExecute.ReturnValue_v1.StatusCode
+  id: StatusCode
+  parent: CLIExecute.ReturnValue_v1
+  langs:
+  - csharp
+  - vb
+  name: StatusCode
+  nameWithType: ReturnValue_v1.StatusCode
+  fullName: CLIExecute.ReturnValue_v1.StatusCode
+  type: Property
+  source:
+    remote:
+      path: src/CLIExecute/ReturnValue.cs
+      branch: master
+      repo: https://github.com/ignatandrei/WebAPI2CLI.git
+    id: StatusCode
+    path: ../../../src/CLIExecute/ReturnValue.cs
+    startLine: 41
+  assemblies:
+  - CLIExecute
+  namespace: CLIExecute
+  summary: "\nGets the status code received\n"
+  example: []
+  syntax:
+    content: public HttpStatusCode StatusCode { get; }
+    parameters: []
+    return:
+      type: HttpStatusCode
+      description: "\nThe status code.\n"
+    content.vb: Public ReadOnly Property StatusCode As HttpStatusCode
+  overload: CLIExecute.ReturnValue_v1.StatusCode*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: CLIExecute.ReturnValue_v1.Result
+  commentId: P:CLIExecute.ReturnValue_v1.Result
+  id: Result
+  parent: CLIExecute.ReturnValue_v1
+  langs:
+  - csharp
+  - vb
+  name: Result
+  nameWithType: ReturnValue_v1.Result
+  fullName: CLIExecute.ReturnValue_v1.Result
+  type: Property
+  source:
+    remote:
+      path: src/CLIExecute/ReturnValue.cs
+      branch: master
+      repo: https://github.com/ignatandrei/WebAPI2CLI.git
+    id: Result
+    path: ../../../src/CLIExecute/ReturnValue.cs
+    startLine: 48
+  assemblies:
+  - CLIExecute
+  namespace: CLIExecute
+  summary: "\nGets the result.\n"
+  example: []
+  syntax:
+    content: public string Result { get; }
+    parameters: []
+    return:
+      type: System.String
+      description: "\nThe result.\n"
+    content.vb: Public ReadOnly Property Result As String
+  overload: CLIExecute.ReturnValue_v1.Result*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+references:
+- uid: CLIExecute
+  commentId: N:CLIExecute
+  name: CLIExecute
+  nameWithType: CLIExecute
+  fullName: CLIExecute
+- uid: System.Object
+  commentId: '!:System.Object'
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: CLIExecute.ReturnValue_v1
+  commentId: T:CLIExecute.ReturnValue_v1
+  name: ReturnValue_v1
+  nameWithType: ReturnValue_v1
+  fullName: CLIExecute.ReturnValue_v1
+- uid: CLIExecute.ReturnValue_v1.#ctor*
+  commentId: Overload:CLIExecute.ReturnValue_v1.#ctor
+  name: ReturnValue_v1
+  nameWithType: ReturnValue_v1.ReturnValue_v1
+  fullName: CLIExecute.ReturnValue_v1.ReturnValue_v1
+- uid: HttpStatusCode
+  isExternal: true
+  name: HttpStatusCode
+  nameWithType: HttpStatusCode
+  fullName: HttpStatusCode
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: CLIExecute.ReturnValue_v1.Command*
+  commentId: Overload:CLIExecute.ReturnValue_v1.Command
+  name: Command
+  nameWithType: ReturnValue_v1.Command
+  fullName: CLIExecute.ReturnValue_v1.Command
+- uid: CLIExecute.ICLICommand
+  commentId: T:CLIExecute.ICLICommand
+  parent: CLIExecute
+  name: ICLICommand
+  nameWithType: ICLICommand
+  fullName: CLIExecute.ICLICommand
+- uid: CLIExecute.ReturnValue_v1.StatusCode*
+  commentId: Overload:CLIExecute.ReturnValue_v1.StatusCode
+  name: StatusCode
+  nameWithType: ReturnValue_v1.StatusCode
+  fullName: CLIExecute.ReturnValue_v1.StatusCode
+- uid: CLIExecute.ReturnValue_v1.Result*
+  commentId: Overload:CLIExecute.ReturnValue_v1.Result
+  name: Result
+  nameWithType: ReturnValue_v1.Result
+  fullName: CLIExecute.ReturnValue_v1.Result

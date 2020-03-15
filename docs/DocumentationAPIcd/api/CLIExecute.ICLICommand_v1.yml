@@ -1,0 +1,294 @@
+### YamlMime:ManagedReference
+items:
+- uid: CLIExecute.ICLICommand_v1
+  commentId: T:CLIExecute.ICLICommand_v1
+  id: ICLICommand_v1
+  parent: CLIExecute
+  children:
+  - CLIExecute.ICLICommand_v1.DataToSend
+  - CLIExecute.ICLICommand_v1.Execute
+  langs:
+  - csharp
+  - vb
+  name: ICLICommand_v1
+  nameWithType: ICLICommand_v1
+  fullName: CLIExecute.ICLICommand_v1
+  type: Interface
+  source:
+    remote:
+      path: src/CLIExecute/ICLICommand_v1.cs
+      branch: master
+      repo: https://github.com/ignatandrei/WebAPI2CLI.git
+    id: ICLICommand_v1
+    path: ../../../src/CLIExecute/ICLICommand_v1.cs
+    startLine: 51
+  assemblies:
+  - CLIExecute
+  namespace: CLIExecute
+  summary: "\nfirst type of commands\n"
+  example: []
+  syntax:
+    content: 'public interface ICLICommand_v1 : ICLICommand'
+    content.vb: >-
+      Public Interface ICLICommand_v1
+
+          Inherits ICLICommand
+  seealso:
+  - linkId: CLIExecute.ICLICommand
+    commentId: T:CLIExecute.ICLICommand
+  inheritedMembers:
+  - CLIExecute.ICLICommand.NameCommand
+  - CLIExecute.ICLICommand.Host
+  - CLIExecute.ICLICommand.RelativeRequestUrl
+  - CLIExecute.ICLICommand.Verb
+  - CLIExecute.ICLICommand.SetPossibleFullHosts(System.String[])
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: CLIExecute.ICLICommand_v1.DataToSend
+  commentId: P:CLIExecute.ICLICommand_v1.DataToSend
+  id: DataToSend
+  parent: CLIExecute.ICLICommand_v1
+  langs:
+  - csharp
+  - vb
+  name: DataToSend
+  nameWithType: ICLICommand_v1.DataToSend
+  fullName: CLIExecute.ICLICommand_v1.DataToSend
+  type: Property
+  source:
+    remote:
+      path: src/CLIExecute/ICLICommand_v1.cs
+      branch: master
+      repo: https://github.com/ignatandrei/WebAPI2CLI.git
+    id: DataToSend
+    path: ../../../src/CLIExecute/ICLICommand_v1.cs
+    startLine: 60
+  assemblies:
+  - CLIExecute
+  namespace: CLIExecute
+  summary: "\nGets or sets the data to send.\n"
+  example: []
+  syntax:
+    content: string DataToSend { get; set; }
+    parameters: []
+    return:
+      type: System.String
+      description: "\nThe data to send.\n"
+    content.vb: Property DataToSend As String
+  overload: CLIExecute.ICLICommand_v1.DataToSend*
+  modifiers.csharp:
+  - get
+  - set
+- uid: CLIExecute.ICLICommand_v1.Execute
+  commentId: M:CLIExecute.ICLICommand_v1.Execute
+  id: Execute
+  parent: CLIExecute.ICLICommand_v1
+  langs:
+  - csharp
+  - vb
+  name: Execute()
+  nameWithType: ICLICommand_v1.Execute()
+  fullName: CLIExecute.ICLICommand_v1.Execute()
+  type: Method
+  source:
+    remote:
+      path: src/CLIExecute/ICLICommand_v1.cs
+      branch: master
+      repo: https://github.com/ignatandrei/WebAPI2CLI.git
+    id: Execute
+    path: ../../../src/CLIExecute/ICLICommand_v1.cs
+    startLine: 65
+  assemblies:
+  - CLIExecute
+  namespace: CLIExecute
+  summary: "\nExecutes this instance.\n"
+  example: []
+  syntax:
+    content: Task<ReturnValue_v1> Execute()
+    return:
+      type: Task{CLIExecute.ReturnValue_v1}
+      description: ''
+    content.vb: Function Execute As Task(Of ReturnValue_v1)
+  overload: CLIExecute.ICLICommand_v1.Execute*
+references:
+- uid: CLIExecute.ICLICommand
+  commentId: T:CLIExecute.ICLICommand
+  parent: CLIExecute
+  name: ICLICommand
+  nameWithType: ICLICommand
+  fullName: CLIExecute.ICLICommand
+- uid: CLIExecute
+  commentId: N:CLIExecute
+  name: CLIExecute
+  nameWithType: CLIExecute
+  fullName: CLIExecute
+- uid: CLIExecute.ICLICommand.NameCommand
+  commentId: P:CLIExecute.ICLICommand.NameCommand
+  parent: CLIExecute.ICLICommand
+  name: NameCommand
+  nameWithType: ICLICommand.NameCommand
+  fullName: CLIExecute.ICLICommand.NameCommand
+- uid: CLIExecute.ICLICommand.Host
+  commentId: P:CLIExecute.ICLICommand.Host
+  parent: CLIExecute.ICLICommand
+  name: Host
+  nameWithType: ICLICommand.Host
+  fullName: CLIExecute.ICLICommand.Host
+- uid: CLIExecute.ICLICommand.RelativeRequestUrl
+  commentId: P:CLIExecute.ICLICommand.RelativeRequestUrl
+  parent: CLIExecute.ICLICommand
+  name: RelativeRequestUrl
+  nameWithType: ICLICommand.RelativeRequestUrl
+  fullName: CLIExecute.ICLICommand.RelativeRequestUrl
+- uid: CLIExecute.ICLICommand.Verb
+  commentId: P:CLIExecute.ICLICommand.Verb
+  parent: CLIExecute.ICLICommand
+  name: Verb
+  nameWithType: ICLICommand.Verb
+  fullName: CLIExecute.ICLICommand.Verb
+- uid: CLIExecute.ICLICommand.SetPossibleFullHosts(System.String[])
+  commentId: M:CLIExecute.ICLICommand.SetPossibleFullHosts(System.String[])
+  parent: CLIExecute.ICLICommand
+  isExternal: true
+  name: SetPossibleFullHosts(String[])
+  nameWithType: ICLICommand.SetPossibleFullHosts(String[])
+  fullName: CLIExecute.ICLICommand.SetPossibleFullHosts(System.String[])
+  nameWithType.vb: ICLICommand.SetPossibleFullHosts(String())
+  fullName.vb: CLIExecute.ICLICommand.SetPossibleFullHosts(System.String())
+  name.vb: SetPossibleFullHosts(String())
+  spec.csharp:
+  - uid: CLIExecute.ICLICommand.SetPossibleFullHosts(System.String[])
+    name: SetPossibleFullHosts
+    nameWithType: ICLICommand.SetPossibleFullHosts
+    fullName: CLIExecute.ICLICommand.SetPossibleFullHosts
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: CLIExecute.ICLICommand.SetPossibleFullHosts(System.String[])
+    name: SetPossibleFullHosts
+    nameWithType: ICLICommand.SetPossibleFullHosts
+    fullName: CLIExecute.ICLICommand.SetPossibleFullHosts
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: CLIExecute.ICLICommand_v1.DataToSend*
+  commentId: Overload:CLIExecute.ICLICommand_v1.DataToSend
+  name: DataToSend
+  nameWithType: ICLICommand_v1.DataToSend
+  fullName: CLIExecute.ICLICommand_v1.DataToSend
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: CLIExecute.ICLICommand_v1.Execute*
+  commentId: Overload:CLIExecute.ICLICommand_v1.Execute
+  name: Execute
+  nameWithType: ICLICommand_v1.Execute
+  fullName: CLIExecute.ICLICommand_v1.Execute
+- uid: Task{CLIExecute.ReturnValue_v1}
+  commentId: '!:Task{CLIExecute.ReturnValue_v1}'
+  definition: Task`1
+  name: Task<ReturnValue_v1>
+  nameWithType: Task<ReturnValue_v1>
+  fullName: Task<CLIExecute.ReturnValue_v1>
+  nameWithType.vb: Task(Of ReturnValue_v1)
+  fullName.vb: Task(Of CLIExecute.ReturnValue_v1)
+  name.vb: Task(Of ReturnValue_v1)
+  spec.csharp:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: CLIExecute.ReturnValue_v1
+    name: ReturnValue_v1
+    nameWithType: ReturnValue_v1
+    fullName: CLIExecute.ReturnValue_v1
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: CLIExecute.ReturnValue_v1
+    name: ReturnValue_v1
+    nameWithType: ReturnValue_v1
+    fullName: CLIExecute.ReturnValue_v1
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Task`1
+  isExternal: true
+  name: Task<>
+  nameWithType: Task<>
+  fullName: Task<>
+  nameWithType.vb: Task(Of )
+  fullName.vb: Task(Of )
+  name.vb: Task(Of )
+  spec.csharp:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )

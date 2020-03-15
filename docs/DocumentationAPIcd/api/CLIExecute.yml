@@ -1,0 +1,66 @@
+### YamlMime:ManagedReference
+items:
+- uid: CLIExecute
+  commentId: N:CLIExecute
+  id: CLIExecute
+  children:
+  - CLIExecute.CLI_Commands
+  - CLIExecute.CLI_Commandserialize
+  - CLIExecute.CLICommand_v1
+  - CLIExecute.Executor
+  - CLIExecute.ICLICommand
+  - CLIExecute.ICLICommand_v1
+  - CLIExecute.ReturnValue_v1
+  langs:
+  - csharp
+  - vb
+  name: CLIExecute
+  nameWithType: CLIExecute
+  fullName: CLIExecute
+  type: Namespace
+  assemblies:
+  - CLIExecute
+references:
+- uid: CLIExecute.CLI_Commands
+  commentId: T:CLIExecute.CLI_Commands
+  parent: CLIExecute
+  name: CLI_Commands
+  nameWithType: CLI_Commands
+  fullName: CLIExecute.CLI_Commands
+- uid: CLIExecute.CLI_Commandserialize
+  commentId: T:CLIExecute.CLI_Commandserialize
+  name: CLI_Commandserialize
+  nameWithType: CLI_Commandserialize
+  fullName: CLIExecute.CLI_Commandserialize
+- uid: CLIExecute.CLICommand_v1
+  commentId: T:CLIExecute.CLICommand_v1
+  name: CLICommand_v1
+  nameWithType: CLICommand_v1
+  fullName: CLIExecute.CLICommand_v1
+- uid: CLIExecute.Executor
+  commentId: T:CLIExecute.Executor
+  name: Executor
+  nameWithType: Executor
+  fullName: CLIExecute.Executor
+- uid: CLIExecute.ICLICommand
+  commentId: T:CLIExecute.ICLICommand
+  parent: CLIExecute
+  name: ICLICommand
+  nameWithType: ICLICommand
+  fullName: CLIExecute.ICLICommand
+- uid: CLIExecute.ICLICommand_v1
+  commentId: T:CLIExecute.ICLICommand_v1
+  parent: CLIExecute
+  name: ICLICommand_v1
+  nameWithType: ICLICommand_v1
+  fullName: CLIExecute.ICLICommand_v1
+- uid: CLIExecute.ReturnValue_v1
+  commentId: T:CLIExecute.ReturnValue_v1
+  name: ReturnValue_v1
+  nameWithType: ReturnValue_v1
+  fullName: CLIExecute.ReturnValue_v1
+- uid: CLIExecute
+  commentId: N:CLIExecute
+  name: CLIExecute
+  nameWithType: CLIExecute
+  fullName: CLIExecute

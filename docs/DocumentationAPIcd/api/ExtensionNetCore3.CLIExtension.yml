@@ -1,0 +1,166 @@
+### YamlMime:ManagedReference
+items:
+- uid: ExtensionNetCore3.CLIExtension
+  commentId: T:ExtensionNetCore3.CLIExtension
+  id: CLIExtension
+  parent: ExtensionNetCore3
+  children:
+  - ExtensionNetCore3.CLIExtension.AddCLI(IServiceCollection)
+  - ExtensionNetCore3.CLIExtension.UseCLI(IApplicationBuilder)
+  langs:
+  - csharp
+  - vb
+  name: CLIExtension
+  nameWithType: CLIExtension
+  fullName: ExtensionNetCore3.CLIExtension
+  type: Class
+  source:
+    remote:
+      path: src/ExtensionNetCore3/CLIExtension.cs
+      branch: master
+      repo: https://github.com/ignatandrei/WebAPI2CLI.git
+    id: CLIExtension
+    path: ../../../src/ExtensionNetCore3/CLIExtension.cs
+    startLine: 13
+  assemblies:
+  - ExtensionNetCore3
+  namespace: ExtensionNetCore3
+  summary: "\nhelper extension class\n"
+  example: []
+  syntax:
+    content: 'public static class CLIExtension : object'
+    content.vb: >-
+      Public Module CLIExtension
+
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: ExtensionNetCore3.CLIExtension.AddCLI(IServiceCollection)
+  commentId: M:ExtensionNetCore3.CLIExtension.AddCLI(IServiceCollection)
+  id: AddCLI(IServiceCollection)
+  isExtensionMethod: true
+  parent: ExtensionNetCore3.CLIExtension
+  langs:
+  - csharp
+  - vb
+  name: AddCLI(IServiceCollection)
+  nameWithType: CLIExtension.AddCLI(IServiceCollection)
+  fullName: ExtensionNetCore3.CLIExtension.AddCLI(IServiceCollection)
+  type: Method
+  source:
+    remote:
+      path: src/ExtensionNetCore3/CLIExtension.cs
+      branch: master
+      repo: https://github.com/ignatandrei/WebAPI2CLI.git
+    id: AddCLI
+    path: ../../../src/ExtensionNetCore3/CLIExtension.cs
+    startLine: 27
+  assemblies:
+  - ExtensionNetCore3
+  namespace: ExtensionNetCore3
+  summary: "\nHelper method to be used at \npublic void ConfigureServices\n"
+  example: []
+  syntax:
+    content: public static IServiceCollection AddCLI(this IServiceCollection serviceCollection)
+    parameters:
+    - id: serviceCollection
+      type: IServiceCollection
+      description: ''
+    return:
+      type: IServiceCollection
+      description: ''
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function AddCLI(serviceCollection As IServiceCollection) As IServiceCollection
+  overload: ExtensionNetCore3.CLIExtension.AddCLI*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: ExtensionNetCore3.CLIExtension.UseCLI(IApplicationBuilder)
+  commentId: M:ExtensionNetCore3.CLIExtension.UseCLI(IApplicationBuilder)
+  id: UseCLI(IApplicationBuilder)
+  isExtensionMethod: true
+  parent: ExtensionNetCore3.CLIExtension
+  langs:
+  - csharp
+  - vb
+  name: UseCLI(IApplicationBuilder)
+  nameWithType: CLIExtension.UseCLI(IApplicationBuilder)
+  fullName: ExtensionNetCore3.CLIExtension.UseCLI(IApplicationBuilder)
+  type: Method
+  source:
+    remote:
+      path: src/ExtensionNetCore3/CLIExtension.cs
+      branch: master
+      repo: https://github.com/ignatandrei/WebAPI2CLI.git
+    id: UseCLI
+    path: ../../../src/ExtensionNetCore3/CLIExtension.cs
+    startLine: 49
+  assemblies:
+  - ExtensionNetCore3
+  namespace: ExtensionNetCore3
+  summary: "\nHelper method to be used at\npublic void Configure\n"
+  example: []
+  syntax:
+    content: public static IApplicationBuilder UseCLI(this IApplicationBuilder app)
+    parameters:
+    - id: app
+      type: IApplicationBuilder
+      description: ''
+    return:
+      type: IApplicationBuilder
+      description: ''
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function UseCLI(app As IApplicationBuilder) As IApplicationBuilder
+  overload: ExtensionNetCore3.CLIExtension.UseCLI*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: ExtensionNetCore3
+  commentId: N:ExtensionNetCore3
+  name: ExtensionNetCore3
+  nameWithType: ExtensionNetCore3
+  fullName: ExtensionNetCore3
+- uid: System.Object
+  commentId: '!:System.Object'
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: ExtensionNetCore3.CLIExtension.AddCLI*
+  commentId: Overload:ExtensionNetCore3.CLIExtension.AddCLI
+  name: AddCLI
+  nameWithType: CLIExtension.AddCLI
+  fullName: ExtensionNetCore3.CLIExtension.AddCLI
+- uid: IServiceCollection
+  isExternal: true
+  name: IServiceCollection
+  nameWithType: IServiceCollection
+  fullName: IServiceCollection
+- uid: ExtensionNetCore3.CLIExtension.UseCLI*
+  commentId: Overload:ExtensionNetCore3.CLIExtension.UseCLI
+  name: UseCLI
+  nameWithType: CLIExtension.UseCLI
+  fullName: ExtensionNetCore3.CLIExtension.UseCLI
+- uid: IApplicationBuilder
+  isExternal: true
+  name: IApplicationBuilder
+  nameWithType: IApplicationBuilder
+  fullName: IApplicationBuilder
