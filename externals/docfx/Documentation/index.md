@@ -1,4 +1,9 @@
-# This is the **HOMEPAGE**.
-Refer to [Markdown](http://daringfireball.net/projects/markdown/) for how to write markdown files.
+# WebAPI2CLI sources documentation
+
+This is just for the sources. See below for links.
+
 ## Quick Start Notes:
-1. Add images to the *images* folder if the file is referencing an image.
+
+1. [Classes documentation](https://ignatandrei.github.io/WebAPI2CLI/)
+1. [General Help Site](https://ignatandrei.github.io/WebAPI2CLI/)
+1. [Sources](https://github.com/ignatandrei/webAPI2CLI/)
