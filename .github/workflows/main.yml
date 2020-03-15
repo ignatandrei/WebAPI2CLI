@@ -28,13 +28,13 @@ jobs:
       uses: docker://pandoc/latex:2.9
       with: # needs a README in your repo root!
           #args: "--standalone --output=output/README.html README.md"
-        args: "README.md docs/Demo.md docs/FAQ.md --standalone -f gfm -t html  --toc -o output/output.html --metadata title=WebAPI2CLI"
+        args: "README.md docs/Demo.md docs/FAQ.md docs/Author.md --standalone -f gfm -t html  --toc -o output/output.html --metadata title=WebAPI2CLI"
 
     - name: generate pdf
       uses: docker://pandoc/latex:2.9
       with: # needs a README in your repo root!
           #args: "--standalone --output=output/README.html README.md"
-        args: "README.md docs/Demo.md docs/FAQ.md --standalone -f gfm -t pdf  --toc -o output/output.pdf --metadata title=WebAPI2CLI"
+        args: "README.md docs/Demo.md docs/FAQ.md docs/Author.md --standalone -f gfm -t pdf  --toc -o output/output.pdf --metadata title=WebAPI2CLI"
         
     - run: |
         cp ./output/output.html ./docs/index.html
