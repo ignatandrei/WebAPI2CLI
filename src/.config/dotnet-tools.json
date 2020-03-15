@@ -49,6 +49,12 @@
       "commands": [
         "mddox"
       ]
+    },
+    "dotnet-project-licenses": {
+      "version": "1.1.1",
+      "commands": [
+        "dotnet-project-licenses"
+      ]
     }
   }
 }
