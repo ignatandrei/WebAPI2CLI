@@ -68,11 +68,11 @@ jobs:
         DocumentationSources.bat
         rem git config --local user.email "action@github.com"
         rem git config --local user.name "GitHub Action"
-        rem git commit -m "generate html" -a --allow-empty
+        rem git commit -m "generate documentation sources" -a --allow-empty
       shell: cmd
            
-    # - name: Push changes
-    #   uses: ad-m/github-push-action@master
-    #   with:
-    #     github_token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
 
