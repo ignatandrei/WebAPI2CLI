@@ -30,13 +30,13 @@ jobs:
       uses: docker://pandoc/latex:2.9
       with: # needs a README in your repo root!
           #args: "--standalone --output=output/README.html README.md"
-        args: "README.md docs/Demo.md docs/FAQ.md docs/Author.md --standalone -f gfm -t html  --toc -o output/output.html --metadata title=WebAPI2CLI"
+        args: "README.md docs/Demo.md docs/FAQ.md docs/Author.md docs/packageOutdated.md docs/packageList.md --standalone -f gfm -t html  --toc -o output/output.html --metadata title=WebAPI2CLI"
 
     - name: generate pdf
       uses: docker://pandoc/latex:2.9
       with: # needs a README in your repo root!
           #args: "--standalone --output=output/README.html README.md"
-        args: "README.md docs/Demo.md docs/FAQ.md docs/Author.md --standalone -f gfm -t pdf  --toc -o output/output.pdf --metadata title=WebAPI2CLI"
+        args: "README.md docs/Demo.md docs/FAQ.md docs/Author.md docs/packageOutdated.md docs/packageList.md --standalone -f gfm -t pdf  --toc -o output/output.pdf --metadata title=WebAPI2CLI"
 
     - run: |
         cp ./output/output.html ./docs/index.html
@@ -68,6 +68,8 @@ jobs:
         dotnet restore src/WebAPI2CLI.sln 
         dotnet list src/WebAPI2CLI.sln package > docs/packageList.md
         dotnet list src/WebAPI2CLI.sln package --outdated > docs/packageOutdated.md
+        type docs/packageListHeader.md docs/packageList.md > docs/packageList.md
+        type docs/packageOutdatedHeader.md docs/packageOutdated.md > docs/packageOutdated.md
       shell: cmd
 
     - name: run documentation
@@ -75,7 +77,7 @@ jobs:
         DocumentationSources.bat
       shell: cmd
 
-    - name: run commit`
+    - name: run commit
       run: |                      
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
