@@ -69,10 +69,9 @@ jobs:
         dotnet list src/WebAPI2CLI.sln package > docs/packageList.md
         dotnet list src/WebAPI2CLI.sln package --outdated > docs/packageOutdated.md
         copy docs\packageListHeader.md+docs\packageList.md  docs\packageList1.md
-        move docs\packageList1.md docs\packageList.md /Y
+        move /Y docs\packageList1.md docs\packageList.md 
         copy docs\packageOutdatedHeader.md+docs\packageOutdated.md  docs\packageOutdated1.md
-        move docs\packageOutdated1.md docs\packageOutdated.md /Y
-        
+        move /Y docs\packageOutdated1.md docs\packageOutdated.md         
       shell: cmd
 
     - name: run documentation
