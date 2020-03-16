@@ -1,5 +1,4 @@
 # Referenced packages
-
 Project 'CLIExecute' has the following package references
    [netstandard2.0]: 
    Top-level Package                                          Requested   Resolved
