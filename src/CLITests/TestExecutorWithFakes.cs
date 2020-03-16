@@ -25,7 +25,6 @@ namespace CLITests
         public void TestRetrieveCommand(string command, int numberCommandsFound)
         {
             Executor e = null;
-            IConfiguration c = null; 
             $"creating executor with fake ".x(() =>
             {
                 var m = new Mock<IConfiguration>();
@@ -66,7 +65,6 @@ namespace CLITests
         public void TestShowHelp(string commandValue, bool showHelp)
         {
             Executor e = null;
-            IConfiguration c = null;
             $"creating executor with fake ".x(() =>
             {
                 var m = new Mock<IConfiguration>();
