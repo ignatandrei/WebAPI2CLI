@@ -68,11 +68,13 @@ jobs:
         cd src
         dotnet list WebAPI2CLI.sln package > docs/packageList.md
         dotnet list WebAPI2CLI.sln package --outdated > docs/packageOutdated.md
-    
+      shell: cmd
+
     - name: run documentation
       run: |                
         DocumentationSources.bat
-    
+      shell: cmd
+
     - name: run commit`
       run: |                      
         git config --local user.email "action@github.com"
