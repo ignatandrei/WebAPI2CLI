@@ -68,8 +68,8 @@ jobs:
         dotnet restore src/WebAPI2CLI.sln 
         dotnet list src/WebAPI2CLI.sln package > docs/packageList.md
         dotnet list src/WebAPI2CLI.sln package --outdated > docs/packageOutdated.md
-        type docs/packageListHeader.md docs/packageList.md > docs/packageList.md
-        type docs/packageOutdatedHeader.md docs/packageOutdated.md > docs/packageOutdated.md
+        copy docs/packageListHeader.md+docs/packageList.md  docs/packageList.md
+        copy docs/packageOutdatedHeader.md+docs/packageOutdated.md  docs/packageOutdated.md
       shell: cmd
 
     - name: run documentation
