@@ -65,7 +65,7 @@ jobs:
 
     - name: run list packages
       run: |                
-        
+        dotnet restore src/WebAPI2CLI.sln 
         dotnet list src/WebAPI2CLI.sln package > docs/packageList.md
         dotnet list src/WebAPI2CLI.sln package --outdated > docs/packageOutdated.md
       shell: cmd
