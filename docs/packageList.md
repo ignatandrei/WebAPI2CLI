@@ -1,3 +1,5 @@
+# Referenced packages
+
 Project 'CLIExecute' has the following package references
    [netstandard2.0]: 
    Top-level Package                                          Requested   Resolved
@@ -41,3 +43,4 @@ Project 'CLITests' has the following package references
    > xunit.runner.visualstudio                2.4.1       2.4.1   
 
 (A) : Auto-referenced package.
+
