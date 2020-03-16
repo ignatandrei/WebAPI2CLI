@@ -63,12 +63,21 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
+    - name: run list packages
+      run: |                
+        cd src
+        dotnet list WebAPI2CLI.sln package > docs/packageList.md
+        dotnet list WebAPI2CLI.sln package --outdated > docs/packageOutdated.md
+    
     - name: run documentation
       run: |                
         DocumentationSources.bat
-        rem git config --local user.email "action@github.com"
-        rem git config --local user.name "GitHub Action"
-        rem git commit -m "generate documentation sources" -a --allow-empty
+    
+    - name: run commit`
+      run: |                      
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git commit -m "generate documentation sources" -a --allow-empty
       shell: cmd
            
     - name: Push changes
