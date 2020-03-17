@@ -27,7 +27,7 @@ Project 'TestWebAPISite' has the following package references
    Top-level Package                                       Requested   Resolved
    > Microsoft.VisualStudio.Web.CodeGeneration.Design      3.1.1       3.1.1   
    > Moq                                                   4.13.1      4.13.1  
-   > Swashbuckle.AspNetCore                                5.0.0       5.0.0   
+   > Swashbuckle.AspNetCore                                5.1.0       5.1.0   
 
 Project 'CLITests' has the following package references
    [netcoreapp3.1]: 
