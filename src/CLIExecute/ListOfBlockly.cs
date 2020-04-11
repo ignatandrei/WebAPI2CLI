@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,17 +15,17 @@ namespace CLIExecute
         /// all types
         /// </summary>
         /// <returns></returns>
-        private Tuple<Type,string>[] Types()
+        private Tuple<Type, string>[] Types()
         {
             return this
-                .Where(it=>it.Params != null)
-                .SelectMany(it => it.Params)                
+                .Where(it => it.Params != null)
+                .SelectMany(it => it.Params)
                 .Select(it => it.Value.type)
                 .Distinct()
-                .Select(it=> Tuple.Create(it,BlocklyTypeTranslator(it)))
+                .Select(it => Tuple.Create(it, BlocklyTypeTranslator(it)))
                 .ToArray();
         }
-        private string BlocklyTypeTranslator(Type t)
+        internal static  string BlocklyTypeTranslator(Type t)
         {
             if (t == typeof(int))
                 return "Number";
@@ -32,6 +33,9 @@ namespace CLIExecute
                 return "String";
             if (t == typeof(bool))
                 return "Boolean";
+
+            if (typeof(IEnumerable).IsAssignableFrom(t))
+                return "Array";
             //what to do with Array ?
             return null;
         }
@@ -43,15 +47,15 @@ namespace CLIExecute
         {
             var types = this.Types()
                 .Where(it => it.Item2 == null)
-                .Select(it=>GenerateBlocklyFromType(it.Item1))
-                .Select(it=>it.descType)
+                .Select(it => GenerateBlocklyFromType(it.Item1))
+                .Select(it => it.descType)
                 .ToArray();
 
             return string.Join(Environment.NewLine, types);
         }
-        private string nameType(Type t)
+        internal static  string nameType(Type t)
         {
-            return BlocklyTypeTranslator(t) ?? t.FullName.Replace(".","_");
+            return BlocklyTypeTranslator(t) ?? t.FullName.Replace(".", "_");
         }
         /// <summary>
         /// Generates the blocks definition.
@@ -61,7 +65,7 @@ namespace CLIExecute
         {
             var types = this.Types()
                 .Where(it => it.Item2 == null)
-                .Select(it=>it.Item1)
+                .Select(it => it.Item1)
                 .ToArray();
             string blockText = "";
             foreach (var type in types)
@@ -81,19 +85,19 @@ return xmlList;
             return strDef;
 
         }
-        private ( string nameType, string descType) GenerateBlocklyFromType(Type t)
+        private (string nameType, string descType) GenerateBlocklyFromType(Type t)
         {
             var item = BlocklyTypeTranslator(t);
             if (item != null)
                 return (item, null);
-            
+
             string propsDef = "";
             string prodCode = "";
-            foreach(var prop in t.GetProperties())
+            foreach (var prop in t.GetProperties())
             {
                 if (prop.GetGetMethod() == null)
                     continue;
-                
+
                 propsDef += $@"{Environment.NewLine}
                 this.appendValueInput('{prop.Name}')
                         .appendField('{prop.Name}')
@@ -120,10 +124,25 @@ return xmlList;
                 {prodCode}
                 var code = JSON.stringify(obj)+'\n';
                 
-                
+                console.log(code);
                 return [code, Blockly.JavaScript.ORDER_NONE];
                 }};";
-            return (t.FullName, strDef+ strJS);
+            return (t.FullName, strDef + strJS);
+        }
+        /// <summary>
+        /// Functionses to be generated.
+        /// </summary>
+        /// <returns></returns>
+        public string FunctionsToBeGenerated()
+        {
+            var allDefs = "";
+            foreach (var cmd in this)
+            {
+
+                allDefs +=Environment.NewLine+ cmd.FunctionDefinition();
+                allDefs += Environment.NewLine + cmd.FunctionJSGenerator();
+            }
+            return allDefs;
         }
         
 

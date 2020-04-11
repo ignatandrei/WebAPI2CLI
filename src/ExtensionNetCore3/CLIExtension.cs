@@ -113,6 +113,19 @@ namespace ExtensionNetCore3
                     }
                 });
             });
+            app.Map("/blocklyAPIFunctions", app =>
+            {
+                var h = app.ApplicationServices.GetService<EnumerateWebAPIHostedService>();
+                app.Run(async context =>
+                {
+                    var b = h.BlocklyAPIFunctions;
+                    if (b != null)
+                    {
+                        var mem = new Memory<byte>(Encoding.UTF8.GetBytes(b));
+                        await context.Response.BodyWriter.WriteAsync(mem);
+                    }
+                });
+            });
             return app;
         }
         /// <summary>

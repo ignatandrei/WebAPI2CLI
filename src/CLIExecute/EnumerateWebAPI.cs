@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Hosting.Server.Features;
 using Microsoft.AspNetCore.Mvc.Abstractions;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Hosting;
 using System;
@@ -68,8 +69,13 @@ namespace CLIExecute
             BlocklyTypesDefinition = list.TypesToBeGenerated();
             var nr = BlocklyTypesDefinition.Length;
             BlocklyToolBoxDefinition = list.GenerateBlocksDefinition();
+            BlocklyAPIFunctions = list.FunctionsToBeGenerated();
             nr++;
         }
+        /// <summary>
+        /// The blockly API functions
+        /// </summary>
+        public string BlocklyAPIFunctions;
         /// <summary>
         /// The blockly tool box definition
         /// </summary>
@@ -134,6 +140,8 @@ namespace CLIExecute
                         v1.RelativeRequestUrl = api.RelativePath;
                         v1.Verb = api.HttpMethod;
                         v1.Params = GetParameters(api.ParameterDescriptions.ToArray());
+                        var c = api.ActionDescriptor as ControllerActionDescriptor;
+                        v1.ReturnType = c?.MethodInfo?.ReturnType;
                         allCommands.Add(v1);
                     }
 

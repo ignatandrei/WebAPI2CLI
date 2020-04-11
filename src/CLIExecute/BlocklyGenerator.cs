@@ -11,6 +11,13 @@ namespace CLIExecute
     public class BlocklyGenerator
     {
         /// <summary>
+        /// Gets or sets the type of the return.
+        /// </summary>
+        /// <value>
+        /// The type of the return.
+        /// </value>
+        public Type ReturnType { get; set; }
+        /// <summary>
         /// Gets or sets the name command.
         /// </summary>
         /// <value>
@@ -52,6 +59,104 @@ namespace CLIExecute
         /// The parameters.
         /// </value>
         public Dictionary<string, (Type type, BindingSource bs)> Params { get; internal set; }
-        
+
+
+        internal string nameCommand()
+        {
+            return $"{NameCommand.Replace("/", "_")}_{Verb}";
+
+        }
+        internal string returnFunction()
+        {
+            if (ReturnType == typeof(void))
+            {
+                return @" 
+                    this.setPreviousStatement(true, null);
+                    this.setNextStatement(true, null);";
+            }
+            else
+            {
+                return $"this.setOutput(true, {ListOfBlockly.nameType(ReturnType)});";
+            }
+        }
+        internal string propsDefinitionFunction()
+        {
+            var strPropsDefinition = "";
+            if (Params != null)
+                foreach (var param in Params)
+                {
+                    strPropsDefinition += $@"
+                    this.appendValueInput('{param.Key} ')
+                    .setCheck('{ListOfBlockly.nameType(param.Value.type)}')
+                    .appendField('{param.Key}'); ";
+
+                }
+            return strPropsDefinition;
+        }
+        internal string FunctionDefinition()
+        {
+            var strPropsDefinition = propsDefinitionFunction();
+
+            var returnType = returnFunction();
+
+            return $@"
+                Blockly.Blocks['{nameCommand()}'] = {{
+  init: function() {{
+    this.appendDummyInput()
+        .appendField('{nameCommand()}');
+        {strPropsDefinition}
+        {returnType}
+        }}//init
+}};//{NameCommand}
+";
+        }
+        string GenerateGet()
+        {
+            var str = $@"
+            (function(){{
+            var request = new XMLHttpRequest();
+            request.open('GET', '{this.RelativeRequestUrl}', false); 
+            request.send(null);
+            console.log('{this.RelativeRequestUrl}',request.status);
+            var answer='';
+            if (request.status === 200) {{
+                answer=request.responseText;
+                console.log(answer);
+            }};
+            return answer;
+            }})();
+            ";
+            return str;
+        }
+        internal string FunctionJSGenerator()
+        {
+            var paramsStr = "";
+            if (Params != null)
+                foreach (var param in Params)
+                {
+                    paramsStr += $@"
+                    obj['value_{param.Key}'] = Blockly.JavaScript.valueToCode(block, '{param.Key}', Blockly.JavaScript.ORDER_ATOMIC);"; ;
+                }
+            var returnValue = "";
+            if (ReturnType == typeof(void))
+            {
+                returnValue = " return code;";
+            }
+            else
+            {
+                returnValue = " return [code, Blockly.JavaScript.ORDER_NONE];";
+            }
+            
+            return $@"
+Blockly.JavaScript['{nameCommand()}'] = function(block) {{
+var obj={{}};//{RelativeRequestUrl}
+{paramsStr}
+
+var code=JSON.stringify(obj);
+code=`{GenerateGet()}`;
+{returnValue}
+}};
+";
+        }
     }
 }
