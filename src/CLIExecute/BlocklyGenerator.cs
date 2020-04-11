@@ -43,5 +43,6 @@ namespace CLIExecute
         /// </value>
         public string ContentType { get; set; } = "application/json";
         public Dictionary<string, (Type type, BindingSource bs)> Params { get; internal set; }
+        
     }
 }
