@@ -1,10 +1,21 @@
 ﻿using CLIExecute;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Net.Http.Headers;
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.IO.Compression;
+using System.Linq;
+using System.Net.Http.Headers;
 using System.Reflection;
+using System.Text;
 
 namespace ExtensionNetCore3
 {
@@ -52,8 +63,68 @@ namespace ExtensionNetCore3
 
             var service = app.ApplicationServices.GetService<CLIAPIHostedService>();
             service.app = app;
+           
             return app;
         }
+        /// <summary>
+        /// Makes the zip of the app to download
+        /// </summary>
+        /// <param name="endpoints">The endpoints.</param>
+        /// <param name="app">App builder.</param>
+        public static void MakeZip(this IEndpointRouteBuilder endpoints, IApplicationBuilder app)
+        {
+            //see more at 
+            //https://andrewlock.net/converting-a-terminal-middleware-to-endpoint-routing-in-aspnetcore-3/
+            endpoints.Map("/zip", async context =>
+            {
+                var response = context.Response;
+                var name = Assembly.GetEntryAssembly().GetName().Name + ".zip";
+                response.ContentType = "application/octet-stream";
+                var b = GetZip(app.ApplicationServices.GetService<IWebHostEnvironment>());
+                //https://github.com/dotnet/aspnetcore/blob/master/src/Mvc/Mvc.Core/src/Infrastructure/FileResultExecutorBase.cs
+                var contentDisposition = new Microsoft.Net.Http.Headers.ContentDispositionHeaderValue("attachment");
+                contentDisposition.SetHttpFileName(name);
+                response.Headers[HeaderNames.ContentDisposition] = contentDisposition.ToString();
 
+                var exec = app.ApplicationServices.GetService<IActionResultExecutor<FileContentResult>>();
+                
+                await response.Body.WriteAsync(b);
+                
+            });
+            
+            return;
+        }
+        private static Memory<byte> GetZip(IWebHostEnvironment env)
+        {
+            //var b = new Memory<byte>(Encoding.ASCII.GetBytes($"{env.ContentRootPath}"));
+            var firstDir = new DirectoryInfo(env.ContentRootPath);
+            var nameLength = firstDir.FullName.Length + 1;
+            using var memoryStream = new MemoryStream();
+            using var zipToOpen = new ZipArchive(memoryStream, ZipArchiveMode.Create, true);
+
+            
+
+            foreach (FileInfo file in firstDir.RecursiveFilesAndFolders().Where(o => o is FileInfo).Cast<FileInfo>())
+            {
+                var relPath = file.FullName.Substring(nameLength);
+                var readmeEntry = zipToOpen.CreateEntryFromFile(file.FullName, relPath);
+            }
+            zipToOpen.Dispose();
+            var b = new Memory<byte>(memoryStream.ToArray());
+            return b;
+            
+        }
+
+        private static IEnumerable<FileSystemInfo> RecursiveFilesAndFolders(this DirectoryInfo dir)
+        {
+            foreach (var f in dir.GetFiles())
+                yield return f;
+            foreach (var d in dir.GetDirectories())
+            {
+                yield return d;
+                foreach (var o in RecursiveFilesAndFolders(d))
+                    yield return o;
+            }
+        }
     }
 }

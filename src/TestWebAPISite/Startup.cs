@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.IO.Compression;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using ExtensionNetCore3;
 using Microsoft.AspNetCore.Builder;
@@ -67,6 +69,8 @@ namespace TestWebAPISite
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+
+                endpoints.MakeZip(app);
             });
         }
     }
