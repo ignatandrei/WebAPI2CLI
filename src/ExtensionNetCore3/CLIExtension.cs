@@ -92,7 +92,20 @@ namespace ExtensionNetCore3
                 var h = app.ApplicationServices.GetService<EnumerateWebAPIHostedService>();
                 app.Run(async context =>
                 {
-                    var b = h.BlocklyTypes;
+                    var b = h.BlocklyTypesDefinition;
+                    if (b != null)
+                    {
+                        var mem = new Memory<byte>(Encoding.UTF8.GetBytes(b));
+                        await context.Response.BodyWriter.WriteAsync(mem);
+                    }
+                });
+            });
+            app.Map("/blocklyToolboxDefinitions", app =>
+            {
+                var h = app.ApplicationServices.GetService<EnumerateWebAPIHostedService>();
+                app.Run(async context =>
+                {
+                    var b = h.BlocklyToolBoxDefinition;
                     if (b != null)
                     {
                         var mem = new Memory<byte>(Encoding.UTF8.GetBytes(b));

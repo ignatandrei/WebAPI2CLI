@@ -51,36 +51,79 @@ namespace CLIExecute
         }
         private string nameType(Type t)
         {
-            return BlocklyTypeTranslator(t) ?? t.FullName;
+            return BlocklyTypeTranslator(t) ?? t.FullName.Replace(".","_");
         }
-        
+        /// <summary>
+        /// Generates the blocks definition.
+        /// </summary>
+        /// <returns></returns>
+        public string GenerateBlocksDefinition()
+        {
+            var types = this.Types()
+                .Where(it => it.Item2 == null)
+                .Select(it=>it.Item1)
+                .ToArray();
+            string blockText = "";
+            foreach (var type in types)
+            {
+                blockText += $@"{Environment.NewLine}
+                var blockText_{type.Name} = '<block type=""{nameType(type)}""></block>';
+                var block_{type.Name} = Blockly.Xml.textToDom(blockText_{type.Name});
+                xmlList.push(block_{type.Name});";
+            }
+            var strDef = $@"
+ var registerValues = function() {{
+        var xmlList = [];
+        {blockText}
+                
+return xmlList;
+              }}  ";
+            return strDef;
+
+        }
         private ( string nameType, string descType) GenerateBlocklyFromType(Type t)
         {
             var item = BlocklyTypeTranslator(t);
             if (item != null)
                 return (item, null);
-
-            string props = "";
+            
+            string propsDef = "";
+            string prodCode = "";
             foreach(var prop in t.GetProperties())
             {
                 if (prop.GetGetMethod() == null)
                     continue;
                 
-                props += $@"{Environment.NewLine}
+                propsDef += $@"{Environment.NewLine}
                 this.appendValueInput('{prop.Name}')
                         .appendField('{prop.Name}')
                         .setCheck({nameType(prop.PropertyType)});";
+
+                prodCode += $@"{Environment.NewLine}
+                obj['{prop.Name}'] = Blockly.JavaScript.valueToCode(block, '{prop.Name}', Blockly.JavaScript.ORDER_ATOMIC);
+                ";
             }
 
-            var str = $@"
-                    Blockly.Blocks['{t.FullName}'] = {{
+            var strDef = $@"
+                    Blockly.Blocks['{nameType(t)}'] = {{
                     init: function() {{
                         this.appendDummyInput()
                             .appendField('{t.Name}');
-                        {props}
-                            }}
+                        {propsDef}
+                        this.setOutput(true, '{nameType(t)}');
+                            }}  
                     }};";
-            return (t.FullName, str);
+
+            var strJS = $@"
+                Blockly.JavaScript['{nameType(t)}'] = function(block) {{
+                var obj={{}};
+                {prodCode}
+                var code = JSON.stringify(obj)+'\n';
+                
+                
+                return [code, Blockly.JavaScript.ORDER_NONE];
+                }};";
+            return (t.FullName, strDef+ strJS);
         }
         
 

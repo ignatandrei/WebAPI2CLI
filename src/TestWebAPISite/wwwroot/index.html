@@ -26,6 +26,7 @@
         Blockly Swagger 
     </h1>
     <script src="/blocklyDefinitions"></script>
+    <script src="/BlocklyToolBoxDefinitions"></script>
 
     
     <p>
@@ -345,8 +346,10 @@
         <category id="catHelpers" colour="160" name="Helpers">
             <block type="wait_seconds"></block>
         </category>
-        <category id="LocalSiteValues" colour="160" name="LocalSiteValues">
-            <block type="TestWebAPISite.Controllers.SumArgs"></block>
+        <category custom="LocalSiteValues" colour="160" name="LocalSiteValues">
+        </category>
+        <category id="test" name="LocalFunctions">
+            <block type="TestWebAPISite_Controllers_SumArgs"></block>
         </category>
 
     </xml>
@@ -406,14 +409,17 @@
     </xml>
 
     <script>
+
         var demoWorkspace = Blockly.inject('blocklyDiv',
             {
                 media: '../../media/',
                 toolbox: document.getElementById('toolbox')
             });
-        Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),
-            demoWorkspace);
+        demoWorkspace.registerToolboxCategoryCallback('LocalSiteValues', registerValues);
 
+        Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),demoWorkspace);
+
+       
         // Exit is used to signal the end of a script.
         Blockly.JavaScript.addReservedWords('exit');
 

@@ -65,15 +65,19 @@ namespace CLIExecute
             _timer.Dispose();
             var e = new EnumerateWebAPI(serverAddresses.Addresses,api);
             var list = e.FindWebAPI();
-            BlocklyTypes = list.TypesToBeGenerated();
-            var nr = BlocklyTypes.Length;
-            
+            BlocklyTypesDefinition = list.TypesToBeGenerated();
+            var nr = BlocklyTypesDefinition.Length;
+            BlocklyToolBoxDefinition = list.GenerateBlocksDefinition();
             nr++;
         }
         /// <summary>
+        /// The blockly tool box definition
+        /// </summary>
+        public string BlocklyToolBoxDefinition;
+        /// <summary>
         /// Blockly variables
         /// </summary>
-        public string BlocklyTypes;
+        public string BlocklyTypesDefinition;
         /// <summary>
         /// Triggered when the application host is performing a graceful shutdown.
         /// </summary>
