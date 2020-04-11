@@ -8,7 +8,7 @@
     <script src="/blockly/blocks_compressed.js"></script>
     <script src="/blockly/javascript_compressed.js"></script>
     <script src="/blockly/en.js"></script>
-    <script src="/blockly/wait_block.js" ></script>
+    <script src="/blockly/wait_block.js"></script>
     <style>
         body {
             background-color: #fff;
@@ -23,12 +23,12 @@
 </head>
 <body>
     <h1>
-        Blockly Swagger 
+        Blockly Swagger
     </h1>
     <script src="/blocklyDefinitions"></script>
     <script src="/BlocklyToolBoxDefinitions"></script>
     <script src="/blocklyAPIFunctions"></script>
-    
+
     <p>
         <button onclick="runCode()" id="runButton">Run JavaScript</button>
     </p>
@@ -345,6 +345,20 @@
         <category id="catFunctions" colour="290" custom="PROCEDURE" name="Functions"></category>
         <category id="catHelpers" colour="160" name="Helpers">
             <block type="wait_seconds"></block>
+            <block type="text_print">
+                <value name="TEXT">
+                    <shadow type="text">
+                        <field name="TEXT">abc</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="text_prompt_ext">
+                <value name="TEXT">
+                    <shadow type="text">
+                        <field name="TEXT">abc</field>
+                    </shadow>
+                </value>
+            </block>
         </category>
         <category custom="LocalSiteValues" colour="160" name="LocalSiteValues">
         </category>
@@ -391,13 +405,15 @@
                                         </block>
                                     </value>
                                     <next>
-                                        <block type="text_print" id="print" inline="false">
+                                        <block type="text_print" id="print1" inline="false">
                                             <value name="TEXT">
                                                 <block type="variables_get">
                                                     <field name="VAR">n</field>
                                                 </block>
+
                                             </value>
                                         </block>
+                                        
                                     </next>
                                 </block>
                             </next>
@@ -417,9 +433,9 @@
             });
         demoWorkspace.registerToolboxCategoryCallback('LocalSiteValues', registerValues);
 
-        Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'),demoWorkspace);
+        Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), demoWorkspace);
 
-       
+
         // Exit is used to signal the end of a script.
         Blockly.JavaScript.addReservedWords('exit');
 
@@ -445,6 +461,22 @@
             interpreter.setProperty(globalObject, 'prompt',
                 interpreter.createNativeFunction(wrapper));
 
+            var wrapper = function (href, callback) {
+                var req = new XMLHttpRequest();
+                req.open('GET', href, true);
+                req.onreadystatechange = function () {
+                    if (req.status == 200) {
+                        console.log(req.responseText);
+                        callback(req.responseText);
+                    }
+                    else {
+                        window.alert(`error ${href} ${req.status}`);
+                    }
+                };
+                req.send(null);
+            };
+            interpreter.setProperty(globalObject, 'getXhr',
+                interpreter.createAsyncFunction(wrapper));
             // Add an API for the wait block.  See wait_block.js
             initInterpreterWaitForSeconds(interpreter, globalObject);
 

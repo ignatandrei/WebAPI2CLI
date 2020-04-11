@@ -20,11 +20,11 @@ namespace TestWebAPISite.Controllers
         }
 
         // GET: api/MathAdd/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
-        {
-            return "value"+id;
-        }
+        //[HttpGet("{id}", Name = "Get")]
+        //public string Get(int id)
+        //{
+        //    return "value"+id;
+        //}
 
         // POST: api/MathAdd
         [HttpPost]

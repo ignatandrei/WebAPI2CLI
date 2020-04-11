@@ -112,20 +112,7 @@ namespace CLIExecute
         }
         string GenerateGet()
         {
-            var str = $@"
-            (function(){{
-            var request = new XMLHttpRequest();
-            request.open('GET', '{this.RelativeRequestUrl}', false); 
-            request.send(null);
-            console.log('{this.RelativeRequestUrl}',request.status);
-            var answer='';
-            if (request.status === 200) {{
-                answer=request.responseText;
-                console.log(answer);
-            }};
-            return answer;
-            }})();
-            ";
+            var str = $@"getXhr('{this.RelativeRequestUrl}')";           
             return str;
         }
         internal string FunctionJSGenerator()
