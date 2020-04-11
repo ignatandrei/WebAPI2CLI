@@ -30,6 +30,7 @@ namespace TestWebAPISite
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCLI();
+            services.AddBlockly();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -56,6 +57,7 @@ namespace TestWebAPISite
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebAPI2CLI");
             });
             app.UseCLI();
+            app.UseBlockly();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

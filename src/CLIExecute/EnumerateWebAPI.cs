@@ -1,27 +1,112 @@
-﻿using Microsoft.AspNetCore.Mvc.Abstractions;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting.Server.Features;
+using Microsoft.AspNetCore.Mvc.Abstractions;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Text.Json;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace CLIExecute
 {
-    class EnumerateWebAPI
+    /// <summary>
+    /// host to enumerate
+    /// </summary>
+    /// <seealso cref="Microsoft.Extensions.Hosting.IHostedService" />
+    public class EnumerateWebAPIHostedService : IHostedService
+    {
+        private Timer _timer;
+        /// <summary>
+        /// The application
+        /// </summary>
+        public IApplicationBuilder app=null;
+        private readonly IApiDescriptionGroupCollectionProvider api;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EnumerateWebAPIHostedService"/> class.
+        /// </summary>
+        /// <param name="api">The API.</param>
+        public EnumerateWebAPIHostedService(IApiDescriptionGroupCollectionProvider api)
+        {
+            this.api = api;
+        }/// <summary>
+        /// starts
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task StartAsync(CancellationToken cancellationToken)
+        {
+            _timer = new Timer(DoWork, null, TimeSpan.Zero, TimeSpan.FromSeconds(5));
+            return Task.CompletedTask;
+        }
+        private bool ExistsApp()
+        {
+            return (app != null);
+
+        }
+        private void DoWork(object state)
+        {
+            if (!ExistsApp())
+            {
+                Console.WriteLine("WebAPI2CLI: waiting to have app");
+                return;
+            }
+            var serverAddresses = app.ServerFeatures.Get<IServerAddressesFeature>();
+            if (serverAddresses == null)
+            {
+                Console.WriteLine("WebAPI2CLI: waiting to have server adresses");
+                return;
+            }
+            _timer.Dispose();
+            var e = new EnumerateWebAPI(serverAddresses.Addresses,api);
+            var list = e.FindWebAPI();
+            BlocklyTypes = list.TypesToBeGenerated();
+            var nr = BlocklyTypes.Length;
+            
+            nr++;
+        }
+        /// <summary>
+        /// Blockly variables
+        /// </summary>
+        public string BlocklyTypes;
+        /// <summary>
+        /// Triggered when the application host is performing a graceful shutdown.
+        /// </summary>
+        /// <param name="cancellationToken">Indicates that the shutdown process should no longer be graceful.</param>
+        public Task StopAsync(CancellationToken cancellationToken)
+        {
+
+            return Task.CompletedTask;
+        }
+    }
+    /// <summary>
+    /// enumerate and generate
+    /// </summary>
+    public class EnumerateWebAPI
     {
         private readonly ICollection<string> addresses;
         private readonly IApiDescriptionGroupCollectionProvider api;
-        
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EnumerateWebAPI"/> class.
+        /// </summary>
+        /// <param name="addresses">The addresses.</param>
+        /// <param name="api">The API.</param>
         public EnumerateWebAPI(ICollection<string> addresses, IApiDescriptionGroupCollectionProvider api)
         {
             this.addresses = addresses;
             this.api = api;
             
         }
-        private ListOfBlockly FindWebAPI()
+        /// <summary>
+        /// Finds the web API.
+        /// </summary>
+        /// <returns></returns>
+        public ListOfBlockly FindWebAPI()
         {
             var allCommands = new ListOfBlockly();
 

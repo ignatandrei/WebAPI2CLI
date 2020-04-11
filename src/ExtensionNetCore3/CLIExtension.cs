@@ -31,12 +31,24 @@ namespace ExtensionNetCore3
 
         }
         /// <summary>
-        /// Helper method to be used at 
-        ///  public void ConfigureServices
+        /// Adds blockly class
         /// </summary>
-        /// <param name="serviceCollection"></param>
+        /// <param name="serviceCollection">The service collection.</param>
         /// <returns></returns>
-        public static IServiceCollection AddCLI(this IServiceCollection serviceCollection)
+        public static IServiceCollection AddBlockly(this IServiceCollection serviceCollection)
+        {
+            serviceCollection.AddSingleton<EnumerateWebAPIHostedService>();
+            serviceCollection.AddHostedService<EnumerateWebAPIHostedService>(p => p.GetService<EnumerateWebAPIHostedService>());
+
+            return serviceCollection;
+        }
+            /// <summary>
+            /// Helper method to be used at 
+            ///  public void ConfigureServices
+            /// </summary>
+            /// <param name="serviceCollection"></param>
+            /// <returns></returns>
+            public static IServiceCollection AddCLI(this IServiceCollection serviceCollection)
         {
             Console.WriteLine($"Web2APICLI:For more details please refer to about Web2APICLI refer to https://github.com/ignatandrei/WebAPI2CLI");
 
@@ -62,8 +74,32 @@ namespace ExtensionNetCore3
         {
 
             var service = app.ApplicationServices.GetService<CLIAPIHostedService>();
+            service.app = app;            
+            return app;
+        }
+        /// <summary>
+        ///  use blockly
+        /// </summary>
+        /// <param name="app"></param>
+        /// <returns></returns>
+        public static IApplicationBuilder UseBlockly(this IApplicationBuilder app)
+        {
+
+            var service = app.ApplicationServices.GetService<EnumerateWebAPIHostedService>();
             service.app = app;
-           
+            app.Map("/blocklyDefinitions", app =>
+            {
+                var h = app.ApplicationServices.GetService<EnumerateWebAPIHostedService>();
+                app.Run(async context =>
+                {
+                    var b = h.BlocklyTypes;
+                    if (b != null)
+                    {
+                        var mem = new Memory<byte>(Encoding.UTF8.GetBytes(b));
+                        await context.Response.BodyWriter.WriteAsync(mem);
+                    }
+                });
+            });
             return app;
         }
         /// <summary>

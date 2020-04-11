@@ -5,7 +5,10 @@ using System.Text;
 
 namespace CLIExecute
 {
-    class BlocklyGenerator
+    /// <summary>
+    /// generator
+    /// </summary>
+    public class BlocklyGenerator
     {
         /// <summary>
         /// Gets or sets the name command.
@@ -42,6 +45,12 @@ namespace CLIExecute
         /// The type of the content.
         /// </value>
         public string ContentType { get; set; } = "application/json";
+        /// <summary>
+        /// Gets the parameters.
+        /// </summary>
+        /// <value>
+        /// The parameters.
+        /// </value>
         public Dictionary<string, (Type type, BindingSource bs)> Params { get; internal set; }
         
     }
