@@ -48,6 +48,21 @@ You can report problems at https://github.com/ignatandrei/WebAPI2CLI/issues
 
 Glad you asked . See https://ignatandrei.github.io/WebAPI2CLI/sitedocs/api/index.html and choose from the left menu the classes.
 
+## I want to let others to download my whole application to use from command line.
+Modify the endpoints to add zip
+
+```csharp
+ app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+
+                endpoints.MakeZip(app);
+            });
+```
+and point your browser to <root of the site>/zip  to download the whole application.
+
+Caveat: The downloaded application will work if the user have the same operating system as the site ;-)
+
 ## Where can I download this document ? 
 
 There is a PDF at https://ignatandrei.github.io/WebAPI2CLI/Web2CLI.pdf

@@ -71,6 +71,18 @@ Run the exe with the following:
 
 The program will run the commands and output the result.
 
+## Optional Step 3 - letting others download the app to use as CLI
+Modify the endpoints to add zip
+
+```csharp
+ app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+
+                endpoints.MakeZip(app);
+            });
+```
+and browser to <root of the site>/zip  to download the whole application.
 More details here( including a demo)
 
 https://ignatandrei.github.io/WebAPI2CLI/
