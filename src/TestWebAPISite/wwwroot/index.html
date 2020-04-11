@@ -26,8 +26,9 @@
         Blockly Swagger
     </h1>
     <script src="/blocklyDefinitions"></script>
-    <script src="/BlocklyToolBoxDefinitions"></script>
+    <script src="/BlocklyToolBoxValueDefinitions"></script>
     <script src="/blocklyAPIFunctions"></script>
+    <script src="/BlocklyToolBoxFunctionDefinitions"></script>
 
     <p>
         <button onclick="runCode()" id="runButton">Run JavaScript</button>
@@ -362,8 +363,8 @@
         </category>
         <category custom="LocalSiteValues" colour="160" name="LocalSiteValues">
         </category>
-        <category id="test" name="LocalFunctions">
-            <block type="api_MathAdd_GET"></block>
+        <category custom="LocalSiteFunctions" name="LocalSiteFunctions">
+
         </category>
 
     </xml>
@@ -377,12 +378,14 @@
                 </block>
             </value>
             <next>
+
                 <block type="controls_repeat_ext" id="repeat" inline="true">
                     <value name="TIMES">
                         <block type="math_number">
-                            <field name="NUM">4</field>
+                            <field name="NUM">2</field>
                         </block>
                     </value>
+
                     <statement name="DO">
                         <block type="wait_seconds" id="wait">
                             <field name="SECONDS">1.0</field>
@@ -412,8 +415,15 @@
                                                 </block>
 
                                             </value>
+                                            <next>
+                                                <block type="text_print" id="print2" inline="false">
+                                                    <value name="TEXT">
+                                                        <block type="api_MathAdd_GET"></block>
+                                                    </value>
+                                                </block>
+                                            </next>
                                         </block>
-                                        
+
                                     </next>
                                 </block>
                             </next>
@@ -432,6 +442,7 @@
                 toolbox: document.getElementById('toolbox')
             });
         demoWorkspace.registerToolboxCategoryCallback('LocalSiteValues', registerValues);
+        demoWorkspace.registerToolboxCategoryCallback('LocalSiteFunctions', registerFunctions);
 
         Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), demoWorkspace);
 
@@ -466,8 +477,13 @@
                 req.open('GET', href, true);
                 req.onreadystatechange = function () {
                     if (req.status == 200) {
-                        console.log(req.responseText);
-                        callback(req.responseText);
+                        if (req.readyState == 4) {
+                            console.log(`from ${href} ${JSON.stringify(req.responseText)}`);
+                            console.log(callback);
+                            //callback(JSON.stringify(req.responseText));
+                            callback(req.responseText);
+                            //callback('andrei');
+                        }
                     }
                     else {
                         window.alert(`error ${href} ${req.status}`);

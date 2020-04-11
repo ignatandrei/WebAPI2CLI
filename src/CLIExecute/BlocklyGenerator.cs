@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace CLIExecute
@@ -8,6 +9,7 @@ namespace CLIExecute
     /// <summary>
     /// generator
     /// </summary>
+    [DebuggerDisplay("{NameCommand} {Verb}")]
     public class BlocklyGenerator
     {
         /// <summary>
@@ -63,7 +65,9 @@ namespace CLIExecute
 
         internal string nameCommand()
         {
-            return $"{NameCommand.Replace("/", "_")}_{Verb}";
+            var nameCommand = NameCommand.Replace("/", "_");
+            nameCommand = nameCommand.Replace("{", "_").Replace("}", "_");
+            return $"{nameCommand}_{Verb}";
 
         }
         internal string returnFunction()
@@ -112,7 +116,15 @@ namespace CLIExecute
         }
         string GenerateGet()
         {
-            var str = $@"getXhr('{this.RelativeRequestUrl}')";           
+            var str = $@"getXhr('{this.RelativeRequestUrl}')";
+            if (this.Params == null)
+                return  str;  
+            
+            foreach(var item in Params)
+            {
+                str = str.Replace("{" + item.Key + "}", $"'+ obj.Key +'");
+            }
+            str = str + "'";
             return str;
         }
         internal string FunctionJSGenerator()
@@ -140,7 +152,7 @@ var obj={{}};//{RelativeRequestUrl}
 {paramsStr}
 
 var code=JSON.stringify(obj);
-code=`{GenerateGet()}`;
+code+=`{GenerateGet()}`;
 {returnValue}
 }};
 ";

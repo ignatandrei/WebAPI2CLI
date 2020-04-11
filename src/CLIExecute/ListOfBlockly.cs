@@ -61,7 +61,7 @@ namespace CLIExecute
         /// Generates the blocks definition.
         /// </summary>
         /// <returns></returns>
-        public string GenerateBlocksDefinition()
+        public string GenerateBlocksValueDefinition()
         {
             var types = this.Types()
                 .Where(it => it.Item2 == null)
@@ -138,13 +138,32 @@ return xmlList;
             var allDefs = "";
             foreach (var cmd in this)
             {
-
                 allDefs +=Environment.NewLine+ cmd.FunctionDefinition();
                 allDefs += Environment.NewLine + cmd.FunctionJSGenerator();
             }
             return allDefs;
         }
-        
+        internal string GenerateBlocksFunctionsDefinition()
+        {
+            string blockText = "";
+            foreach (var cmd in this)
+            {
+                blockText += $@"{Environment.NewLine}
+                var blockText_{cmd.nameCommand()} = '<block type=""{cmd.nameCommand()}""></block>';
+                var block_{cmd.nameCommand()} = Blockly.Xml.textToDom(blockText_{cmd.nameCommand()});
+                xmlList.push(block_{cmd.nameCommand()});";
+            }
+            var strDef = $@"
+ var registerFunctions = function() {{
+        var xmlList = [];
+        {blockText}
+                
+return xmlList;
+              }}  ";
+            return strDef;
+
+        }
+
 
     }
 }

@@ -100,12 +100,12 @@ namespace ExtensionNetCore3
                     }
                 });
             });
-            app.Map("/blocklyToolboxDefinitions", app =>
+            app.Map("/BlocklyToolBoxValueDefinitions", app =>
             {
                 var h = app.ApplicationServices.GetService<EnumerateWebAPIHostedService>();
                 app.Run(async context =>
                 {
-                    var b = h.BlocklyToolBoxDefinition;
+                    var b = h.BlocklyToolBoxValueDefinition;
                     if (b != null)
                     {
                         var mem = new Memory<byte>(Encoding.UTF8.GetBytes(b));
@@ -119,6 +119,19 @@ namespace ExtensionNetCore3
                 app.Run(async context =>
                 {
                     var b = h.BlocklyAPIFunctions;
+                    if (b != null)
+                    {
+                        var mem = new Memory<byte>(Encoding.UTF8.GetBytes(b));
+                        await context.Response.BodyWriter.WriteAsync(mem);
+                    }
+                });
+            });
+            app.Map("/BlocklyToolBoxFunctionDefinitions", app =>
+            {
+                var h = app.ApplicationServices.GetService<EnumerateWebAPIHostedService>();
+                app.Run(async context =>
+                {
+                    var b = h.BlocklyToolBoxFunctionDefinition;
                     if (b != null)
                     {
                         var mem = new Memory<byte>(Encoding.UTF8.GetBytes(b));

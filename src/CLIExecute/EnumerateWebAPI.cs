@@ -68,10 +68,16 @@ namespace CLIExecute
             var list = e.FindWebAPI();
             BlocklyTypesDefinition = list.TypesToBeGenerated();
             var nr = BlocklyTypesDefinition.Length;
-            BlocklyToolBoxDefinition = list.GenerateBlocksDefinition();
+            BlocklyToolBoxValueDefinition = list.GenerateBlocksValueDefinition();
             BlocklyAPIFunctions = list.FunctionsToBeGenerated();
+            BlocklyToolBoxFunctionDefinition = list.GenerateBlocksFunctionsDefinition();
             nr++;
         }
+        /// <summary>
+        /// The blockly tool box function definition
+        /// </summary>
+        public string BlocklyToolBoxFunctionDefinition;
+
         /// <summary>
         /// The blockly API functions
         /// </summary>
@@ -79,7 +85,7 @@ namespace CLIExecute
         /// <summary>
         /// The blockly tool box definition
         /// </summary>
-        public string BlocklyToolBoxDefinition;
+        public string BlocklyToolBoxValueDefinition;
         /// <summary>
         /// Blockly variables
         /// </summary>
@@ -131,14 +137,15 @@ namespace CLIExecute
                 foreach (var api in g.Items)
                 {
 
-                    foreach (var adress in allAdresses)
+                    //foreach (var adress in allAdresses)
                     {
-                        var ad = new Uri(adress);
+                        //var ad = new Uri(adress);
                         var v1 = new BlocklyGenerator();
                         v1.NameCommand = api.RelativePath;
-                        v1.Host = ad.GetLeftPart(UriPartial.Scheme);
-                        v1.RelativeRequestUrl = api.RelativePath;
                         v1.Verb = api.HttpMethod;
+                        //v1.Host = ad.GetLeftPart(UriPartial.Scheme);
+                        v1.RelativeRequestUrl = api.RelativePath;
+                        
                         v1.Params = GetParameters(api.ParameterDescriptions.ToArray());
                         var c = api.ActionDescriptor as ControllerActionDescriptor;
                         v1.ReturnType = c?.MethodInfo?.ReturnType;
