@@ -71,7 +71,7 @@ namespace ExtensionNetCore3
         /// </summary>
         /// <param name="endpoints">The endpoints.</param>
         /// <param name="app">App builder.</param>
-        public static void MakeZip(this IEndpointRouteBuilder endpoints, IApplicationBuilder app)
+        public static void MapZip(this IEndpointRouteBuilder endpoints, IApplicationBuilder app)
         {
             //see more at 
             //https://andrewlock.net/converting-a-terminal-middleware-to-endpoint-routing-in-aspnetcore-3/
@@ -85,14 +85,11 @@ namespace ExtensionNetCore3
                 var contentDisposition = new Microsoft.Net.Http.Headers.ContentDispositionHeaderValue("attachment");
                 contentDisposition.SetHttpFileName(name);
                 response.Headers[HeaderNames.ContentDisposition] = contentDisposition.ToString();
-
-                var exec = app.ApplicationServices.GetService<IActionResultExecutor<FileContentResult>>();
-                
                 await response.Body.WriteAsync(b);
                 
             });
             
-            return;
+            
         }
         private static Memory<byte> GetZip(IWebHostEnvironment env)
         {

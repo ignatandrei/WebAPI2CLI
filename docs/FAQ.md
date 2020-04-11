@@ -61,7 +61,8 @@ Modify the endpoints to add zip
 ```
 and point your browser to <root of the site>/zip  to download the whole application.
 
-Caveat: The downloaded application will work if the user have the same operating system as the site ;-)
+Caveat: The downloaded application will work if the user have the same operating system as the site ;-).
+Also, the publishing of .NET Core should be self contained to have a better experience.
 
 ## Where can I download this document ? 
 

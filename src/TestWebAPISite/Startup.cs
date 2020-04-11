@@ -70,7 +70,7 @@ namespace TestWebAPISite
             {
                 endpoints.MapControllers();
 
-                endpoints.MakeZip(app);
+                endpoints.MapZip(app);
             });
         }
     }
