@@ -12,15 +12,14 @@ Project 'CLIExecute' has the following package references
    > YamlDotNet                                               8.1.0       8.1.0   
 
 Project 'ExtensionNetCore3' has the following package references
-   [netstandard2.0]: 
-   Top-level Package                                               Requested   Resolved
-   > Microsoft.AspNetCore.Hosting.Server.Abstractions              2.2.0       2.2.0   
-   > Microsoft.AspNetCore.Mvc.Abstractions                         2.2.0       2.2.0   
-   > Microsoft.AspNetCore.Mvc.ApiExplorer                          2.2.0       2.2.0   
-   > Microsoft.Extensions.DependencyInjection.Abstractions         3.1.2       3.1.2   
-   > Microsoft.Extensions.Hosting.Abstractions                     3.1.2       3.1.2   
-   > Microsoft.SourceLink.GitHub                                   1.0.0       1.0.0   
-   > NETStandard.Library                                     (A)   [2.0.3, )   2.0.3   
+   [netcoreapp3.1]: 
+   Top-level Package                                            Requested   Resolved
+   > Microsoft.AspNetCore.Hosting.Server.Abstractions           2.2.0       2.2.0   
+   > Microsoft.AspNetCore.Mvc.Abstractions                      2.2.0       2.2.0   
+   > Microsoft.AspNetCore.Mvc.ApiExplorer                       2.2.0       2.2.0   
+   > Microsoft.Extensions.DependencyInjection.Abstractions      3.1.2       3.1.2   
+   > Microsoft.Extensions.Hosting.Abstractions                  3.1.2       3.1.2   
+   > Microsoft.SourceLink.GitHub                                1.0.0       1.0.0   
 
 Project 'TestWebAPISite' has the following package references
    [netcoreapp3.1]: 
