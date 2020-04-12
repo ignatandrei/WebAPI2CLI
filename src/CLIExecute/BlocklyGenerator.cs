@@ -82,18 +82,21 @@ namespace CLIExecute
         {
             if (ReturnType == typeof(void))
             {
-                return $"this.setOutput(true, 'Boolean');";
+                return "Boolean";
+                //return $"this.setOutput(true, 'Boolean');";
                 //return @" 
                 //    this.setPreviousStatement(true, null);
                 //    this.setNextStatement(true, null);";
             }
             else
             {
-                return $"this.setOutput(true, {ListOfBlockly.nameType(ReturnType)});";
+                //return $"this.setOutput(true, {ListOfBlockly.nameType(ReturnType)});";
+                return ListOfBlockly.nameType(ReturnType);
             }
         }
         internal string propsDefinitionFunction()
         {
+            string tooltip = $"{this.nameCommand()} :";
             var strPropsDefinition = "";
             if (Params != null)
                 foreach (var param in Params)
@@ -103,14 +106,17 @@ namespace CLIExecute
                     .setCheck('{ListOfBlockly.nameType(param.Value.type)}')
                     .appendField('{param.Key}'); ";
 
+                    tooltip += $"{param.Key}: {ListOfBlockly.nameType(param.Value.type)}";
+
                 }
-            return strPropsDefinition;
+            tooltip += $" returns: {returnFunction()}";
+            return strPropsDefinition + ";"+ $" this.setTooltip('{tooltip}');";
         }
         internal string FunctionDefinition()
         {
             var strPropsDefinition = propsDefinitionFunction();
 
-            var returnType = returnFunction();
+            var returnType = $"this.setOutput(true,'{returnFunction()}');";
 
             return $@"
                 Blockly.Blocks['{nameCommand()}'] = {{

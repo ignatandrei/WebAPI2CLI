@@ -430,9 +430,20 @@
                                     <next>
                                         <block type="text_print" id="print1" inline="false">
                                             <value name="TEXT">
-                                                <block type="variables_get">
-                                                    <field name="VAR">n</field>
+                                                <block type="TestWebAPISite_Controllers_SumArgs">
+                                                    <value name="val_x">
+                                                        <shadow type="math_number">
+                                                            <field name="NUM">10</field>
+                                                        </shadow>
+                                                    </value>
+                                                    <value name="val_y">
+                                                        <block type="variables_get">
+                                                            <field name="VAR">n</field>
+                                                        </block>
+                                                    </value>
+                                                    
                                                 </block>
+                                                
 
                                             </value>
                                             <next>
@@ -552,7 +563,7 @@
             // Add an API function for the alert() block, generated for "text_print" blocks.
             var wrapper = function (text) {
                 text = text ? text.toString() : '';
-                //console.log(text);
+                console.log(JSON.stringify(text));
                 outputArea.value = outputArea.value + '\n' + text;
             };
             interpreter.setProperty(globalObject, 'alert',
@@ -565,6 +576,19 @@
             };
             interpreter.setProperty(globalObject, 'prompt',
                 interpreter.createNativeFunction(wrapper));
+            //var wrapper = function (obj) {
+            //    var json = JSON.parse(obj);
+            //    var objNew = {};
+            //    console.log(Blockly.mainWorkspace.getAllVariables());
+            //    for (var key in json) {
+            //        console.log(`evaluating ${key}`);
+            //        objNew[key] = eval(json[key]);
+            //        console.log(`finish ${key}`);
+            //    }
+            //    return objNew;
+            //}
+            //interpreter.setProperty(globalObject, 'resolveObject',
+            //    interpreter.createNativeFunction(wrapper));
 
             var wrapper = function (href, callback) {
                 var req = new XMLHttpRequest();

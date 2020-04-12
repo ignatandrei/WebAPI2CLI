@@ -127,14 +127,14 @@ return xmlList;
             var item = BlocklyTypeTranslator(t);
             if (item != null)
                 return (item, null);
-
+            string tooltip = $"{t.Name} with props:";
             string propsDef = "";
             string prodCode = "";
             foreach (var prop in t.GetProperties())
             {
                 if (prop.GetSetMethod() == null)
                     continue;
-
+                tooltip += $"{prop.Name}: {nameType(prop.PropertyType)};";
                 propsDef += $@"{Environment.NewLine}
                 this.appendValueInput('val_{prop.Name}')
                         .setCheck('{nameType(prop.PropertyType)}')
@@ -152,6 +152,7 @@ return xmlList;
                         this.appendDummyInput()
                             .appendField('{t.Name}');
                         {propsDef}
+                        this.setTooltip('{tooltip}');
                         this.setOutput(true, '{nameType(t)}');
                             }}  
                     }};";
@@ -160,8 +161,20 @@ return xmlList;
                 Blockly.JavaScript['{nameType(t)}'] = function(block) {{
                 var obj={{}};
                 {prodCode}
-                var code = JSON.stringify(obj)+'\n';
+                var code = JSON.stringify(obj);
+                code =`(function(){{
+                        var json = JSON.parse('${{code}}');
+                var objNew = {{}};
                 
+                for (var key in json) {{
+                    
+                    objNew[key] = eval(json[key]);
+                    
+                }};
+                
+                  return  JSON.stringify(objNew);}})()`;     
+                   
+               
                 //console.log(code);
                 return [code, Blockly.JavaScript.ORDER_NONE];
                 }};";
