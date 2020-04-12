@@ -145,22 +145,33 @@ return xmlList;
         }
         internal string GenerateBlocksFunctionsDefinition()
         {
-            string blockText = "";
-            foreach (var cmd in this)
+            string blockText = "var blockTextLocalSiteFunctions='';";
+            foreach (var cmdAll in this.GroupBy(it => it.ControllerName))
             {
-                blockText += $@"{Environment.NewLine}
-                var blockText_{cmd.nameCommand()} = '<block type=""{cmd.nameCommand()}""></block>';
-                var block_{cmd.nameCommand()} = Blockly.Xml.textToDom(blockText_{cmd.nameCommand()});
-                xmlList.push(block_{cmd.nameCommand()});";
+                var key = cmdAll.Key;
+                blockText += $"blockTextLocalSiteFunctions += '<category name=\"{key}\">';";
+                foreach (var cmd in cmdAll)
+                {
+                    blockText += $@"{Environment.NewLine}
+                        blockTextLocalSiteFunctions += '<block type=""{cmd.nameCommand()}""></block>';";
+                }
+                blockText+=$"blockTextLocalSiteFunctions+='</category>';";
+                //blockText += $"blockText_{key} +='</category>';";
+                //blockText += $"xmlList.push(Blockly.Xml.textToDom(blockText_{key}));";
+
             }
-            var strDef = $@"
- var registerFunctions = function() {{
-        var xmlList = [];
-        {blockText}
+            blockText += $"console.log(blockTextLocalSiteFunctions);";
+
+            return blockText;
+
+//            var strDef = $@"
+// var registerFunctions = function() {{
+//        var xmlList = [];
+//        {blockText}
                 
-return xmlList;
-              }}  ";
-            return strDef;
+//return xmlList;
+//              }}  ";
+//            return strDef;
 
         }
 

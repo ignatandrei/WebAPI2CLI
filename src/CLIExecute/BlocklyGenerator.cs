@@ -13,6 +13,13 @@ namespace CLIExecute
     public class BlocklyGenerator
     {
         /// <summary>
+        /// Gets or sets the name of the controller.
+        /// </summary>
+        /// <value>
+        /// The name of the controller.
+        /// </value>
+        public string ControllerName { get; set; }
+        /// <summary>
         /// Gets or sets the type of the return.
         /// </summary>
         /// <value>
