@@ -215,7 +215,7 @@ blockTextLocalSiteFunctions += '<shadow type=""{blockShadow}"">';";
                 //blockText += $"xmlList.push(Blockly.Xml.textToDom(blockText_{key}));";
 
             }
-            blockText += $"console.log(blockTextLocalSiteFunctions);";
+            //blockText += $"console.log(blockTextLocalSiteFunctions);";
 
             return blockText;
 

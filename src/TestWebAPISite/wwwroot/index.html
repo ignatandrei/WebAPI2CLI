@@ -510,7 +510,7 @@
 
     <script>
         var test = document.getElementById("LocalSiteFunctions");
-        console.log(blockTextLocalSiteFunctions);
+        //console.log(blockTextLocalSiteFunctions);
         test.innerHTML = blockTextLocalSiteFunctions;
         demoWorkspace = Blockly.inject('blocklyDiv',
             {
@@ -584,9 +584,9 @@
 
             var wrapper = function (href, objectToPost, callback) {
                 var data = `postXhr: href: ${href} obj: ${objectToPost}`;
-                console.log(data);
+                //console.log(data);
                 data = JSON.stringify(objectToPost);
-                console.log(`sending ${data}`);
+                //console.log(`sending ${data}`);
                 var req = new XMLHttpRequest();
 
                 req.open('POST', href, true);
@@ -618,9 +618,9 @@
 
             var wrapper = function (href, objectToPost, callback) {
                 var data = `putXhr: href: ${href} obj: ${objectToPost}`;
-                console.log(data);
+                //console.log(data);
                 data = JSON.stringify(objectToPost);
-                console.log(`sending ${data}`);
+                //console.log(`sending ${data}`);
                 var req = new XMLHttpRequest();
 
                 req.open('PUT', href, true);
@@ -653,7 +653,7 @@
 
             var wrapper = function (href, callback) {
                 var data = `deleteXhr: href: ${href} `;
-                console.log(data);
+                //console.log(data);
                 
                 
                 var req = new XMLHttpRequest();

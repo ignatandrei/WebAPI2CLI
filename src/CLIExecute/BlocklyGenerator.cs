@@ -159,16 +159,27 @@ namespace CLIExecute
             //        functionXHR = "postVoid";
             //    }
             //}
+           
             str += $"return {functionXHR}Xhr({paramsXHR});}}";
             return str;
         }
         internal string FunctionJSGenerator()
         {
             var paramsStr = "";
+            var paramsBodyStr = "";
             string argsXHR = "";
+            string[] argsBody = null;
             if (ExistsParams)
             {
-                paramsStr=string.Join(Environment.NewLine,
+                argsBody = Params.Where(it => it.Value.bs == BindingSource.Body)
+                    .Select(it=>it.Key)
+                    .ToArray() ;
+                if (argsBody.Length > 0)
+                {
+                    paramsBodyStr = string.Join(Environment.NewLine,
+                       argsBody.Select(it => $"objBody['val_{it}'] =obj['val_{it}'];"));
+                }
+                paramsStr =string.Join(Environment.NewLine,
                     Params.Select(param=>
                     $@"
                     obj['val_{param.Key}'] = Blockly.JavaScript.valueToCode(block, 'val_{param.Key}', Blockly.JavaScript.ORDER_ATOMIC);"
@@ -176,9 +187,10 @@ namespace CLIExecute
                     ));
                 argsXHR = string.Join(",", Params.Select(param => $@"${{obj['val_{param.Key}']}}"));
             }
-            if (argsXHR.Length > 0)
+            
+            if (argsBody?.Length > 0)
             {
-                argsXHR += ",${JSON.stringify(obj)}";
+                argsXHR += ",${JSON.stringify(objBody)}";
             }
             var returnValue = "";
             if (ReturnType == typeof(void))
@@ -195,9 +207,12 @@ namespace CLIExecute
             return $@"
 Blockly.JavaScript['{nameCommand()}'] = function(block) {{
 var obj={{}};//{RelativeRequestUrl}
+var objBody={{}};
 {paramsStr}
-
-//console.log(obj);
+{paramsBodyStr}
+console.log('{Verb} {RelativeRequestUrl}');
+console.log(obj);
+console.log(objBody);
 var code =`{GenerateGet()}({argsXHR})`;
 
 {returnValue}
