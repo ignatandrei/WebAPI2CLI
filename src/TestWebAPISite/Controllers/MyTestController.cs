@@ -19,6 +19,16 @@ namespace TestWebAPISite.Controllers
             return sumargs.x + sumargs.y;
         }
 
-       
+        [HttpPost]
+        public SumArgs GetTestValue()
+        {
+            return new SumArgs()
+            {
+                x = 10,
+                y = 20
+            };
+        }
+
+
     }
 }

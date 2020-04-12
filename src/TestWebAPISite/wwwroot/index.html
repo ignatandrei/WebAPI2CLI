@@ -359,6 +359,8 @@
             <category id="catFunctions" colour="290" custom="PROCEDURE" name="Functions"></category>
             <category id="catJSON" colour="160" name="JSON">
                 <block type="converttojson"></block>
+                <block type="converttostring"></block>
+                
             </category>
                 <category id="catHelpers" colour="160" name="Helpers">
                     <block type="wait_seconds"></block>
@@ -553,8 +555,46 @@
             var value_ValueToConvert = Blockly.JavaScript.valueToCode(block, 'ValueToConvert', Blockly.JavaScript.ORDER_ATOMIC);            
             value_ValueToConvert = value_ValueToConvert.replace(/(\r\n|\n|\r)/gm, "")
             var code = `(function(){
-                var json = JSON.parse(eval("${value_ValueToConvert}"));
-                return json;
+                var val=eval("${value_ValueToConvert}");
+                var json = JSON.parse(val); 
+                var objNew = {};
+                
+                for (var key in json) {
+                    
+                    objNew[key] = eval(json[key]);
+                    
+                };
+                
+                  return  (objNew);                
+                })()
+                `;
+            //console.log(code);
+            //return ["'andrei'+" + value_valuetoimport, Blockly.JavaScript.ORDER_NONE];
+            return [code, Blockly.JavaScript.ORDER_NONE];
+            //
+            //
+            //var code = JSON.parse(value_valuetoimport);            
+            //return [code, Blockly.JavaScript.ORDER_NONE];
+        };
+        Blockly.Blocks['converttostring'] = {
+            init: function () {
+                this.appendDummyInput()
+                    .appendField("ConvertToString");
+                this.appendValueInput("ValueToConvert")
+                    .setCheck(null);
+                this.setInputsInline(true);
+                this.setOutput(true, null);
+                this.setTooltip("Convert to String");
+                this.setHelpUrl("");
+            }
+        };
+        Blockly.JavaScript['converttostring'] = function (block) {
+            var value_ValueToConvert = Blockly.JavaScript.valueToCode(block, 'ValueToConvert', Blockly.JavaScript.ORDER_ATOMIC);
+            value_ValueToConvert = value_ValueToConvert.replace(/(\r\n|\n|\r)/gm, "")
+            var code = `(function(){
+                var val=eval("${value_ValueToConvert}");
+                var json = JSON.stringify(val); 
+                return  (json);                
                 })()
                 `;
             console.log(code);
@@ -565,7 +605,6 @@
             //var code = JSON.parse(value_valuetoimport);            
             //return [code, Blockly.JavaScript.ORDER_NONE];
         };
-
         demoWorkspace = Blockly.inject('blocklyDiv',
             {
                 media: '../../media/',
@@ -600,7 +639,7 @@
             // Add an API function for the alert() block, generated for "text_print" blocks.
             var wrapper = function (text) {
                 text = text ? text.toString() : '';
-                console.log(JSON.stringify(text));
+                //console.log('andrei'+JSON.stringify(text));
                 outputArea.value = outputArea.value + '\n' + text;
             };
             interpreter.setProperty(globalObject, 'alert',
