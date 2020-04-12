@@ -131,7 +131,11 @@ namespace CLIExecute
             {
                 paramsFunction += string.Join(",", Params.Select(it => it.Key));
             }
-            
+            var paramsXHR = "strUrl";
+            if (paramsFunction.Length > 0)
+            {
+                paramsXHR += $",{paramsFunction}";
+            }
             var str = $@"function({paramsFunction}){{
                 var strUrl =  '{this.RelativeRequestUrl}';      
                 ";
@@ -140,7 +144,16 @@ namespace CLIExecute
             {
                 str += $@"strUrl = strUrl.replace('{{{param.Key}}}',{param.Key});";
             }
-            str += "return getXhr(strUrl);}";
+
+            var functionXHR = Verb.ToLower();
+            if(functionXHR == "post")
+            {
+                if(ReturnType == typeof(void))
+                {
+                    functionXHR = "postVoid";
+                }
+            }
+            str += $"return {functionXHR}Xhr({paramsXHR});}}";
             return str;
         }
         internal string FunctionJSGenerator()
