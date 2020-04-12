@@ -148,7 +148,17 @@ namespace CLIExecute
                         
                         v1.Params = GetParameters(api.ParameterDescriptions.ToArray());
                         var c = api.ActionDescriptor as ControllerActionDescriptor;
+                        
+
                         v1.ReturnType = c?.MethodInfo?.ReturnType;
+                        var type = v1.ReturnType;
+                        if (type != null && type.IsGenericType)
+                        {
+                            if (type.IsSubclassOf(typeof(Task))){
+                                type = type.GetGenericArguments()[0];//TODO: get all
+                                v1.ReturnType = type;
+                            }
+                        }
                         v1.ControllerName = c?.ControllerName;
                         allCommands.Add(v1);
                     }

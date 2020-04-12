@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -21,8 +22,9 @@ namespace TestWebAPISite.Controllers
 
         // GET: api/MathAdd/5
         [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        public async Task<string> Get(int id)
         {
+            await Task.Delay(5000);
             return "value" + id;
         }
 
