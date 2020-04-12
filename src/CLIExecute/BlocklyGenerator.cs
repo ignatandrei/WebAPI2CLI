@@ -112,6 +112,11 @@ namespace CLIExecute
             tooltip += $" returns: {returnFunction()}";
             return strPropsDefinition + ";"+ $" this.setTooltip('{tooltip}');";
         }
+        internal string CommandDisplayName()
+        {
+            
+            return this.Verb + " " + NameCommand;
+        }
         internal string FunctionDefinition()
         {
             var strPropsDefinition = propsDefinitionFunction();
@@ -122,7 +127,7 @@ namespace CLIExecute
                 Blockly.Blocks['{nameCommand()}'] = {{
   init: function() {{
     this.appendDummyInput()
-        .appendField('{nameCommand()}');
+        .appendField('{CommandDisplayName()}');
         {strPropsDefinition}
         {returnType}
         }}//init
