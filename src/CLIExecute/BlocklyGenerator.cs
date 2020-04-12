@@ -134,7 +134,11 @@ namespace CLIExecute
             var paramsXHR = "strUrl";
             if (paramsFunction.Length > 0)
             {
-                paramsXHR += $",{paramsFunction}";
+                foreach(var item in Params){
+                    if (item.Value.bs != BindingSource.Body)
+                        continue;
+                    paramsXHR += $",{item.Key}";
+                }
             }
             var str = $@"function({paramsFunction}){{
                 var strUrl =  '{this.RelativeRequestUrl}';      
@@ -143,6 +147,7 @@ namespace CLIExecute
             foreach(var param in Params)
             {
                 str += $@"strUrl = strUrl.replace('{{{param.Key}}}',{param.Key});";
+                
             }
 
             var functionXHR = Verb.ToLower();

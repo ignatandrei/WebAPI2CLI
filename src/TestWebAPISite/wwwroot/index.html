@@ -52,7 +52,7 @@
         </category>
         <sep></sep>
         <category name="Core">
-            
+
             <block type="api_MathAdd_POST">
                 <value name="val_value"><shadow type="text"><field name="TEXT">abc</field></shadow></value>
             </block>
@@ -453,8 +453,25 @@
                                                                         <block type="api_MathAdd_POST">
                                                                             <value name="val_value"><shadow type="text"><field name="TEXT">abc</field></shadow></value>
                                                                         </block>
-                                                                        </value>
-                                                                    </block>
+                                                                    </value>
+                                                                    <next>
+                                                                        <block type="text_print" id="print3" inline="false">
+                                                                            <value name="TEXT">
+
+                                                                                <block type="api_MathAdd__id__PUT">
+                                                                                    <value name="val_value"><shadow type="text"><field name="TEXT">abc</field></shadow></value>
+                                                                                    <value name="val_id">
+                                                                                        <block type="variables_get">
+                                                                                            <field name="VAR">n</field>
+                                                                                        </block>
+
+                                                                                    </value>
+                                                                                </block>
+                                                                            </value>
+                                                                        </block>
+
+                                                                    </next>
+                                                                </block>
 
                                                             </next>
                                                         </block>
@@ -549,22 +566,22 @@
                 interpreter.createAsyncFunction(wrapper));
 
 
-            
+
             var wrapper = function (href, objectToPost, callback) {
                 var data = `postXhr: href: ${href} obj: ${objectToPost}`;
                 console.log(data);
                 data = JSON.stringify(objectToPost);
                 console.log(`sending ${data}`);
                 var req = new XMLHttpRequest();
-                
+
                 req.open('POST', href, true);
                 req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-                
+
                 req.onreadystatechange = function () {
                     if (req.readyState == 4) {
                         if (req.status == 200) {
                             var answer = req.responseText;
-                            if(answer) {
+                            if (answer) {
                                 callback(answer);
                             }
                             else {
@@ -583,6 +600,42 @@
             };
             interpreter.setProperty(globalObject, 'postXhr',
                 interpreter.createAsyncFunction(wrapper));
+
+            var wrapper = function (href, objectToPost, callback) {
+                var data = `putXhr: href: ${href} obj: ${objectToPost}`;
+                console.log(data);
+                data = JSON.stringify(objectToPost);
+                console.log(`sending ${data}`);
+                var req = new XMLHttpRequest();
+
+                req.open('PUT', href, true);
+                req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+                req.onreadystatechange = function () {
+                    if (req.readyState == 4) {
+                        if (req.status == 200) {
+                            var answer = req.responseText;
+                            if (answer) {
+                                callback(answer);
+                            }
+                            else {
+                                callback(true);
+                            }
+                        } else {
+                            throw `${href} status :${req.status}`;
+                        }
+
+                    }
+                    else {
+                        //window.alert(`error ${href} ${req.status}`);
+                    }
+                };
+                req.send(data);
+            };
+            interpreter.setProperty(globalObject, 'putXhr',
+                interpreter.createAsyncFunction(wrapper));
+
+
             // Add an API for the wait block.  See wait_block.js
             initInterpreterWaitForSeconds(interpreter, globalObject);
 
