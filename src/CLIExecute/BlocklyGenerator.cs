@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 
 namespace CLIExecute
@@ -97,9 +98,9 @@ namespace CLIExecute
                 foreach (var param in Params)
                 {
                     strPropsDefinition += $@"
-                    this.appendValueInput('{param.Key} ')
+                    this.appendValueInput('val_{param.Key}')
                     .setCheck('{ListOfBlockly.nameType(param.Value.type)}')
-                    .appendField('{param.Key}'); ";
+                    .appendField('fld_{param.Key}'); ";
 
                 }
             return strPropsDefinition;
@@ -121,28 +122,41 @@ namespace CLIExecute
 }};//{NameCommand}
 ";
         }
+        bool ExistsParams => (this.Params?.Count ?? 0) > 0;
         string GenerateGet()
         {
-            var str = $@"getXhr('{this.RelativeRequestUrl}')";
-            if (this.Params == null)
-                return  str;  
-            
-            foreach(var item in Params)
+            string paramsFunction = "";
+            if (ExistsParams)
             {
-                str = str.Replace("{" + item.Key + "}", $"'+ obj.Key +'");
+                paramsFunction += string.Join(",", Params.Select(it => it.Key));
             }
-            str = str + "'";
+            
+            var str = $@"function({paramsFunction}){{
+                var strUrl =  '{this.RelativeRequestUrl}';      
+                ";
+            if (ExistsParams)                            
+            foreach(var param in Params)
+            {
+                str += $@"strUrl = strUrl.replace('{{{param.Key}}}',{param.Key});";
+            }
+            str += "return getXhr(strUrl);}";
             return str;
         }
         internal string FunctionJSGenerator()
         {
             var paramsStr = "";
-            if (Params != null)
-                foreach (var param in Params)
-                {
-                    paramsStr += $@"
-                    obj['value_{param.Key}'] = Blockly.JavaScript.valueToCode(block, '{param.Key}', Blockly.JavaScript.ORDER_ATOMIC);"; ;
-                }
+            string argsXHR = "";
+            if (ExistsParams)
+            {
+                paramsStr=string.Join(Environment.NewLine,
+                    Params.Select(param=>
+                    $@"
+                    obj['val_{param.Key}'] = Blockly.JavaScript.valueToCode(block, 'val_{param.Key}', Blockly.JavaScript.ORDER_ATOMIC);"
+                    
+                    ));
+                argsXHR = string.Join(",", Params.Select(param => $@"${{obj['val_{param.Key}']}}"));
+            }
+                
             var returnValue = "";
             if (ReturnType == typeof(void))
             {
@@ -158,8 +172,9 @@ Blockly.JavaScript['{nameCommand()}'] = function(block) {{
 var obj={{}};//{RelativeRequestUrl}
 {paramsStr}
 
-var code=JSON.stringify(obj);
-code+=`{GenerateGet()}`;
+console.log(obj);
+var code =`{GenerateGet()}({argsXHR})`;
+
 {returnValue}
 }};
 ";

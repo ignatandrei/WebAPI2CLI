@@ -130,7 +130,7 @@ return xmlList;
             return (t.FullName, strDef + strJS);
         }
         /// <summary>
-        /// Functionses to be generated.
+        /// Functions blocklyAPIFunctions to be generated.
         /// </summary>
         /// <returns></returns>
         public string FunctionsToBeGenerated()

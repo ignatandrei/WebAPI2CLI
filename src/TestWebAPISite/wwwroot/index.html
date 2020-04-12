@@ -427,8 +427,25 @@
                                                     <value name="TEXT">
                                                         <block type="api_MathAdd_GET"></block>
                                                     </value>
+                                                    <next>
+                                                        <block type="text_print" id="print3" inline="false">
+                                                            <value name="TEXT">
+                                                                <block type="api_MathAdd__id__GET">
+                                                                    <value name="val_id">
+                                                                        <block type="variables_get">
+                                                                            <field name="VAR">n</field>
+                                                                        </block>
+
+                                                                    </value>
+                                                                </block>
+                                                            </value>
+                                                        </block>
+                                                    </next>
+
                                                 </block>
+
                                             </next>
+                                            
                                         </block>
 
                                     </next>
@@ -569,6 +586,7 @@
                 // And then show generated code in an alert.
                 // In a timeout to allow the outputArea.value to reset first.
                 setTimeout(function () {
+                    console.log(latestCode);
                     alert('Ready to execute the following code\n' +
                         '===================================\n' +
                         latestCode);
