@@ -172,7 +172,7 @@ return xmlList;
                     
                 }};
                 
-                  return  JSON.stringify(objNew);}})()`;     
+                  return  (objNew);}})()`;     
                    
                
                 //console.log(code);

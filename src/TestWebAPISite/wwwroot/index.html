@@ -576,19 +576,19 @@
             };
             interpreter.setProperty(globalObject, 'prompt',
                 interpreter.createNativeFunction(wrapper));
-            //var wrapper = function (obj) {
-            //    var json = JSON.parse(obj);
-            //    var objNew = {};
-            //    console.log(Blockly.mainWorkspace.getAllVariables());
-            //    for (var key in json) {
-            //        console.log(`evaluating ${key}`);
-            //        objNew[key] = eval(json[key]);
-            //        console.log(`finish ${key}`);
-            //    }
-            //    return objNew;
-            //}
-            //interpreter.setProperty(globalObject, 'resolveObject',
-            //    interpreter.createNativeFunction(wrapper));
+                //var wrapper = function (obj) {
+                //    var json = JSON.parse(obj);
+                //    var objNew = {};
+                //    console.log(Blockly.mainWorkspace.getAllVariables());
+                //    for (var key in json) {
+                //        console.log(`evaluating ${key}`);
+                //        objNew[key] = eval(json[key]);
+                //        console.log(`finish ${key}`);
+                //    }
+                //    return objNew;
+                //}
+                //interpreter.setProperty(globalObject, 'resolveObject',
+                //    interpreter.createNativeFunction(wrapper));
 
             var wrapper = function (href, callback) {
                 var req = new XMLHttpRequest();
