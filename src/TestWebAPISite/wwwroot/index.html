@@ -357,26 +357,29 @@
         <category name="advanced">
             <category id="catVariables" colour="330" custom="VARIABLE" name="Variables"></category>
             <category id="catFunctions" colour="290" custom="PROCEDURE" name="Functions"></category>
-            <category id="catHelpers" colour="160" name="Helpers">
-                <block type="wait_seconds"></block>
-                <block type="text_print">
-                    <value name="TEXT">
-                        <shadow type="text">
-                            <field name="TEXT">abc</field>
-                        </shadow>
-                    </value>
-                </block>
-                <block type="text_prompt_ext">
-                    <value name="TEXT">
-                        <shadow type="text">
-                            <field name="TEXT">abc</field>
-                        </shadow>
-                    </value>
-                </block>
+            <category id="catJSON" colour="160" name="JSON">
+                <block type="converttojson"></block>
             </category>
-        </category>
+                <category id="catHelpers" colour="160" name="Helpers">
+                    <block type="wait_seconds"></block>
+                    <block type="text_print">
+                        <value name="TEXT">
+                            <shadow type="text">
+                                <field name="TEXT">abc</field>
+                            </shadow>
+                        </value>
+                    </block>
+                    <block type="text_prompt_ext">
+                        <value name="TEXT">
+                            <shadow type="text">
+                                <field name="TEXT">abc</field>
+                            </shadow>
+                        </value>
+                    </block>
+                </category>
+            </category>
 
-    </xml>
+</xml>
 
     <xml xmlns="https://developers.google.com/blockly/xml" id="startBlocks" style="display: none">
         <block type="variables_set" id="set_n_initial" inline="true" x="20" y="20">
@@ -441,7 +444,12 @@
                                             <next>
                                                 <block type="text_print" id="print2" inline="false">
                                                     <value name="TEXT">
-                                                        <block type="api_MathAdd_GET"></block>
+                                                        <block type="converttojson">
+                                                            <value name="ValueToConvert">
+                                                                <block type="api_MathAdd_GET"></block>
+                                                            </value>
+                                                        </block>
+                                                        
                                                     </value>
                                                     <next>
                                                         <block type="text_print" id="print3" inline="false">
@@ -529,6 +537,35 @@
         var test = document.getElementById("LocalSiteFunctions");
         //console.log(blockTextLocalSiteFunctions);
         test.innerHTML = blockTextLocalSiteFunctions;
+        Blockly.Blocks['converttojson'] = {
+            init: function () {
+                this.appendDummyInput()
+                    .appendField("ConvertToJSON");
+                this.appendValueInput("ValueToConvert")
+                    .setCheck(null);
+                this.setInputsInline(true);
+                this.setOutput(true, null);
+                this.setTooltip("Convert to JSON");
+                this.setHelpUrl("");
+            }
+        };
+        Blockly.JavaScript['converttojson'] = function (block) {
+            var value_ValueToConvert = Blockly.JavaScript.valueToCode(block, 'ValueToConvert', Blockly.JavaScript.ORDER_ATOMIC);            
+            value_ValueToConvert = value_ValueToConvert.replace(/(\r\n|\n|\r)/gm, "")
+            var code = `(function(){
+                var json = JSON.parse(eval("${value_ValueToConvert}"));
+                return json;
+                })()
+                `;
+            console.log(code);
+            //return ["'andrei'+" + value_valuetoimport, Blockly.JavaScript.ORDER_NONE];
+            return [code, Blockly.JavaScript.ORDER_NONE];
+            //
+            //
+            //var code = JSON.parse(value_valuetoimport);            
+            //return [code, Blockly.JavaScript.ORDER_NONE];
+        };
+
         demoWorkspace = Blockly.inject('blocklyDiv',
             {
                 media: '../../media/',
