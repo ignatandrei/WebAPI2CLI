@@ -52,6 +52,23 @@
         </category>
         <sep></sep>
         <category name="Core">
+            
+            <block type="api_MathAdd__id__PUT">
+                <value name="val_id">
+                    <shadow type="math_number">
+                        <field name="NUM">10</field>
+                    </shadow>
+
+                </value>
+                <value name="val_value">
+                    <shadow type="text">
+                        <field name="TEXT">abc</field>
+                    </shadow>
+                    </value>
+            </block>
+
+
+
             <category id="catLogic" colour="210" name="Logic">
                 <block type="controls_if"></block>
                 <block type="logic_compare"></block>
@@ -445,7 +462,7 @@
                                                 </block>
 
                                             </next>
-                                            
+
                                         </block>
 
                                     </next>
@@ -460,26 +477,27 @@
 
     <script>
         var test = document.getElementById("LocalSiteFunctions");
+        console.log(blockTextLocalSiteFunctions);
         test.innerHTML = blockTextLocalSiteFunctions;
-            demoWorkspace = Blockly.inject('blocklyDiv',
+        demoWorkspace = Blockly.inject('blocklyDiv',
             {
                 media: '../../media/',
                 toolbox: document.getElementById('toolbox')
             });
         demoWorkspace.registerToolboxCategoryCallback('LocalSiteValues', registerValues);
         //demoWorkspace.registerToolboxCategoryCallback('LocalSiteFunctions', registerFunctions);
-            //function (ws) {
-            //    //var tb = ws.getToolbox();
-            //    //console.log(tb);
-            //    //window.alert('adsa');
-            //    registerFunctions();
-            //    //var tb = demoWorkspace.getToolbox();
-            //    //tb.refreshSelection();
-            //});
+        //function (ws) {
+        //    //var tb = ws.getToolbox();
+        //    //console.log(tb);
+        //    //window.alert('adsa');
+        //    registerFunctions();
+        //    //var tb = demoWorkspace.getToolbox();
+        //    //tb.refreshSelection();
+        //});
 
         Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), demoWorkspace);
-        var tb = demoWorkspace.getToolbox();
-        console.log(tb.tree_);
+        //var tb = demoWorkspace.getToolbox();
+        //console.log(tb.tree_);
         //tb.refreshSelection();
         //demoWorkspace.updateToolbox(tb);
 
@@ -514,8 +532,8 @@
                 req.onreadystatechange = function () {
                     if (req.status == 200) {
                         if (req.readyState == 4) {
-                            console.log(`from ${href} ${JSON.stringify(req.responseText)}`);
-                            console.log(callback);
+                            //console.log(`from ${href} ${JSON.stringify(req.responseText)}`);
+                            //console.log(callback);
                             //callback(JSON.stringify(req.responseText));
                             callback(req.responseText);
                             //callback('andrei');

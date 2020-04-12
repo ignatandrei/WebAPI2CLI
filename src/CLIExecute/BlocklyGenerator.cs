@@ -100,7 +100,7 @@ namespace CLIExecute
                     strPropsDefinition += $@"
                     this.appendValueInput('val_{param.Key}')
                     .setCheck('{ListOfBlockly.nameType(param.Value.type)}')
-                    .appendField('fld_{param.Key}'); ";
+                    .appendField('{param.Key}'); ";
 
                 }
             return strPropsDefinition;
@@ -122,7 +122,7 @@ namespace CLIExecute
 }};//{NameCommand}
 ";
         }
-        bool ExistsParams => (this.Params?.Count ?? 0) > 0;
+        internal bool ExistsParams => (this.Params?.Count ?? 0) > 0;
         string GenerateGet()
         {
             string paramsFunction = "";
@@ -172,7 +172,7 @@ Blockly.JavaScript['{nameCommand()}'] = function(block) {{
 var obj={{}};//{RelativeRequestUrl}
 {paramsStr}
 
-console.log(obj);
+//console.log(obj);
 var code =`{GenerateGet()}({argsXHR})`;
 
 {returnValue}

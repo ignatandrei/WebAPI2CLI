@@ -25,10 +25,26 @@ namespace CLIExecute
                 .Select(it => Tuple.Create(it, BlocklyTypeTranslator(it)))
                 .ToArray();
         }
+        internal static string BlocklyTypeBlocks(Type t)
+        {
+            if (t == typeof(int))
+                return "math_number";
+
+            if (t == typeof(string))
+                return "text";
+            if (t == typeof(bool))
+                return "logic_boolean";
+
+            if (typeof(IEnumerable).IsAssignableFrom(t))
+                return "lists_create_with";
+            //what to do with Array ?
+            return null;
+        }
         internal static  string BlocklyTypeTranslator(Type t)
         {
             if (t == typeof(int))
                 return "Number";
+                
             if (t == typeof(string))
                 return "String";
             if (t == typeof(bool))
@@ -124,7 +140,7 @@ return xmlList;
                 {prodCode}
                 var code = JSON.stringify(obj)+'\n';
                 
-                console.log(code);
+                //console.log(code);
                 return [code, Blockly.JavaScript.ORDER_NONE];
                 }};";
             return (t.FullName, strDef + strJS);
@@ -153,7 +169,46 @@ return xmlList;
                 foreach (var cmd in cmdAll)
                 {
                     blockText += $@"{Environment.NewLine}
-                        blockTextLocalSiteFunctions += '<block type=""{cmd.nameCommand()}""></block>';";
+                        blockTextLocalSiteFunctions += '<block type=""{cmd.nameCommand()}"">';";
+                    if(cmd.ExistsParams)
+                    foreach(var param in cmd.Params)
+                    {
+                            var type = param.Value.type;
+                        var existing = ListOfBlockly.BlocklyTypeTranslator(type);
+                        if(existing != null)
+                        {
+                                var val = "";
+                                if (type.IsValueType)
+                                    val = Activator.CreateInstance(type)?.ToString();
+
+                                val = val ?? "";
+                                var blockShadow = ListOfBlockly.BlocklyTypeBlocks(param.Value.type);
+                                blockText += $@"{Environment.NewLine}
+ blockTextLocalSiteFunctions += '<value name=""val_{param.Key}"">';
+blockTextLocalSiteFunctions += '<shadow type=""{blockShadow}"">';";
+                                switch (blockShadow)
+                                {
+                                    case "math_number":
+                                    blockText += $@"
+                                    blockTextLocalSiteFunctions += '<field name=""NUM"">10</field>';
+                                    ";
+                                        break;
+                                    case "text":
+                                    
+                                        blockText += $@"
+                                    blockTextLocalSiteFunctions += '';
+                                    blockTextLocalSiteFunctions += '<field name=""TEXT"">abc</field>';
+                                    ";
+                                        break;
+                                    default:
+                                        break;
+                                }
+                                blockText += $@"
+ blockTextLocalSiteFunctions += '</shadow></value>';
+ ";
+                        }
+                    }
+                    blockText += "blockTextLocalSiteFunctions += '</block>';";
                 }
                 blockText+=$"blockTextLocalSiteFunctions+='</category>';";
                 //blockText += $"blockText_{key} +='</category>';";
