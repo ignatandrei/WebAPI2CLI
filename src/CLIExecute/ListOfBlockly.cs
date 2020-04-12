@@ -87,8 +87,29 @@ namespace CLIExecute
             foreach (var type in types)
             {
                 blockText += $@"{Environment.NewLine}
-                var blockText_{type.Name} = '<block type=""{nameType(type)}""></block>';
-                var block_{type.Name} = Blockly.Xml.textToDom(blockText_{type.Name});
+            
+                var blockText_{type.Name} = '<block type=""{nameType(type)}"">';";
+                foreach(var item in type.GetProperties())
+                {
+                    if (item.GetSetMethod() == null)
+                        continue;
+                    var typeProp = item.PropertyType;
+                    var existing = ListOfBlockly.BlocklyTypeTranslator(typeProp);
+                    if (existing == null)
+                        continue;
+
+                    var blockShadow = ListOfBlockly.BlocklyTypeBlocks(typeProp);
+                    blockText += $@"{Environment.NewLine}
+ var blockTextLocalSiteFunctions = '<value name=""val_{item.Name}"">';
+blockTextLocalSiteFunctions += '<shadow type=""{blockShadow}"">';";
+                    blockText += generateShadow(blockShadow);
+                    blockText += $@"
+ blockTextLocalSiteFunctions += '</shadow></value>';
+ ";
+                    blockText += $"blockText_{ type.Name} += blockTextLocalSiteFunctions;";
+                }
+                blockText += $"blockText_{ type.Name} += '</block>';";
+                blockText += $@"var block_{type.Name} = Blockly.Xml.textToDom(blockText_{type.Name});
                 xmlList.push(block_{type.Name});";
             }
             var strDef = $@"
@@ -111,16 +132,17 @@ return xmlList;
             string prodCode = "";
             foreach (var prop in t.GetProperties())
             {
-                if (prop.GetGetMethod() == null)
+                if (prop.GetSetMethod() == null)
                     continue;
 
                 propsDef += $@"{Environment.NewLine}
-                this.appendValueInput('{prop.Name}')
+                this.appendValueInput('val_{prop.Name}')
+                        .setCheck('{nameType(prop.PropertyType)}')
                         .appendField('{prop.Name}')
-                        .setCheck({nameType(prop.PropertyType)});";
+                        ;";
 
                 prodCode += $@"{Environment.NewLine}
-                obj['{prop.Name}'] = Blockly.JavaScript.valueToCode(block, '{prop.Name}', Blockly.JavaScript.ORDER_ATOMIC);
+                obj['{prop.Name}'] = Blockly.JavaScript.valueToCode(block, 'val_{prop.Name}', Blockly.JavaScript.ORDER_ATOMIC);
                 ";
             }
 
@@ -159,6 +181,26 @@ return xmlList;
             }
             return allDefs;
         }
+        private string generateShadow(string blockShadow)
+        {
+            switch (blockShadow)
+            {
+                case "math_number":
+                    return $@"
+                                    blockTextLocalSiteFunctions += '<field name=""NUM"">10</field>';
+                                    ";
+                    
+                case "text":
+
+                    return $@"
+                                    blockTextLocalSiteFunctions += '';
+                                    blockTextLocalSiteFunctions += '<field name=""TEXT"">abc</field>';
+                                    ";
+                    
+                default:
+                    return "";
+            }
+        }
         internal string GenerateBlocksFunctionsDefinition()
         {
             string blockText = "var blockTextLocalSiteFunctions='';";
@@ -177,32 +219,11 @@ return xmlList;
                         var existing = ListOfBlockly.BlocklyTypeTranslator(type);
                         if(existing != null)
                         {
-                                var val = "";
-                                if (type.IsValueType)
-                                    val = Activator.CreateInstance(type)?.ToString();
-
-                                val = val ?? "";
                                 var blockShadow = ListOfBlockly.BlocklyTypeBlocks(param.Value.type);
                                 blockText += $@"{Environment.NewLine}
  blockTextLocalSiteFunctions += '<value name=""val_{param.Key}"">';
 blockTextLocalSiteFunctions += '<shadow type=""{blockShadow}"">';";
-                                switch (blockShadow)
-                                {
-                                    case "math_number":
-                                    blockText += $@"
-                                    blockTextLocalSiteFunctions += '<field name=""NUM"">10</field>';
-                                    ";
-                                        break;
-                                    case "text":
-                                    
-                                        blockText += $@"
-                                    blockTextLocalSiteFunctions += '';
-                                    blockTextLocalSiteFunctions += '<field name=""TEXT"">abc</field>';
-                                    ";
-                                        break;
-                                    default:
-                                        break;
-                                }
+                                blockText += generateShadow(blockShadow);
                                 blockText += $@"
  blockTextLocalSiteFunctions += '</shadow></value>';
  ";

@@ -57,14 +57,14 @@ namespace CLIExecute
                 Console.WriteLine("WebAPI2CLI: waiting to have app");
                 return;
             }
-            var serverAddresses = app.ServerFeatures.Get<IServerAddressesFeature>();
-            if (serverAddresses == null)
-            {
-                Console.WriteLine("WebAPI2CLI: waiting to have server adresses");
-                return;
-            }
+            //var serverAddresses = app.ServerFeatures.Get<IServerAddressesFeature>();
+            //if (serverAddresses == null)
+            //{
+            //    Console.WriteLine("WebAPI2CLI: waiting to have server adresses");
+            //    return;
+            //}
             _timer.Dispose();
-            var e = new EnumerateWebAPI(serverAddresses.Addresses,api);
+            var e = new EnumerateWebAPI(api);
             var list = e.FindWebAPI();
             BlocklyTypesDefinition = list.TypesToBeGenerated();
             var nr = BlocklyTypesDefinition.Length;
@@ -105,16 +105,15 @@ namespace CLIExecute
     /// </summary>
     public class EnumerateWebAPI
     {
-        private readonly ICollection<string> addresses;
+        //private readonly ICollection<string> addresses;
         private readonly IApiDescriptionGroupCollectionProvider api;
         /// <summary>
         /// Initializes a new instance of the <see cref="EnumerateWebAPI"/> class.
         /// </summary>
-        /// <param name="addresses">The addresses.</param>
         /// <param name="api">The API.</param>
-        public EnumerateWebAPI(ICollection<string> addresses, IApiDescriptionGroupCollectionProvider api)
+        public EnumerateWebAPI( IApiDescriptionGroupCollectionProvider api)
         {
-            this.addresses = addresses;
+            //this.addresses = addresses;
             this.api = api;
             
         }
@@ -126,7 +125,7 @@ namespace CLIExecute
         {
             var allCommands = new ListOfBlockly();
 
-            var allAdresses = addresses.ToArray();
+            //var allAdresses = addresses.ToArray();
 
 
             var groups = api.ApiDescriptionGroups;

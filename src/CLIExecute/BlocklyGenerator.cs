@@ -132,13 +132,19 @@ namespace CLIExecute
                 paramsFunction += string.Join(",", Params.Select(it => it.Key));
             }
             var paramsXHR = "strUrl";
+            bool existBody = false;
             if (paramsFunction.Length > 0)
             {
                 foreach(var item in Params){
                     if (item.Value.bs != BindingSource.Body)
                         continue;
-                    paramsXHR += $",{item.Key}";
+                    existBody = true;
+                    paramsXHR += $",JSON.stringify({item.Key})";
                 }
+            }
+            if(ExistsParams && existBody)
+            {
+                paramsFunction += ",bodyRequest";
             }
             var str = $@"function({paramsFunction}){{
                 var strUrl =  '{this.RelativeRequestUrl}';      
@@ -210,9 +216,9 @@ var obj={{}};//{RelativeRequestUrl}
 var objBody={{}};
 {paramsStr}
 {paramsBodyStr}
-console.log('{Verb} {RelativeRequestUrl}');
-console.log(obj);
-console.log(objBody);
+//console.log('{Verb} {RelativeRequestUrl}');
+//console.log(obj);
+//console.log(objBody);
 var code =`{GenerateGet()}({argsXHR})`;
 
 {returnValue}
