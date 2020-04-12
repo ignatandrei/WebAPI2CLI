@@ -53,18 +53,8 @@
         <sep></sep>
         <category name="Core">
             
-            <block type="api_MathAdd__id__PUT">
-                <value name="val_id">
-                    <shadow type="math_number">
-                        <field name="NUM">10</field>
-                    </shadow>
-
-                </value>
-                <value name="val_value">
-                    <shadow type="text">
-                        <field name="TEXT">abc</field>
-                    </shadow>
-                    </value>
+            <block type="api_MathAdd_POST">
+                <value name="val_value"><shadow type="text"><field name="TEXT">abc</field></shadow></value>
             </block>
 
 
@@ -456,6 +446,17 @@
                                                                     </value>
                                                                 </block>
                                                             </value>
+                                                            <next>
+                                                                <block type="text_print" id="print3" inline="false">
+                                                                    <value name="TEXT">
+
+                                                                        <block type="api_MathAdd_POST">
+                                                                            <value name="val_value"><shadow type="text"><field name="TEXT">abc</field></shadow></value>
+                                                                        </block>
+                                                                        </value>
+                                                                    </block>
+
+                                                            </next>
                                                         </block>
                                                     </next>
 
@@ -530,17 +531,16 @@
                 var req = new XMLHttpRequest();
                 req.open('GET', href, true);
                 req.onreadystatechange = function () {
-                    if (req.status == 200) {
-                        if (req.readyState == 4) {
-                            //console.log(`from ${href} ${JSON.stringify(req.responseText)}`);
-                            //console.log(callback);
-                            //callback(JSON.stringify(req.responseText));
+                    if (req.readyState == 4) {
+                        if (req.status == 200) {
                             callback(req.responseText);
-                            //callback('andrei');
+                        } else {
+                            throw `${href} status :${req.status}`;
                         }
+
                     }
                     else {
-                        window.alert(`error ${href} ${req.status}`);
+                        //window.alert(`error ${href} ${req.status}`);
                     }
                 };
                 req.send(null);

@@ -82,9 +82,10 @@ namespace CLIExecute
         {
             if (ReturnType == typeof(void))
             {
-                return @" 
-                    this.setPreviousStatement(true, null);
-                    this.setNextStatement(true, null);";
+                return $"this.setOutput(true, 'Boolean');";
+                //return @" 
+                //    this.setPreviousStatement(true, null);
+                //    this.setNextStatement(true, null);";
             }
             else
             {
@@ -161,6 +162,8 @@ namespace CLIExecute
             if (ReturnType == typeof(void))
             {
                 returnValue = " return code;";
+                returnValue = " return [code, Blockly.JavaScript.ORDER_NONE];";
+
             }
             else
             {
