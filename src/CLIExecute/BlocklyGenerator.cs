@@ -146,13 +146,13 @@ namespace CLIExecute
             }
 
             var functionXHR = Verb.ToLower();
-            if(functionXHR == "post")
-            {
-                if(ReturnType == typeof(void))
-                {
-                    functionXHR = "postVoid";
-                }
-            }
+            //if(functionXHR == "post")
+            //{
+            //    if(ReturnType == typeof(void))
+            //    {
+            //        functionXHR = "postVoid";
+            //    }
+            //}
             str += $"return {functionXHR}Xhr({paramsXHR});}}";
             return str;
         }

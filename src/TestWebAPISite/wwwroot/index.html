@@ -549,49 +549,27 @@
                 interpreter.createAsyncFunction(wrapper));
 
 
-            var wrapper = function (href, objectToPost, callback) {
-                var data = `postVoidXHR: href: ${href} obj: ${objectToPost}`;
-                var req = new XMLHttpRequest();
-                console.log(data);
-                data = JSON.stringify(objectToPost);
-                console.log(`sending ${data}`);
-
-                req.open('POST', href, true);
-                req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-                req.onreadystatechange = function () {
-                    if (req.readyState == 4) {
-                        if (req.status == 200) {
-                            return callback(true);
-                        } else {
-                            throw `${href} status :${req.status}`;
-                        }
-
-                    }
-                    else {
-                        //window.alert(`error ${href} ${req.status}`);
-                    }
-                };
-                req.send(data);
-                //req.send(JSON.stringify(objectToPost));
-            };
-            interpreter.setProperty(globalObject, 'postVoidXhr',
-                interpreter.createAsyncFunction(wrapper));
-
+            
             var wrapper = function (href, objectToPost, callback) {
                 var data = `postXhr: href: ${href} obj: ${objectToPost}`;
                 console.log(data);
                 data = JSON.stringify(objectToPost);
                 console.log(`sending ${data}`);
                 var req = new XMLHttpRequest();
-                req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-
+                
                 req.open('POST', href, true);
                 req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
                 
                 req.onreadystatechange = function () {
                     if (req.readyState == 4) {
                         if (req.status == 200) {
-                            return callback(true);
+                            var answer = req.responseText;
+                            if(answer) {
+                                callback(answer);
+                            }
+                            else {
+                                callback(true);
+                            }
                         } else {
                             throw `${href} status :${req.status}`;
                         }
