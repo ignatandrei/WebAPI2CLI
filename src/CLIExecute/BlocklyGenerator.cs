@@ -146,7 +146,8 @@ namespace CLIExecute
             if (ExistsParams)                            
             foreach(var param in Params)
             {
-                str += $@"strUrl = strUrl.replace('{{{param.Key}}}',{param.Key});";
+                if(param.Value.bs == BindingSource.Path || param.Value.bs == BindingSource.Query)
+                    str += $@"strUrl = strUrl.replace('{{{param.Key}}}',{param.Key});";
                 
             }
 
@@ -175,7 +176,10 @@ namespace CLIExecute
                     ));
                 argsXHR = string.Join(",", Params.Select(param => $@"${{obj['val_{param.Key}']}}"));
             }
-                
+            if (argsXHR.Length > 0)
+            {
+                argsXHR += ",${JSON.stringify(obj)}";
+            }
             var returnValue = "";
             if (ReturnType == typeof(void))
             {
