@@ -55,14 +55,19 @@ namespace CLIExecute
             //what to do with Array ?
             return null;
         }
+        internal Tuple<Type,string>[] TypesGenerateArray()
+        {
+            return this.Types()
+                .Where(it => it.Item2 == null)
+                .ToArray();
+        }
         /// <summary>
         /// Generates types of Blockly
         /// </summary>
         /// <returns></returns>
         public string TypesToBeGenerated()
         {
-            var types = this.Types()
-                .Where(it => it.Item2 == null)
+            var types = this.TypesGenerateArray()                
                 .Select(it => GenerateBlocklyFromType(it.Item1))
                 .Select(it => it.descType)
                 .ToArray();
@@ -230,9 +235,26 @@ return xmlList;
                     {
                             var type = param.Value.type;
                         var existing = ListOfBlockly.BlocklyTypeTranslator(type);
+                        if(existing == null)
+                        {
+                            var tuple = TypesGenerateArray().FirstOrDefault(it => it.Item1 == type);
+                            if(tuple != null)
+                            {
+                                    var blockShadow = nameType(type);
+                                    blockText += $@"{Environment.NewLine}
+ blockTextLocalSiteFunctions += '<value name=""val_{param.Key}"">';
+blockTextLocalSiteFunctions += '<shadow type=""{blockShadow}"">';";
+                                    //blockText += generateShadow(blockShadow);
+                                    blockText += $@"
+ blockTextLocalSiteFunctions += '</shadow></value>';
+ ";
+                                }
+
+
+                        }
                         if(existing != null)
                         {
-                                var blockShadow = ListOfBlockly.BlocklyTypeBlocks(param.Value.type);
+                                var blockShadow = ListOfBlockly.BlocklyTypeBlocks(type);
                                 blockText += $@"{Environment.NewLine}
  blockTextLocalSiteFunctions += '<value name=""val_{param.Key}"">';
 blockTextLocalSiteFunctions += '<shadow type=""{blockShadow}"">';";
