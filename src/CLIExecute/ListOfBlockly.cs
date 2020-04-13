@@ -85,6 +85,7 @@ namespace CLIExecute
         /// <returns></returns>
         public string GenerateBlocksValueDefinition()
         {
+            var globalVars = "var glbVar=function(workspace){";
             var types = this.Types()
                 .Where(it => it.Item2 == null)
                 .Select(it => it.Item1)
@@ -93,7 +94,7 @@ namespace CLIExecute
             foreach (var type in types)
             {
 
-
+                globalVars += $"workspace.createVariable('var_{type.Name}', '{nameType(type)}');";
                 blockText += $@"{Environment.NewLine}
                 
                 var blockText_{type.Name} = '<block type=""{nameType(type)}"">';";
@@ -132,7 +133,9 @@ blockTextLocalSiteFunctions += '<shadow type=""{blockShadow}"">';";
         {blockText}
                 
 return xmlList;
-              }}  ";
+              }};  ";
+            globalVars += "}";
+            strDef += globalVars;
             return strDef;
 
         }

@@ -693,7 +693,9 @@
                 media: '../../media/',
                 toolbox: document.getElementById('toolbox')
             });
-        demoWorkspace.createVariable('var_SumArgs', 'TestWebAPISite_Controllers_SumArgs');
+        if (glbVar)
+            glbVar(demoWorkspace);
+        //demoWorkspace.createVariable('var_SumArgs', 'TestWebAPISite_Controllers_SumArgs');
         demoWorkspace.registerToolboxCategoryCallback('LocalSiteValues', registerValues);
         
         demoWorkspace.registerButtonCallback('crae',
