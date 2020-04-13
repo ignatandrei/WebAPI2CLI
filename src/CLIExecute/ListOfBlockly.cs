@@ -78,6 +78,7 @@ namespace CLIExecute
         {
             return BlocklyTypeTranslator(t) ?? t.FullName.Replace(".", "_");
         }
+        
         /// <summary>
         /// Generates the blocks definition.
         /// </summary>
@@ -91,31 +92,40 @@ namespace CLIExecute
             string blockText = "";
             foreach (var type in types)
             {
-                blockText += $@"{Environment.NewLine}
-            
-                var blockText_{type.Name} = '<block type=""{nameType(type)}"">';";
-                foreach(var item in type.GetProperties())
+                var nameTypes = new[]
                 {
-                    if (item.GetSetMethod() == null)
-                        continue;
-                    var typeProp = item.PropertyType;
-                    var existing = ListOfBlockly.BlocklyTypeTranslator(typeProp);
-                    if (existing == null)
-                        continue;
-
-                    var blockShadow = ListOfBlockly.BlocklyTypeBlocks(typeProp);
+                    nameType(type),
+                    $"var_{nameType(type)}"
+                };
+                foreach (var nameTypeLoop in nameTypes) {
                     blockText += $@"{Environment.NewLine}
+                {{
+                var blockText_{type.Name} = '<block type=""{nameTypeLoop}"">';";
+                    foreach (var item in type.GetProperties())
+                    {
+                        if (item.GetSetMethod() == null)
+                            continue;
+                        var typeProp = item.PropertyType;
+                        var existing = ListOfBlockly.BlocklyTypeTranslator(typeProp);
+                        if (existing == null)
+                            continue;
+
+                        var blockShadow = ListOfBlockly.BlocklyTypeBlocks(typeProp);
+                        blockText += $@"{Environment.NewLine}
  var blockTextLocalSiteFunctions = '<value name=""val_{item.Name}"">';
 blockTextLocalSiteFunctions += '<shadow type=""{blockShadow}"">';";
-                    blockText += generateShadow(blockShadow);
-                    blockText += $@"
+                        blockText += generateShadow(blockShadow);
+                        blockText += $@"
  blockTextLocalSiteFunctions += '</shadow></value>';
  ";
-                    blockText += $"blockText_{ type.Name} += blockTextLocalSiteFunctions;";
-                }
-                blockText += $"blockText_{ type.Name} += '</block>';";
-                blockText += $@"var block_{type.Name} = Blockly.Xml.textToDom(blockText_{type.Name});
+                        blockText += $"blockText_{type.Name} += blockTextLocalSiteFunctions;";
+                    }
+                    blockText += $"blockText_{type.Name} += '</block>';";
+
+                    blockText += $@"var block_{type.Name} = Blockly.Xml.textToDom(blockText_{type.Name});
                 xmlList.push(block_{type.Name});";
+                    blockText += "};";
+                }
             }
             var strDef = $@"
  var registerValues = function() {{
@@ -161,6 +171,18 @@ return xmlList;
                         this.setOutput(true, '{nameType(t)}');
                             }}  
                     }};";
+
+            strDef += $@"Blockly.Blocks['var_{nameType(t)}'] = {{
+  init: function() {{
+    this.setTooltip(' please open advanced / variables to add the variable');
+    this.appendDummyInput()
+      .appendField('variable:')
+      .appendField(new Blockly.FieldVariable(
+          'var_{t.Name}',
+          '{nameType(t)}'
+      ), 'FIELDNAME');
+  }}
+}};";
 
             var strJS = $@"
                 Blockly.JavaScript['{nameType(t)}'] = function(block) {{

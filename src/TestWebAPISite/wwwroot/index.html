@@ -984,9 +984,38 @@
         demoWorkspace.addChangeListener(function (event) {
             if (!(event instanceof Blockly.Events.Ui)) {
                 // Something changed. Parser needs to be reloaded.
+                
                 resetInterpreter();
                 generateCodeAndLoadIntoInterpreter();
+
+                if (event.type == Blockly.Events.BLOCK_CREATE) {
+                    
+                    console.log();
+                    var obj = event.getEventWorkspace_().getBlockById(event.blockId);
+                    console.log(obj);
+                    var s = Blockly.Xml.domToText(obj);
+                    console.log(s);
+                    if (obj.type == "text_print")
+                        return;
+                    var print = event.getEventWorkspace_().getAllBlocks().find(it => it.type = 'text_print');
+                    //console.log(event.getEventWorkspace_().getAllBlocks());// .addTypedBlock
+                    //console.log(print);
+                    //event.getEventWorkspace_().addTopBlock(print);
+                    var dom = Blockly.Xml.textToDom(
+                        '<xml xmlns="http://www.w3.org/1999/xhtml">' +
+                        '  <block type="text_print" inline="true" x="21" y="23">' +
+                        ' <shadow type="text">'+
+                        '<field name = "TEXT"> abc</field>'+
+                        '</shadow >'+
+                        '  </block>' +
+                        '</xml>');
+
+                    
+                    Blockly.Xml.appendDomToWorkspace(dom, event.getEventWorkspace_());
+                    
+                }
             }
+            
         });
         function downloadZip() {
             zip.generateAsync({ type: "blob" }).then(function (blob) { // 1) generate the zip file
