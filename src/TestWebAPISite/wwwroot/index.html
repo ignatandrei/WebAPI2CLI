@@ -11,6 +11,7 @@
     <script src="/blockly/wait_block.js"></script>
     <script src="others/jszip.min.js"></script>
     <script src="others/FileSaver.min.js"></script>
+    <script src="others/lz-string.min.js"></script>
     <style>
         body {
             background-color: #fff;
@@ -34,9 +35,10 @@
 
     <p>
         <button onclick="runCode()" id="runButton">Run!</button>
-        
+
         <a href="javascript:downloadZip()">Download Results</a>
-        
+        <a href="javascript:SaveBlocks()">SaveBlocks</a>
+
     </p>
 
     <div style="width: 100%">
@@ -698,9 +700,18 @@
         //    //var tb = demoWorkspace.getToolbox();
         //    //tb.refreshSelection();
         //});
-
-        Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), demoWorkspace);
-        //Blockly.Xml.domToWorkspace(document.getElementById('testSite'), demoWorkspace);
+        var urlParams = window.location.search.split('dom=');
+        if (urlParams.length == 2) {
+            var str = urlParams[1];
+            var xmlContent = LZString.decompressFromBase64(str);
+            //window.alert(xmlContent);
+            var dom = Blockly.Xml.textToDom(xmlContent);
+            Blockly.Xml.domToWorkspace(dom,demoWorkspace);
+        }
+        else {
+            Blockly.Xml.domToWorkspace(document.getElementById('startBlocks'), demoWorkspace);
+        }
+            //Blockly.Xml.domToWorkspace(document.getElementById('testSite'), demoWorkspace);
         
         //var tb = demoWorkspace.getToolbox();
         //console.log(tb.tree_);
@@ -981,6 +992,17 @@
             zip.generateAsync({ type: "blob" }).then(function (blob) { // 1) generate the zip file
                 saveAs(blob, "hello.zip");                          // 2) trigger the download
             });
+        }
+        function SaveBlocks() {
+            var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
+            var xml_text = Blockly.Xml.domToText(xml);
+            //window.alert(xml_text.length);
+            var str = LZString.compressToBase64(xml_text);//decompressFromBase64
+            //window.alert(str.length);
+            //window.alert(str);
+            window.history.pushState({ dom: str }, xml_text, "?dom=" + str);
+            //window.alert(LZString.decompressFromBase64(str));
+            window.alert("copy the url from the browser");
         }
     </script>
     
