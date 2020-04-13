@@ -364,12 +364,14 @@
         </category>
         <sep></sep>
         <category name="advanced">
+            
             <category id="catVariables" colour="330" custom="VARIABLE" name="Variables"></category>
             <category id="catFunctions" colour="290" custom="PROCEDURE" name="Functions"></category>
             <category id="catJSON" colour="160" name="JSON">
+                <button text="A button" callbackKey="crae"></button>
                 <block type="converttojson"></block>
                 <block type="converttostring"></block>
-                
+
             </category>
                 <category id="catHelpers" colour="160" name="Helpers">
                     <block type="wait_seconds"></block>
@@ -677,7 +679,7 @@
                 return  (json);                
                 })()
                 `;
-            console.log(code);
+            //console.log(code);
             //return ["'andrei'+" + value_valuetoimport, Blockly.JavaScript.ORDER_NONE];
             return [code, Blockly.JavaScript.ORDER_NONE];
             //
@@ -685,12 +687,18 @@
             //var code = JSON.parse(value_valuetoimport);            
             //return [code, Blockly.JavaScript.ORDER_NONE];
         };
+        
         demoWorkspace = Blockly.inject('blocklyDiv',
             {
                 media: '../../media/',
                 toolbox: document.getElementById('toolbox')
             });
+        demoWorkspace.createVariable('var_SumArgs', 'TestWebAPISite_Controllers_SumArgs');
         demoWorkspace.registerToolboxCategoryCallback('LocalSiteValues', registerValues);
+        
+        demoWorkspace.registerButtonCallback('crae',
+            function (button) { Blockly.Variables.createVariable(button.getTargetWorkspace(), null, 'TestWebAPISite_Controllers_SumArgs'); }
+        );
         //demoWorkspace.registerToolboxCategoryCallback('LocalSiteFunctions', registerFunctions);
         //function (ws) {
         //    //var tb = ws.getToolbox();
@@ -990,14 +998,14 @@
 
                 if (event.type == Blockly.Events.BLOCK_CREATE) {
                     
-                    console.log();
+                    //console.log();
                     var obj = event.getEventWorkspace_().getBlockById(event.blockId);
-                    console.log(obj);
+                    //console.log(obj);
                     var s = Blockly.Xml.domToText(obj);
-                    console.log(s);
+                    //console.log(s);
                     if (obj.type == "text_print")
                         return;
-                    var print = event.getEventWorkspace_().getAllBlocks().find(it => it.type = 'text_print');
+                    //var print = event.getEventWorkspace_().getAllBlocks().find(it => it.type = 'text_print');
                     //console.log(event.getEventWorkspace_().getAllBlocks());// .addTypedBlock
                     //console.log(print);
                     //event.getEventWorkspace_().addTopBlock(print);
@@ -1025,7 +1033,8 @@
         function SaveBlocks() {
             var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
             var xml_text = Blockly.Xml.domToText(xml);
-            //window.alert(xml_text.length);
+            //window.alert(xml_text);
+            //return;
             var str = LZString.compressToBase64(xml_text);//decompressFromBase64
             //window.alert(str.length);
             //window.alert(str);

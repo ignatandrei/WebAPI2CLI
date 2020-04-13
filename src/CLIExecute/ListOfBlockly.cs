@@ -92,41 +92,40 @@ namespace CLIExecute
             string blockText = "";
             foreach (var type in types)
             {
-                var nameTypes = new[]
-                {
-                    nameType(type),
-                    $"var_{nameType(type)}"
-                };
-                foreach (var nameTypeLoop in nameTypes) {
-                    blockText += $@"{Environment.NewLine}
-                {{
-                var blockText_{type.Name} = '<block type=""{nameTypeLoop}"">';";
-                    foreach (var item in type.GetProperties())
-                    {
-                        if (item.GetSetMethod() == null)
-                            continue;
-                        var typeProp = item.PropertyType;
-                        var existing = ListOfBlockly.BlocklyTypeTranslator(typeProp);
-                        if (existing == null)
-                            continue;
 
-                        var blockShadow = ListOfBlockly.BlocklyTypeBlocks(typeProp);
-                        blockText += $@"{Environment.NewLine}
+
+                blockText += $@"{Environment.NewLine}
+                
+                var blockText_{type.Name} = '<block type=""{nameType(type)}"">';";
+                foreach (var item in type.GetProperties())
+                {
+                    if (item.GetSetMethod() == null)
+                        continue;
+                    var typeProp = item.PropertyType;
+                    var existing = ListOfBlockly.BlocklyTypeTranslator(typeProp);
+                    if (existing == null)
+                        continue;
+
+                    var blockShadow = ListOfBlockly.BlocklyTypeBlocks(typeProp);
+                    blockText += $@"{Environment.NewLine}
  var blockTextLocalSiteFunctions = '<value name=""val_{item.Name}"">';
 blockTextLocalSiteFunctions += '<shadow type=""{blockShadow}"">';";
-                        blockText += generateShadow(blockShadow);
-                        blockText += $@"
+                    blockText += generateShadow(blockShadow);
+                    blockText += $@"
  blockTextLocalSiteFunctions += '</shadow></value>';
  ";
-                        blockText += $"blockText_{type.Name} += blockTextLocalSiteFunctions;";
-                    }
-                    blockText += $"blockText_{type.Name} += '</block>';";
-
-                    blockText += $@"var block_{type.Name} = Blockly.Xml.textToDom(blockText_{type.Name});
-                xmlList.push(block_{type.Name});";
-                    blockText += "};";
+                    blockText += $"blockText_{type.Name} += blockTextLocalSiteFunctions;";
                 }
-            }
+                blockText += $"blockText_{type.Name} += '</block>';";
+
+                blockText += $@"block_{type.Name} = Blockly.Xml.textToDom(blockText_{type.Name});
+                xmlList.push(block_{type.Name});";
+                blockText += ";";
+
+                blockText += $@"var block_{type.Name}Set='<block type=""variables_set""><field name=""VAR"">var_{type.Name}</field></block>';";
+                blockText += $@"block_{type.Name}Set = Blockly.Xml.textToDom(block_{type.Name}Set);
+                xmlList.push(block_{type.Name}Set);";
+            }            
             var strDef = $@"
  var registerValues = function() {{
         var xmlList = [];
