@@ -9,6 +9,8 @@
     <script src="/blockly/javascript_compressed.js"></script>
     <script src="/blockly/en.js"></script>
     <script src="/blockly/wait_block.js"></script>
+    <script src="others/jszip.min.js"></script>
+    <script src="others/FileSaver.min.js"></script>
     <style>
         body {
             background-color: #fff;
@@ -32,6 +34,9 @@
 
     <p>
         <button onclick="runCode()" id="runButton">Run!</button>
+        
+        <a href="javascript:downloadZip()">Download Results</a>
+        
     </p>
 
     <div style="width: 100%">
@@ -39,7 +44,9 @@
              style="display: inline-block; height: 480px; width: 58%"></div>
         <textarea id="output" disabled="disabled"
                   style="display: inline-block; height: 480px; width: 38%;">
+      
     </textarea>
+        
     </div>
 
     <xml id="toolbox" style="display: none">
@@ -712,8 +719,9 @@
             // Add an API function for the alert() block, generated for "text_print" blocks.
             var wrapper = function (text) {
                 text = text ? text.toString() : '';
-                console.log(`step ${step}`);
-                outputArea.value = outputArea.value + '\n' + text;
+                console.log(`step ${step}`);                
+                zip.file(`step${step}`, text);
+                outputArea.value = outputArea.value + '\n step' + step + ':' + text;
             };
             interpreter.setProperty(globalObject, 'alert',
                 interpreter.createNativeFunction(wrapper));
@@ -883,6 +891,7 @@
         var highlightPause = false;
         var latestCode = '';
         var step = 0;
+        var zip = new JSZip();
         function highlightBlock(id) {
             step++;
             demoWorkspace.highlightBlock(id);
@@ -890,12 +899,14 @@
         }
 
         function resetStepUi(clearOutput) {
-            step = 1;
+            step = 0;
+            
             demoWorkspace.highlightBlock(null);
             highlightPause = false;
             runButton.disabled = '';
 
             if (clearOutput) {
+                zip = new JSZip();
                 outputArea.value = 'Program output:\n=================';
             }
         }
@@ -945,6 +956,7 @@
                             } else {
                                 // Program is complete.
                                 outputArea.value += '\n\n<< Program complete >>';
+                                
                                 resetInterpreter();
                                 resetStepUi(false);
                             }
@@ -965,6 +977,12 @@
                 generateCodeAndLoadIntoInterpreter();
             }
         });
+        function downloadZip() {
+            zip.generateAsync({ type: "blob" }).then(function (blob) { // 1) generate the zip file
+                saveAs(blob, "hello.zip");                          // 2) trigger the download
+            });
+        }
     </script>
+    
 </body>
 </html>
