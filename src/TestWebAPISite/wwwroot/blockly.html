@@ -11,7 +11,7 @@
     <script src="/blockly/wait_block.js"></script>
     <script src="others/jszip.min.js"></script>
     <script src="others/FileSaver.min.js"></script>
-    <script src="others/lz-string.min.js"></script>
+    
     <style>
         body {
             background-color: #fff;
@@ -711,10 +711,12 @@
         //    //tb.refreshSelection();
         //});
         var urlParams = window.location.search.split('dom=');
+        
         if (urlParams.length == 2) {
             var str = urlParams[1];
-            var xmlContent = LZString.decompressFromBase64(str);
-            //window.alert(xmlContent);
+            
+            var xmlContent = window.localStorage.getItem(str);
+            
             var dom = Blockly.Xml.textToDom(xmlContent);
             Blockly.Xml.domToWorkspace(dom,demoWorkspace);
         }
@@ -1034,15 +1036,20 @@
         }
         function SaveBlocks() {
             var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
-            var xml_text = Blockly.Xml.domToText(xml);
-            //window.alert(xml_text);
-            //return;
-            var str = LZString.compressToBase64(xml_text);//decompressFromBase64
-            //window.alert(str.length);
-            //window.alert(str);
-            window.history.pushState({ dom: str }, xml_text, "?dom=" + str);
-            //window.alert(LZString.decompressFromBase64(str));
+            var xml_text = Blockly.Xml.domToPrettyText(xml);
+            var n = formatDate(new Date());
+            window.history.pushState({ dom: n }, xml_text, "?dom=" + n);
+            window.localStorage.setItem(n, xml_text);
             window.alert("copy the url from the browser");
+        }
+        function formatInt(number) {
+            return number < 10 ? '0' + number : number;
+        }
+        function formatDate(date) {
+
+            return `${formatInt(date.getFullYear())}${formatInt((date.getMonth() + 1))}${formatInt(date.getDate())}`+
+                `${formatInt(date.getHours())}${formatInt(date.getMinutes())}${formatInt(date.getSeconds())}`;
+            
         }
     </script>
     
