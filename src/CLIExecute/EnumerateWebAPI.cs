@@ -141,7 +141,7 @@ namespace CLIExecute
                         //var ad = new Uri(adress);
                         var v1 = new BlocklyGenerator();
                         v1.NameCommand = api.RelativePath;
-                        v1.Verb = api.HttpMethod;
+                        v1.Verb = api.HttpMethod??"GET";
                         //v1.Host = ad.GetLeftPart(UriPartial.Scheme);
                         v1.RelativeRequestUrl = api.RelativePath;
                         
