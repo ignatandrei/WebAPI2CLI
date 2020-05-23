@@ -92,7 +92,9 @@ namespace CLIExecute
                 }
             }
             var h = new HttpClient();
-
+            Console.WriteLine($"host : {Host}");
+            Host = Host.Replace("0.0.0.0", "localhost");
+            Host = Host.Replace("[::]", "localhost");
             h.BaseAddress = new Uri(Host);
             
             StringContent sc=null;

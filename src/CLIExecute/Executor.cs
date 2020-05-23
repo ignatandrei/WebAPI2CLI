@@ -81,7 +81,8 @@ namespace CLIExecute
         /// <summary>
         /// Executes the commands.
         /// </summary>
-        public async Task ExecuteCommands()
+        /// <param name="tw">The writer, console.out</param>
+        public async Task ExecuteCommands(TextWriter  tw)
         {
             var cmds = CommandsToExecute();
             foreach (var cmd in cmds)
@@ -90,9 +91,10 @@ namespace CLIExecute
                     v1.SetPossibleFullHosts(serverAddresses.Addresses.ToArray());
                     try
                     {
+                        
                         Console.WriteLine($"Web2APICLI:executing {v1.NameCommand}");
                         var x = await v1.Execute();
-                        Console.WriteLine(JsonSerializer.Serialize(x, new JsonSerializerOptions()
+                        tw.WriteLine(JsonSerializer.Serialize(x, new JsonSerializerOptions()
                         {
                             WriteIndented = true
                         }));
@@ -128,9 +130,28 @@ namespace CLIExecute
                     Console.WriteLine("Web2APICLI:cannot write cli.txt because " + ex.Message);
                 }
             }
+            TextWriter sw = Console.Out;
+            string nameFile = FileNameToWrite() ;
+            bool shouldWrite = !string.IsNullOrEmpty(nameFile);
+            if (shouldWrite)
+            {
+                sw = new StreamWriter(nameFile, true);
+            }
 
             if (ShouldExecuteCommands())
-                await ExecuteCommands();
+                await ExecuteCommands(sw);
+
+            if (shouldWrite)
+                sw.Close();
+
+        }
+        /// <summary>
+        /// Files the name to write the commands
+        /// </summary>
+        /// <returns></returns>
+        public string FileNameToWrite()
+        {
+            return configuration["CLI_FILENAME"]; 
         }
         /// <summary>
         /// CLI_HELP ==1  

@@ -34,6 +34,11 @@ The software takes care about
 
 If you do not have this command, your website runs as before
 
+## I want to run and store results separately
+
+Use 
+&lt; myexe &gt;.exe  --CLI_ENABLED=1 --CLI_Commands="your first command,your second command" --CLI_FILENAME="your file name"
+
 ## I want to run as a CLI and then use the WebAPI as before. Could I do that? 
 
 Yes. Use 
