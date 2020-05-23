@@ -20,6 +20,7 @@ Project 'ExtensionNetCore3' has the following package references
    > Microsoft.Extensions.DependencyInjection.Abstractions      3.1.2       3.1.2   
    > Microsoft.Extensions.Hosting.Abstractions                  3.1.2       3.1.2   
    > Microsoft.SourceLink.GitHub                                1.0.0       1.0.0   
+   > System.IO.Pipelines                                        4.7.2       4.7.2   
 
 Project 'TestWebAPISite' has the following package references
    [netcoreapp3.1]: 
