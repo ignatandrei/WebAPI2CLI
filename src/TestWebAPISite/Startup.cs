@@ -29,8 +29,7 @@ namespace TestWebAPISite
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCLI();
-            services.AddBlockly();
+            services.AddCLI();            
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -57,7 +56,6 @@ namespace TestWebAPISite
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebAPI2CLI");
             });
             app.UseCLI();
-            app.UseBlockly();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

@@ -30,18 +30,7 @@ namespace ExtensionNetCore3
             Console.WriteLine($"Web2APICLI:{assName.Name} version:{assName.Version.ToString()}");
 
         }
-        /// <summary>
-        /// Adds blockly class
-        /// </summary>
-        /// <param name="serviceCollection">The service collection.</param>
-        /// <returns></returns>
-        public static IServiceCollection AddBlockly(this IServiceCollection serviceCollection)
-        {
-            serviceCollection.AddSingleton<EnumerateWebAPIHostedService>();
-            serviceCollection.AddHostedService<EnumerateWebAPIHostedService>(p => p.GetService<EnumerateWebAPIHostedService>());
-
-            return serviceCollection;
-        }
+        
             /// <summary>
             /// Helper method to be used at 
             ///  public void ConfigureServices
@@ -77,70 +66,7 @@ namespace ExtensionNetCore3
             service.app = app;            
             return app;
         }
-        /// <summary>
-        ///  use blockly
-        /// </summary>
-        /// <param name="app"></param>
-        /// <returns></returns>
-        public static IApplicationBuilder UseBlockly(this IApplicationBuilder app)
-        {
-
-            var service = app.ApplicationServices.GetService<EnumerateWebAPIHostedService>();
-            service.app = app;
-            app.Map("/blocklyDefinitions", app =>
-            {
-                var h = app.ApplicationServices.GetService<EnumerateWebAPIHostedService>();
-                app.Run(async context =>
-                {
-                    var b = h.BlocklyTypesDefinition;
-                    if (b != null)
-                    {
-                        var mem = new Memory<byte>(Encoding.UTF8.GetBytes(b));
-                        await context.Response.BodyWriter.WriteAsync(mem);
-                    }
-                });
-            });
-            app.Map("/BlocklyToolBoxValueDefinitions", app =>
-            {
-                var h = app.ApplicationServices.GetService<EnumerateWebAPIHostedService>();
-                app.Run(async context =>
-                {
-                    var b = h.BlocklyToolBoxValueDefinition;
-                    if (b != null)
-                    {
-                        var mem = new Memory<byte>(Encoding.UTF8.GetBytes(b));
-                        await context.Response.BodyWriter.WriteAsync(mem);
-                    }
-                });
-            });
-            app.Map("/blocklyAPIFunctions", app =>
-            {
-                var h = app.ApplicationServices.GetService<EnumerateWebAPIHostedService>();
-                app.Run(async context =>
-                {
-                    var b = h.BlocklyAPIFunctions;
-                    if (b != null)
-                    {
-                        var mem = new Memory<byte>(Encoding.UTF8.GetBytes(b));
-                        await context.Response.BodyWriter.WriteAsync(mem);
-                    }
-                });
-            });
-            app.Map("/BlocklyToolBoxFunctionDefinitions", app =>
-            {
-                var h = app.ApplicationServices.GetService<EnumerateWebAPIHostedService>();
-                app.Run(async context =>
-                {
-                    var b = h.BlocklyToolBoxFunctionDefinition;
-                    if (b != null)
-                    {
-                        var mem = new Memory<byte>(Encoding.UTF8.GetBytes(b));
-                        await context.Response.BodyWriter.WriteAsync(mem);
-                    }
-                });
-            });
-            return app;
-        }
+        
         /// <summary>
         /// Makes the zip of the app to download
         /// </summary>

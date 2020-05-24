@@ -24,7 +24,7 @@ namespace TestWebAPISite.Controllers
         [HttpGet("{id}", Name = "Get")]
         public async Task<string> Get(int id)
         {
-            //await Task.Delay(5000);
+            await Task.Delay(1000);
             return "value" + id;
         }
 
