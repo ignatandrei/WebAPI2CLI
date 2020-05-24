@@ -104,6 +104,7 @@ steps:
 
 - script: |
     cd $(Build.ArtifactStagingDirectory)
+    dir *.exe
     echo "testing"
     TestWebAPISite.exe  --CLI_ENABLED=1 --CLI_Commands="GetMathId_Http,MathPOST"
   
