@@ -17,6 +17,7 @@ namespace ExtensionNetCore3
 
     /// <summary>
     /// The service that starts execution of the CLI
+    /// TODO: add IHostApplicationLifetime DI instead of Environment.Exit
     /// </summary>
     /// <seealso cref="Microsoft.Extensions.Hosting.IHostedService" />
     public class CLIAPIHostedService : IHostedService
