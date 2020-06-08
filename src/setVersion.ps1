@@ -1,8 +1,18 @@
+ 
 $TimeNow = Get-Date
 $d = $TimeNow.ToUniversalTime()
 $year = $TimeNow.Year
 $startOfYear = Get-Date -Year $year -Month 1 -Day 1 -Hour 0 -Minute 0 -Second 0 -Millisecond 0
+$dateToPrint=[long] $d.ToString('yyMMddHHmmss')
+$result = $dateToPrint % 2
+if($result -eq 0){
+	$moniker = "$(dotnet moniker -s moby)-$dateToPrint"
+	}
+else{
+	$moniker = "$(dotnet moniker -s moniker)-$dateToPrint"
+	}
 
+Write-Host $moniker
 $diff = NEW-TIMESPAN -Start $startOfYear -End $TimeNow
 #$diff.TotalSeconds -as [int]
 
@@ -14,9 +24,10 @@ $version=$d.ToString("1.0.yyyy.") + ($diff.TotalSeconds -as  [int]).ToString()
 dotnet-property "**/*.csproj" Version:"$version"
 dotnet dotnet-property "**/*.csproj" Version:"$version"
 
-$releaseNotes = "BuildNumber $env:BUILD_BUILDNUMBER"
-$releaseNotes += ";author $env:BUILD_SOURCEVERSIONAUTHOR"
-$releaseNotes += ";message $env:BUILD_SOURCEVERSIONMESSAGE"
+#$releaseNotes = "BuildNumber $env:BUILD_BUILDNUMBER"
+#$releaseNotes += ";author $env:BUILD_SOURCEVERSIONAUTHOR"
+#$releaseNotes += ";message $env:BUILD_SOURCEVERSIONMESSAGE"
+$releaseNotes = "version:" + $moniker
 $releaseNotes +=";source for this release github.com/ignatandrei/webAPI2CLI/commit/$env:BUILD_SOURCEVERSION"
 
 $releaseNotes
