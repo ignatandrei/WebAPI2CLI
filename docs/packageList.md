@@ -1,15 +1,15 @@
 # Referenced packages
 Project 'CLIExecute' has the following package references
-   [netstandard2.0]: 
-   Top-level Package                                          Requested   Resolved
-   > Microsoft.AspNetCore.Hosting.Server.Abstractions         2.2.0       2.2.0   
-   > Microsoft.AspNetCore.Mvc.ApiExplorer                     2.2.0       2.2.0   
-   > Microsoft.Extensions.Configuration.Abstractions          3.1.2       3.1.2   
-   > Microsoft.Extensions.Configuration.Binder                3.1.2       3.1.2   
-   > Microsoft.SourceLink.GitHub                              1.0.0       1.0.0   
-   > NETStandard.Library                                (A)   [2.0.3, )   2.0.3   
-   > System.Text.Json                                         4.7.1       4.7.1   
-   > YamlDotNet                                               8.1.0       8.1.0   
+   [netcoreapp3.1]: 
+   Top-level Package                                       Requested     Resolved   
+   > InterpreterDll                                        2020.7.14.5   2020.7.14.5
+   > Microsoft.AspNetCore.Hosting.Server.Abstractions      2.2.0         2.2.0      
+   > Microsoft.AspNetCore.Mvc.ApiExplorer                  2.2.0         2.2.0      
+   > Microsoft.Extensions.Configuration.Abstractions       3.1.2         3.1.2      
+   > Microsoft.Extensions.Configuration.Binder             3.1.2         3.1.2      
+   > Microsoft.SourceLink.GitHub                           1.0.0         1.0.0      
+   > System.Text.Json                                      4.7.1         4.7.1      
+   > YamlDotNet                                            8.1.0         8.1.0      
 
 Project 'ExtensionNetCore3' has the following package references
    [netcoreapp3.1]: 
@@ -41,5 +41,4 @@ Project 'CLITests' has the following package references
    > xunit                                    2.4.1       2.4.1   
    > xunit.runner.visualstudio                2.4.1       2.4.1   
 
-(A) : Auto-referenced package.
 
