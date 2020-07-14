@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InterpreterDll;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using YamlDotNet.Serialization;
@@ -40,6 +41,8 @@ namespace CLIExecute
         /// <returns>CLI_Commands</returns>
         public static CLI_Commands DeSerialize(string  text)
         {
+            var i = new Interpret();
+            text = i.InterpretText(text);
             var serializer = new DeserializerBuilder()
               //.WithNamingConvention(CamelCaseNamingConvention.Instance)
                 .Build();
