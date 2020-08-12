@@ -86,3 +86,6 @@ and browser to <root of the site>/zip  to download the whole application.
 More details here( including a demo)
 
 https://ignatandrei.github.io/WebAPI2CLI/
+
+
+Environment Variables: see https://github.com/ignatandrei/Interpreter 
