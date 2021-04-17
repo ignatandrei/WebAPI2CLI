@@ -1,6 +1,6 @@
 {
   "homepages": [],
-  "source_base_path": "d:/a/WebAPI2CLI/WebAPI2CLI/externals/docfx/Documentation",
+  "source_base_path": "D:/a/WebAPI2CLI/WebAPI2CLI/externals/docfx/Documentation",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -9,7 +9,7 @@
       "output": {
         ".html": {
           "relative_path": "api/index.html",
-          "hash": "bHnbic92Z4sJ/ke66F1E6w=="
+          "hash": "GLIV3KXY2oF0yElAEauPNg=="
         }
       },
       "is_incremental": false,
@@ -21,7 +21,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/intro.html",
-          "hash": "cUl4+1p8nHv5j6wDhW/SUw=="
+          "hash": "kYlmQaHlbw5H2Eg3/Rod2A=="
         }
       },
       "is_incremental": false,
@@ -45,7 +45,7 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "o9GspvfmcJTrlenmuFg6XA=="
+          "hash": "h8p7XBwlrFZgRVCNdMGmNg=="
         }
       },
       "is_incremental": false,
